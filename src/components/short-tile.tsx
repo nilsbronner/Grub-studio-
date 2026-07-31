@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { cx } from "@/lib/cx";
 import type { Short } from "@/lib/content/shorts";
+import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
 
 export function ShortTile({
   short,
@@ -12,8 +13,9 @@ export function ShortTile({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [inView, setInView] = useState(false);
-  const [embedLoaded, setEmbedLoaded] = useState(false);
+  const embedLoaded = useVimeoPlaying(iframeRef, inView);
 
   useEffect(() => {
     const el = ref.current;
@@ -36,6 +38,7 @@ export function ShortTile({
     >
       {inView && (
         <iframe
+          ref={iframeRef}
           src={`https://player.vimeo.com/video/${short.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
           className={cx(
             "absolute inset-0 h-full w-full transition-opacity duration-700 ease-out",
@@ -45,7 +48,6 @@ export function ShortTile({
           allow="autoplay; fullscreen"
           loading="lazy"
           title={short.title}
-          onLoad={() => setEmbedLoaded(true)}
         />
       )}
       <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-3">

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { cx } from "@/lib/cx";
 import type { Project } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
+import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
 
 export function VideoTile({
   project,
@@ -17,8 +18,8 @@ export function VideoTile({
   priority?: boolean;
 }) {
   const ref = useRef<HTMLAnchorElement>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [inView, setInView] = useState(false);
-  const [embedLoaded, setEmbedLoaded] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -32,6 +33,7 @@ export function VideoTile({
   }, [project.vimeoId]);
 
   const showEmbed = inView && Boolean(project.vimeoId);
+  const embedLoaded = useVimeoPlaying(iframeRef, showEmbed);
 
   return (
     <Link
@@ -66,6 +68,7 @@ export function VideoTile({
 
       {showEmbed && project.vimeoId && (
         <iframe
+          ref={iframeRef}
           key={project.vimeoId}
           src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
           className={cx(
@@ -76,7 +79,6 @@ export function VideoTile({
           allow="autoplay; fullscreen"
           loading="lazy"
           title={project.title}
-          onLoad={() => setEmbedLoaded(true)}
         />
       )}
 
