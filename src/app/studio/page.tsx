@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { team, studioPositioning, methodSteps } from "@/lib/content/team";
 
 export const metadata: Metadata = {
@@ -20,13 +21,23 @@ export default function StudioPage() {
       <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
         {team.map((member) => (
           <div key={member.name}>
-            <div className="flex aspect-square items-center justify-center border border-border bg-[#141412]">
-              <span className="font-mono text-2xl text-muted">
-                {member.name
-                  .split(" ")
-                  .map((part) => part[0])
-                  .join("")}
-              </span>
+            <div className="relative flex aspect-square items-center justify-center overflow-hidden border border-border bg-[#141412]">
+              {member.image ? (
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  fill
+                  sizes="(min-width: 640px) 33vw, 50vw"
+                  className="object-cover"
+                />
+              ) : (
+                <span className="font-mono text-2xl text-muted">
+                  {member.name
+                    .split(" ")
+                    .map((part) => part[0])
+                    .join("")}
+                </span>
+              )}
             </div>
             <p className="mt-3 text-sm font-medium">{member.name}</p>
             <p className="text-xs text-muted">{member.role}</p>

@@ -18,19 +18,23 @@ Tout le contenu éditorial (équipe, services, projets, contact) vit dans
 ajouter une entrée dans `src/lib/content/projects.ts` — la page
 `/travaux/[slug]` est générée automatiquement via `generateStaticParams`.
 
+Les images (`public/images/`) sont des captures extraites de la plaquette
+de prod (`Prez_book_prod.pdf`) : stills des 4 cas clients, portraits de
+Nils Bronner, mur de logos clients.
+
 ### À compléter avant mise en ligne
 
 - **`vimeoId`** sur chaque projet (`src/lib/content/projects.ts`) : sans
-  identifiant, les tuiles affichent un aplat de couleur (placeholder) au
-  lieu de la vidéo en loop.
-- **Photos de l'équipe** (`src/app/studio/page.tsx`) : actuellement des
-  initiales sur fond neutre.
-- **Logos clients** (`src/components/client-logos-band.tsx`) : rendus en
-  typographie faute de fichiers logo fournis dans le brief.
+  identifiant, les tuiles affichent le still extrait de la plaquette au
+  lieu de la vidéo en loop au survol.
+- **Photos de l'équipe** (`src/lib/content/team.ts`) : seul Nils Bronner a
+  une vraie photo (`image`) pour l'instant ; Matteo, Dino, Nicolas et Taha
+  affichent des initiales. Ajouter `image: "/images/team/xxx.jpg"` dès que
+  les portraits sont disponibles.
 - **6 à 8 films en home** : seuls 4 cas clients détaillés étaient
-  disponibles dans le brief (Once Upon a Dime, Squarea, Holly's Diner,
-  MyFood). Ajouter d'autres projets dans `projects.ts` avec
-  `featuredHome: true` pour compléter la grille.
+  disponibles (Once Upon a Dime, Squarea, Holly's Diner, MyFood). Ajouter
+  d'autres projets dans `projects.ts` avec `featuredHome: true` pour
+  compléter la grille.
 
 ## Build
 

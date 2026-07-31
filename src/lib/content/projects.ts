@@ -21,7 +21,9 @@ export type Project = {
   credits?: ProjectCredit[];
   /** Vimeo/Mux embed id — leave undefined until real footage is delivered. */
   vimeoId?: string;
-  /** Accent used for the placeholder tile while no footage/poster is set. */
+  /** Still frame used as poster/tile background, from the deck until real Vimeo footage is wired in. */
+  image?: string;
+  /** Accent used for the placeholder tile gradient when no image/footage is set. */
   accent: string;
   featuredHome?: boolean;
 };
@@ -50,6 +52,7 @@ export const projects: Project[] = [
       { label: "Photos", value: "500" },
     ],
     accent: "#c9622f",
+    image: "/images/projects/once-upon-a-dime.jpg",
     featuredHome: true,
   },
   {
@@ -75,6 +78,7 @@ export const projects: Project[] = [
       { label: "Panier moyen", value: "7 000 €" },
     ],
     accent: "#2f6b5e",
+    image: "/images/projects/squarea.jpg",
     featuredHome: true,
   },
   {
@@ -101,6 +105,7 @@ export const projects: Project[] = [
       { label: "Médias relais", value: "10" },
     ],
     accent: "#b8933a",
+    image: "/images/projects/hollys-diner.jpg",
     featuredHome: true,
   },
   {
@@ -122,6 +127,7 @@ export const projects: Project[] = [
       { label: "Leads (contenu ads)", value: "7 193" },
     ],
     accent: "#3a5f8f",
+    image: "/images/projects/myfood.jpg",
     featuredHome: true,
   },
 ];

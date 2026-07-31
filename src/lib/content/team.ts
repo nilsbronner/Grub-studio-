@@ -1,10 +1,15 @@
 export type TeamMember = {
   name: string;
   role: string;
+  image?: string;
 };
 
 export const team: TeamMember[] = [
-  { name: "Nils Bronner", role: "Photographe & Chef de projet" },
+  {
+    name: "Nils Bronner",
+    role: "Photographe & Chef de projet",
+    image: "/images/team/nils-bronner.jpg",
+  },
   { name: "Matteo", role: "Réalisateur & Directeur artistique" },
   { name: "Dino", role: "Monteur & Cadreur" },
   { name: "Nicolas", role: "Monteur & Cadreur" },

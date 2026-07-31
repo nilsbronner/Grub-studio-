@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { cx } from "@/lib/cx";
@@ -25,10 +26,24 @@ export function VideoTile({
         "group relative block aspect-video overflow-hidden bg-cover bg-center",
         className
       )}
-      style={{
-        backgroundImage: `linear-gradient(160deg, ${project.accent} 0%, #0b0b0a 85%)`,
-      }}
+      style={
+        project.image
+          ? undefined
+          : {
+              backgroundImage: `linear-gradient(160deg, ${project.accent} 0%, #0b0b0a 85%)`,
+            }
+      }
     >
+      {project.image && (
+        <Image
+          src={project.image}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 85vw"
+          className="object-cover"
+        />
+      )}
+
       {showEmbed && project.vimeoId && (
         <iframe
           key={project.vimeoId}
