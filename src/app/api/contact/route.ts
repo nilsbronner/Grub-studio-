@@ -22,44 +22,96 @@ function isValidPayload(data: unknown): data is ContactPayload {
   );
 }
 
-// Insert a prospection ticket into the existing "Grub gestion" Supabase project.
-// Configure via env vars once the schema is confirmed:
-//   SUPABASE_URL, SUPABASE_TICKETS_TABLE, SUPABASE_TICKET_OWNER_ID
-//   (Nils's user id in that system), and either:
-//   - SUPABASE_SERVICE_ROLE_KEY (bypasses RLS — preferred if available), or
-//   - SUPABASE_ANON_KEY (respects RLS — the tickets table must allow
-//     `insert` for the `anon` role, or every submission will fail and
-//     fall back to the mailto link).
-async function createSupabaseTicket(payload: ContactPayload) {
-  const url = process.env.SUPABASE_URL;
-  const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
-  const table = process.env.SUPABASE_TICKETS_TABLE;
-  if (!url || !key || !table) return { attempted: false as const };
+function buildDescription(payload: ContactPayload) {
+  return [
+    `Email : ${payload.email}`,
+    payload.phone ? `Téléphone : ${payload.phone}` : null,
+    payload.projectType ? `Type de projet : ${payload.projectType}` : null,
+    "",
+    payload.message,
+  ]
+    .filter((line) => line !== null)
+    .join("\n");
+}
 
-  const res = await fetch(`${url}/rest/v1/${table}`, {
+// Mirrors the "Le Grub" Chrome extension's write path (legrub-platform/extension/api.js):
+// a client (name only) then a project (name, description, client_id, drive_url,
+// assigned_editor_id, stage, status), with the same standard checklist templates
+// attached. The extension authenticates as a real user (RLS checks auth.uid()),
+// but a trusted server route uses the service role key instead to bypass RLS —
+// no need to hold a user session.
+//
+// Required env vars:
+//   SUPABASE_URL                 e.g. https://nvuregnrdspayomugvct.supabase.co
+//   SUPABASE_SERVICE_ROLE_KEY    Supabase → Settings → API → service_role secret
+//   SUPABASE_ASSIGNED_EDITOR_ID  Nils's `profiles.id` — Table Editor → profiles
+async function createGrubProject(payload: ContactPayload) {
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return { attempted: false as const };
+
+  const headers = {
+    apikey: key,
+    Authorization: `Bearer ${key}`,
+    "Content-Type": "application/json",
+  };
+
+  const clientRes = await fetch(`${url}/rest/v1/clients`, {
     method: "POST",
-    headers: {
-      apikey: key,
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-      Prefer: "return=minimal",
-    },
+    headers: { ...headers, Prefer: "return=representation" },
     body: JSON.stringify({
-      owner_id: process.env.SUPABASE_TICKET_OWNER_ID,
-      type: "prospection",
-      title: `Contact site — ${payload.name}`,
-      contact_name: payload.name,
-      contact_email: payload.email,
-      contact_phone: payload.phone || null,
-      contact_company: payload.company || null,
-      project_type: payload.projectType || null,
-      message: payload.message,
-      source: "bemotion-site",
+      name: payload.company || payload.name,
     }),
   });
+  if (!clientRes.ok) return { attempted: true as const, ok: false };
+  const [client] = await clientRes.json();
 
-  return { attempted: true as const, ok: res.ok };
+  const projectRes = await fetch(`${url}/rest/v1/projects`, {
+    method: "POST",
+    headers: { ...headers, Prefer: "return=representation" },
+    body: JSON.stringify({
+      name: `Demande site — ${payload.name}`,
+      description: buildDescription(payload),
+      client_id: client?.id ?? null,
+      drive_url: null,
+      assigned_editor_id: process.env.SUPABASE_ASSIGNED_EDITOR_ID || null,
+      stage: "pre_production",
+      status: "actif",
+    }),
+  });
+  if (!projectRes.ok) return { attempted: true as const, ok: false };
+  const [project] = await projectRes.json();
+
+  // Attach the same standard checklists the extension adds to every new project.
+  const templatesRes = await fetch(
+    `${url}/rest/v1/checklist_templates?select=*`,
+    { headers }
+  );
+  const templates = templatesRes.ok ? await templatesRes.json() : [];
+  type ChecklistTemplate = {
+    id: string;
+    name: string;
+    items?: { label: string }[];
+  };
+  await Promise.all(
+    (templates as ChecklistTemplate[]).map((template) =>
+      fetch(`${url}/rest/v1/project_checklists`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          project_id: project?.id,
+          template_id: template.id,
+          name: template.name,
+          items: (template.items ?? []).map((item) => ({
+            label: item.label,
+            done: false,
+          })),
+        }),
+      })
+    )
+  );
+
+  return { attempted: true as const, ok: true };
 }
 
 // Email the completed form to Nils. Configure via env vars:
@@ -83,17 +135,7 @@ async function sendNotificationEmail(payload: ContactPayload) {
       to,
       reply_to: payload.email,
       subject: `Nouveau contact site — ${payload.name}`,
-      text: [
-        `Nom : ${payload.name}`,
-        `Email : ${payload.email}`,
-        payload.phone ? `Téléphone : ${payload.phone}` : null,
-        payload.company ? `Société : ${payload.company}` : null,
-        payload.projectType ? `Type de projet : ${payload.projectType}` : null,
-        "",
-        payload.message,
-      ]
-        .filter(Boolean)
-        .join("\n"),
+      text: `Nom : ${payload.name}\n${buildDescription(payload)}`,
     }),
   });
 
@@ -112,18 +154,20 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_payload" }, { status: 400 });
   }
 
-  const [ticket, email] = await Promise.all([
-    createSupabaseTicket(data),
+  const [project, email] = await Promise.all([
+    createGrubProject(data),
     sendNotificationEmail(data),
   ]);
 
   // Neither destination is configured yet — tell the client to fall back
   // to a mailto link rather than silently dropping the lead.
-  if (!ticket.attempted && !email.attempted) {
+  if (!project.attempted && !email.attempted) {
     return NextResponse.json({ configured: false }, { status: 503 });
   }
 
-  const ok = (ticket.attempted ? ticket.ok : true) && (email.attempted ? email.ok : true);
+  const ok =
+    (project.attempted ? project.ok : true) &&
+    (email.attempted ? email.ok : true);
   if (!ok) {
     return NextResponse.json({ configured: true, ok: false }, { status: 502 });
   }
