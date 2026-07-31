@@ -24,11 +24,16 @@ function isValidPayload(data: unknown): data is ContactPayload {
 
 // Insert a prospection ticket into the existing "Grub gestion" Supabase project.
 // Configure via env vars once the schema is confirmed:
-//   SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_TICKETS_TABLE,
-//   SUPABASE_TICKET_OWNER_ID (Nils's user id in that system).
+//   SUPABASE_URL, SUPABASE_TICKETS_TABLE, SUPABASE_TICKET_OWNER_ID
+//   (Nils's user id in that system), and either:
+//   - SUPABASE_SERVICE_ROLE_KEY (bypasses RLS — preferred if available), or
+//   - SUPABASE_ANON_KEY (respects RLS — the tickets table must allow
+//     `insert` for the `anon` role, or every submission will fail and
+//     fall back to the mailto link).
 async function createSupabaseTicket(payload: ContactPayload) {
   const url = process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key =
+    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
   const table = process.env.SUPABASE_TICKETS_TABLE;
   if (!url || !key || !table) return { attempted: false as const };
 
