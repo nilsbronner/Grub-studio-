@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     "Vidéo et photo pour les marques : spot pub, ADS, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
 };
 
+const palette = [
+  "var(--accent-purple)",
+  "var(--accent-pink)",
+  "var(--accent-yellow)",
+  "var(--accent-cyan)",
+];
+
 export default function ServicesPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
@@ -28,10 +35,11 @@ export default function ServicesPage() {
           Vidéo
         </h2>
         <ul className="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2">
-          {videoServices.map((service) => (
+          {videoServices.map((service, i) => (
             <li
               key={service.slug}
-              className="group border-t border-border pt-4 transition-colors duration-300 hover:border-accent"
+              className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
+              style={{ borderTop: `2px solid ${palette[i % 4]}` }}
             >
               <p className="text-sm font-medium">{service.title}</p>
               <p className="mt-1 text-sm text-muted">
@@ -47,10 +55,11 @@ export default function ServicesPage() {
           Photo
         </h2>
         <ul className="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2">
-          {photoServices.map((service) => (
+          {photoServices.map((service, i) => (
             <li
               key={service.slug}
-              className="group border-t border-border pt-4 transition-colors duration-300 hover:border-accent"
+              className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
+              style={{ borderTop: `2px solid ${palette[i % 4]}` }}
             >
               <p className="text-sm font-medium">{service.title}</p>
               <p className="mt-1 text-sm text-muted">
@@ -82,10 +91,11 @@ export default function ServicesPage() {
           {diffusionFormats.intro}
         </p>
         <ul className="mt-6 grid gap-6 sm:grid-cols-3">
-          {diffusionFormats.formats.map((format) => (
+          {diffusionFormats.formats.map((format, i) => (
             <li
               key={format.ratio}
-              className="border-t border-border pt-4 transition-colors duration-300 hover:border-accent"
+              className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
+              style={{ borderTop: `2px solid ${palette[i % 4]}` }}
             >
               <p className="font-mono text-xs text-muted">{format.ratio}</p>
               <p className="mt-2 text-sm font-medium">{format.label}</p>

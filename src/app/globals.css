@@ -5,7 +5,12 @@
   --foreground: #f3f2ee;
   --muted: #8a8a84;
   --border: #232320;
-  --accent: #c9622f;
+  /* Bemotion logo palette, sampled from the deck */
+  --accent: #d73096;
+  --accent-purple: #5035a9;
+  --accent-pink: #d73096;
+  --accent-yellow: #fad02c;
+  --accent-cyan: #57c2e7;
 }
 
 @theme inline {
@@ -14,6 +19,10 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-cyan: var(--accent-cyan);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
