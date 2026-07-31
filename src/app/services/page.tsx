@@ -28,21 +28,34 @@ export default function ServicesPage() {
         <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
           Services
         </h1>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/70">
+          Écriture, tournage, montage — vidéo et photo pour les marques,
+          pensés pour leur diffusion réelle plutôt que pour le seul jour du
+          tournage.
+        </p>
       </Reveal>
 
       <Reveal className="mt-14">
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Vidéo
         </h2>
-        <ul className="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-x-8 gap-y-9 sm:grid-cols-2">
           {videoServices.map((service, i) => (
             <li
               key={service.slug}
               className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
               style={{ borderTop: `2px solid ${palette[i % 4]}` }}
             >
-              <p className="text-sm font-medium">{service.title}</p>
-              <p className="mt-1 text-sm text-muted">
+              <div className="flex items-baseline gap-3">
+                <span
+                  className="font-mono text-xs"
+                  style={{ color: palette[i % 4] }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-base font-medium">{service.title}</p>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/70">
                 {service.description}
               </p>
             </li>
@@ -54,15 +67,23 @@ export default function ServicesPage() {
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Photo
         </h2>
-        <ul className="mt-6 grid gap-x-8 gap-y-8 sm:grid-cols-2">
+        <ul className="mt-6 grid gap-x-8 gap-y-9 sm:grid-cols-2">
           {photoServices.map((service, i) => (
             <li
               key={service.slug}
               className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
               style={{ borderTop: `2px solid ${palette[i % 4]}` }}
             >
-              <p className="text-sm font-medium">{service.title}</p>
-              <p className="mt-1 text-sm text-muted">
+              <div className="flex items-baseline gap-3">
+                <span
+                  className="font-mono text-xs"
+                  style={{ color: palette[i % 4] }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="text-base font-medium">{service.title}</p>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/70">
                 {service.description}
               </p>
             </li>
@@ -74,7 +95,7 @@ export default function ServicesPage() {
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Nos services, expliqués par Nils
         </h2>
-        <p className="mt-4 max-w-2xl text-sm text-muted">
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
           Quelques minutes pour comprendre comment on travaille, poste par
           poste — la version courte, en vidéo.
         </p>
@@ -87,7 +108,7 @@ export default function ServicesPage() {
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Formats de diffusion
         </h2>
-        <p className="mt-4 max-w-2xl text-sm text-muted">
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
           {diffusionFormats.intro}
         </p>
         <ul className="mt-6 grid gap-6 sm:grid-cols-3">
@@ -97,9 +118,11 @@ export default function ServicesPage() {
               className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
               style={{ borderTop: `2px solid ${palette[i % 4]}` }}
             >
-              <p className="font-mono text-xs text-muted">{format.ratio}</p>
-              <p className="mt-2 text-sm font-medium">{format.label}</p>
-              <p className="mt-1 text-sm text-muted">{format.usage}</p>
+              <p className="font-mono text-xs" style={{ color: palette[i % 4] }}>
+                {format.ratio}
+              </p>
+              <p className="mt-2 text-base font-medium">{format.label}</p>
+              <p className="mt-1 text-sm text-foreground/70">{format.usage}</p>
             </li>
           ))}
         </ul>

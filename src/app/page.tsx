@@ -3,6 +3,14 @@ import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
 import { Reveal } from "@/components/reveal";
 import { getFeaturedProjects } from "@/lib/content/projects";
+import { homeHighlights } from "@/lib/content/services";
+
+const palette = [
+  "var(--accent-purple)",
+  "var(--accent-pink)",
+  "var(--accent-yellow)",
+  "var(--accent-cyan)",
+];
 
 export default function Home() {
   const featured = getFeaturedProjects();
@@ -14,6 +22,11 @@ export default function Home() {
           <h1 className="max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl">
             Bemotion. Studio de production audiovisuelle, Strasbourg.
           </h1>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground/70">
+            On écrit, on tourne et on monte des films et des photos pour des
+            marques qui ont quelque chose à raconter — de la première idée au
+            fichier prêt à diffuser.
+          </p>
         </Reveal>
 
         <Reveal delay={0.1} className="mt-8 sm:mt-10">
@@ -37,7 +50,38 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="mt-16 sm:mt-24">
+      <Reveal className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="text-xl font-medium tracking-tight sm:text-2xl">
+              Ce qu&rsquo;on produit
+            </h2>
+            <Link
+              href="/services"
+              data-cursor="→"
+              className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            >
+              Tous les services →
+            </Link>
+          </div>
+          <ul className="mt-10 grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
+            {homeHighlights.map((highlight, i) => (
+              <li
+                key={highlight.title}
+                className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
+                style={{ borderTop: `2px solid ${palette[i % 4]}` }}
+              >
+                <p className="text-base font-medium">{highlight.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/70">
+                  {highlight.description}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Reveal>
+
+      <div className="mt-4 sm:mt-8">
         <Reveal>
           <ClientLogosBand />
         </Reveal>
