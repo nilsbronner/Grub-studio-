@@ -28,20 +28,28 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden gap-8 text-sm uppercase tracking-[0.15em] sm:flex">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cx(
-                "transition-colors hover:text-foreground",
-                pathname === link.href || pathname.startsWith(`${link.href}/`)
-                  ? "text-foreground"
-                  : "text-muted"
-              )}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const active =
+              pathname === link.href || pathname.startsWith(`${link.href}/`);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cx(
+                  "group relative py-1 transition-colors hover:text-foreground",
+                  active ? "text-foreground" : "text-muted"
+                )}
+              >
+                {link.label}
+                <span
+                  className={cx(
+                    "absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100",
+                    active && "scale-x-100"
+                  )}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         <button

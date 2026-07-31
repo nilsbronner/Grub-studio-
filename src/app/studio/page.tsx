@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { team, studioPositioning, methodSteps } from "@/lib/content/team";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Studio",
@@ -11,27 +13,29 @@ export const metadata: Metadata = {
 export default function StudioPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
-      <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
-        Studio
-      </h1>
-      <p className="mt-4 max-w-2xl leading-relaxed text-muted">
-        {studioPositioning}
-      </p>
+      <Reveal>
+        <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
+          Studio
+        </h1>
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+          {studioPositioning}
+        </p>
+      </Reveal>
 
       <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
-        {team.map((member) => (
-          <div key={member.name}>
-            <div className="relative flex aspect-square items-center justify-center overflow-hidden border border-border bg-[#141412]">
+        {team.map((member, i) => (
+          <Reveal key={member.name} delay={i * 0.05}>
+            <div className="group relative flex aspect-square items-center justify-center overflow-hidden border border-border bg-[#141412]">
               {member.image ? (
                 <Image
                   src={member.image}
                   alt={member.name}
                   fill
                   sizes="(min-width: 640px) 33vw, 50vw"
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                 />
               ) : (
-                <span className="font-mono text-2xl text-muted">
+                <span className="font-mono text-2xl text-muted transition-colors duration-300 group-hover:text-foreground">
                   {member.name
                     .split(" ")
                     .map((part) => part[0])
@@ -41,18 +45,18 @@ export default function StudioPage() {
             </div>
             <p className="mt-3 text-sm font-medium">{member.name}</p>
             <p className="text-xs text-muted">{member.role}</p>
-          </div>
+          </Reveal>
         ))}
       </div>
 
-      <div className="mt-20">
+      <Reveal className="mt-20">
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Méthode
         </h2>
         <ol className="mt-6 grid gap-8 sm:grid-cols-5">
           {methodSteps.map((step) => (
-            <li key={step.step}>
-              <p className="font-mono text-xs text-muted">
+            <li key={step.step} className="group">
+              <p className="font-mono text-xs text-muted transition-colors duration-300 group-hover:text-accent">
                 {String(step.step).padStart(2, "0")}
               </p>
               <p className="mt-2 text-sm font-medium">{step.title}</p>
@@ -60,7 +64,23 @@ export default function StudioPage() {
             </li>
           ))}
         </ol>
-      </div>
+      </Reveal>
+
+      <Reveal className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">
+        <h2 className="max-w-xl text-xl font-medium tracking-tight sm:text-2xl">
+          Envie de travailler avec nous ?
+        </h2>
+        <Link
+          href="/contact"
+          data-cursor="→"
+          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+        >
+          Discutons de votre projet
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
+        </Link>
+      </Reveal>
     </div>
   );
 }

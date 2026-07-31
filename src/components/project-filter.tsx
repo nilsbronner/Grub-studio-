@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ProjectCard } from "@/components/project-card";
 import { categories } from "@/lib/content/categories";
 import type { Project } from "@/lib/content/projects";
@@ -21,7 +22,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
           type="button"
           onClick={() => setActive(null)}
           className={cx(
-            "border px-3 py-1.5 text-xs uppercase tracking-[0.1em] transition-colors",
+            "border px-3 py-1.5 text-xs uppercase tracking-[0.1em] transition-all duration-200 hover:-translate-y-0.5",
             active === null
               ? "border-accent text-accent"
               : "border-border text-muted hover:text-foreground"
@@ -35,7 +36,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
             type="button"
             onClick={() => setActive(cat.slug)}
             className={cx(
-              "border px-3 py-1.5 text-xs uppercase tracking-[0.1em] transition-colors",
+              "border px-3 py-1.5 text-xs uppercase tracking-[0.1em] transition-all duration-200 hover:-translate-y-0.5",
               active === cat.slug
                 ? "border-accent text-accent"
                 : "border-border text-muted hover:text-foreground"
@@ -46,11 +47,25 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
+      <motion.div
+        layout
+        className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+      >
+        <AnimatePresence mode="popLayout">
+          {filtered.map((project) => (
+            <motion.div
+              key={project.slug}
+              layout
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <ProjectCard project={project} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
 
       {filtered.length === 0 && (
         <p className="mt-10 text-sm text-muted">

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { VideoTile } from "@/components/video-tile";
+import { Reveal } from "@/components/reveal";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
 
@@ -33,19 +35,25 @@ export default async function ProjectPage({
 
   return (
     <article className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
-      <p className="text-xs uppercase tracking-[0.2em] text-muted">
-        {project.sector}
-      </p>
-      <h1 className="mt-2 text-2xl font-medium tracking-tight sm:text-4xl">
-        {project.client}
-      </h1>
-      <p className="mt-3 max-w-2xl text-muted">{project.hook}</p>
+      <Reveal>
+        <p className="text-xs uppercase tracking-[0.2em] text-muted">
+          {project.sector}
+        </p>
+        <h1 className="mt-2 text-2xl font-medium tracking-tight sm:text-4xl">
+          {project.client}
+        </h1>
+        <p className="mt-3 max-w-2xl text-muted">{project.hook}</p>
+      </Reveal>
 
-      <div className="mt-10">
-        <VideoTile project={project} className="aspect-video w-full" />
-      </div>
+      <Reveal delay={0.1} className="mt-10">
+        <VideoTile
+          project={project}
+          priority
+          className="aspect-video w-full"
+        />
+      </Reveal>
 
-      <div className="mt-12 grid gap-10 sm:grid-cols-[2fr_1fr]">
+      <Reveal delay={0.15} className="mt-12 grid gap-10 sm:grid-cols-[2fr_1fr]">
         <div>
           <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
             Contexte
@@ -104,7 +112,34 @@ export default async function ProjectPage({
             </>
           )}
         </div>
-      </div>
+      </Reveal>
+
+      <Reveal
+        delay={0.05}
+        className="mt-20 flex flex-col items-start gap-6 border-t border-border pt-10 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <h2 className="max-w-md text-lg font-medium tracking-tight">
+          Un projet dans le même esprit ?
+        </h2>
+        <div className="flex flex-wrap items-center gap-4">
+          <Link
+            href="/travaux"
+            className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+          >
+            ← Tous les travaux
+          </Link>
+          <Link
+            href="/contact"
+            data-cursor="→"
+            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+          >
+            Discutons de votre projet
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              →
+            </span>
+          </Link>
+        </div>
+      </Reveal>
     </article>
   );
 }

@@ -31,7 +31,7 @@ export function HorizontalProjectGrid({ projects }: { projects: Project[] }) {
           type="button"
           onClick={() => scrollByAmount(-480)}
           aria-label="Précédent"
-          className="border border-border px-3 py-2 text-xs uppercase tracking-widest text-muted transition-colors hover:border-accent hover:text-foreground"
+          className="border border-border px-3 py-2 text-xs uppercase tracking-widest text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-foreground active:translate-y-0"
         >
           ←
         </button>
@@ -39,7 +39,7 @@ export function HorizontalProjectGrid({ projects }: { projects: Project[] }) {
           type="button"
           onClick={() => scrollByAmount(480)}
           aria-label="Suivant"
-          className="border border-border px-3 py-2 text-xs uppercase tracking-widest text-muted transition-colors hover:border-accent hover:text-foreground"
+          className="border border-border px-3 py-2 text-xs uppercase tracking-widest text-muted transition-all duration-200 hover:-translate-y-0.5 hover:border-accent hover:text-foreground active:translate-y-0"
         >
           →
         </button>

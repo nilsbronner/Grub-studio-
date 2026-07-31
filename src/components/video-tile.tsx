@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cx } from "@/lib/cx";
 import type { Project } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
@@ -10,18 +10,34 @@ import { categoryLabel } from "@/lib/content/categories";
 export function VideoTile({
   project,
   className,
+  priority,
 }: {
   project: Project;
   className?: string;
+  priority?: boolean;
 }) {
-  const [hovered, setHovered] = useState(false);
-  const showEmbed = hovered && Boolean(project.vimeoId);
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [inView, setInView] = useState(false);
+  const [embedLoaded, setEmbedLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || !project.vimeoId) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "240px 0px", threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [project.vimeoId]);
+
+  const showEmbed = inView && Boolean(project.vimeoId);
 
   return (
     <Link
+      ref={ref}
       href={`/travaux/${project.slug}`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      data-cursor="voir"
       className={cx(
         "group relative block aspect-video overflow-hidden bg-cover bg-center",
         className
@@ -39,8 +55,12 @@ export function VideoTile({
           src={project.image}
           alt=""
           fill
+          priority={priority}
           sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 85vw"
-          className="object-cover"
+          className={cx(
+            "object-cover transition-opacity duration-500 ease-out",
+            embedLoaded && "opacity-0"
+          )}
         />
       )}
 
@@ -48,10 +68,11 @@ export function VideoTile({
         <iframe
           key={project.vimeoId}
           src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
-          className="absolute inset-0 h-full w-full"
+          className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           allow="autoplay; fullscreen"
           loading="lazy"
           title={project.title}
+          onLoad={() => setEmbedLoaded(true)}
         />
       )}
 
@@ -68,6 +89,8 @@ export function VideoTile({
           {categoryLabel(project.categories[0])}
         </p>
       </div>
+
+      <div className="pointer-events-none absolute inset-0 border border-white/0 transition-colors duration-300 group-hover:border-white/20" />
     </Link>
   );
 }

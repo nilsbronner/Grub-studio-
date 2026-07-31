@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { contact } from "@/lib/content/contact";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -10,23 +11,27 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
-      <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
-        Contact
-      </h1>
+      <Reveal>
+        <h1 className="text-2xl font-medium tracking-tight sm:text-4xl">
+          Discutons de votre projet.
+        </h1>
+      </Reveal>
 
       <div className="mt-10 grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
-        <div className="relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-border">
-          <Image
-            src="/images/team/nils-bronner-profile.jpg"
-            alt={contact.name}
-            fill
-            sizes="(min-width: 640px) 280px, 60vw"
-            className="object-cover"
-            priority
-          />
-        </div>
+        <Reveal delay={0.05}>
+          <div className="group relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-border">
+            <Image
+              src="/images/team/nils-bronner-profile.jpg"
+              alt={contact.name}
+              fill
+              sizes="(min-width: 640px) 280px, 60vw"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+              priority
+            />
+          </div>
+        </Reveal>
 
-        <div className="space-y-6">
+        <Reveal delay={0.1} className="space-y-6">
           <div>
             <p className="text-sm font-medium">{contact.name}</p>
             <p className="text-sm text-muted">{contact.title}</p>
@@ -35,19 +40,22 @@ export default function ContactPage() {
           <div className="space-y-1">
             <a
               href={contact.phoneHref}
-              className="block text-sm hover:text-accent"
+              data-cursor="→"
+              className="inline-block text-sm transition-colors hover:text-accent"
             >
               {contact.phone}
             </a>
             <a
               href={`mailto:${contact.emailPro}`}
-              className="block text-sm hover:text-accent"
+              data-cursor="→"
+              className="block text-sm transition-colors hover:text-accent"
             >
               {contact.emailPro}
             </a>
             <a
               href={`mailto:${contact.emailPersonal}`}
-              className="block text-sm hover:text-accent"
+              data-cursor="→"
+              className="block text-sm transition-colors hover:text-accent"
             >
               {contact.emailPersonal}
             </a>
@@ -63,7 +71,7 @@ export default function ContactPage() {
               {contact.coordinates.city}
             </p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </div>
   );
