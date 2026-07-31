@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ProjectCard } from "@/components/project-card";
+import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { categories } from "@/lib/content/categories";
 import type { Project } from "@/lib/content/projects";
 import { cx } from "@/lib/cx";
@@ -47,27 +48,33 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
         ))}
       </div>
 
-      <motion.div
-        layout
-        className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        <AnimatePresence mode="popLayout">
-          {filtered.map((project) => (
-            <motion.div
-              key={project.slug}
-              layout
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+      {active === null ? (
+        <div className="mt-10">
+          <HorizontalProjectGrid projects={projects} />
+        </div>
+      ) : (
+        <motion.div
+          layout
+          className="mt-10 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project) => (
+              <motion.div
+                key={project.slug}
+                layout
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <ProjectCard project={project} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      )}
 
-      {filtered.length === 0 && (
+      {active !== null && filtered.length === 0 && (
         <p className="mt-10 text-sm text-muted">
           Projets à venir dans cette catégorie.
         </p>

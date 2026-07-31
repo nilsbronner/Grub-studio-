@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cx } from "@/lib/cx";
+import { LogoMark } from "@/components/logo-mark";
 
 const links = [
   { href: "/travaux", label: "Travaux" },
@@ -21,10 +22,11 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <Link
           href="/"
-          className="text-sm font-semibold uppercase tracking-[0.2em]"
+          className="flex items-center gap-2"
           onClick={() => setOpen(false)}
         >
-          Bemotion
+          <LogoMark className="h-5 w-auto" />
+          <span className="text-lg font-bold tracking-tight">Bemotion</span>
         </Link>
 
         <nav className="hidden gap-8 text-sm uppercase tracking-[0.15em] sm:flex">

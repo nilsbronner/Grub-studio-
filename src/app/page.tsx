@@ -19,14 +19,16 @@ export default function Home() {
     <>
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
-          <h1 className="max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl">
-            Bemotion. Studio de production audiovisuelle, Strasbourg.
-          </h1>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-foreground/70">
-            On écrit, on tourne et on monte des films et des photos pour des
-            marques qui ont quelque chose à raconter — de la première idée au
-            fichier prêt à diffuser.
-          </p>
+          <div className="hero-subhead-trigger inline-block">
+            <h1 className="max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl">
+              Bemotion. Studio de production audiovisuelle, Strasbourg.
+            </h1>
+            <p className="hero-subhead mt-4 max-w-xl text-base leading-relaxed text-foreground/70">
+              On écrit, on tourne et on monte des films et des photos pour des
+              marques qui ont quelque chose à raconter — de la première idée
+              au fichier prêt à diffuser.
+            </p>
+          </div>
         </Reveal>
 
         <Reveal delay={0.1} className="mt-8 sm:mt-10">
