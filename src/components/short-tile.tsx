@@ -13,6 +13,7 @@ export function ShortTile({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+  const [embedLoaded, setEmbedLoaded] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -36,10 +37,15 @@ export function ShortTile({
       {inView && (
         <iframe
           src={`https://player.vimeo.com/video/${short.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
-          className="absolute inset-0 h-full w-full"
+          className={cx(
+            "absolute inset-0 h-full w-full transition-opacity duration-700 ease-out",
+            embedLoaded ? "opacity-100" : "opacity-0"
+          )}
+          style={{ backgroundColor: "var(--background)" }}
           allow="autoplay; fullscreen"
           loading="lazy"
           title={short.title}
+          onLoad={() => setEmbedLoaded(true)}
         />
       )}
       <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-3">

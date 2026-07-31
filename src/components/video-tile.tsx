@@ -68,7 +68,10 @@ export function VideoTile({
         <iframe
           key={project.vimeoId}
           src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
-          className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          className={cx(
+            "absolute inset-0 h-full w-full transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.04]",
+            embedLoaded ? "opacity-100" : "opacity-0"
+          )}
           style={{ backgroundColor: "var(--background)" }}
           allow="autoplay; fullscreen"
           loading="lazy"
