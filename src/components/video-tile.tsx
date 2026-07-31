@@ -69,6 +69,7 @@ export function VideoTile({
           key={project.vimeoId}
           src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
           className="absolute inset-0 h-full w-full transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          style={{ backgroundColor: "var(--background)" }}
           allow="autoplay; fullscreen"
           loading="lazy"
           title={project.title}

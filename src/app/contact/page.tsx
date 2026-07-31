@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { contact } from "@/lib/content/contact";
 import { Reveal } from "@/components/reveal";
+import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -17,21 +18,23 @@ export default function ContactPage() {
         </h1>
       </Reveal>
 
-      <div className="mt-10 grid gap-10 sm:grid-cols-[280px_1fr] sm:items-start">
+      <div className="mt-10 grid gap-12 sm:grid-cols-[1fr_260px] sm:items-start">
         <Reveal delay={0.05}>
+          <ContactForm />
+        </Reveal>
+
+        <Reveal delay={0.1} className="space-y-6">
           <div className="group relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-border">
             <Image
               src="/images/team/nils-bronner-profile.jpg"
               alt={contact.name}
               fill
-              sizes="(min-width: 640px) 280px, 60vw"
+              sizes="260px"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               priority
             />
           </div>
-        </Reveal>
 
-        <Reveal delay={0.1} className="space-y-6">
           <div>
             <p className="text-sm font-medium">{contact.name}</p>
             <p className="text-sm text-muted">{contact.title}</p>
@@ -51,13 +54,6 @@ export default function ContactPage() {
               className="block text-sm transition-colors hover:text-accent"
             >
               {contact.emailPro}
-            </a>
-            <a
-              href={`mailto:${contact.emailPersonal}`}
-              data-cursor="→"
-              className="block text-sm transition-colors hover:text-accent"
-            >
-              {contact.emailPersonal}
             </a>
           </div>
 
