@@ -2,6 +2,8 @@ export type Short = {
   slug: string;
   title: string;
   vimeoId: string;
+  /** Poster image; filled in from the real Vimeo thumbnail at build time when absent. */
+  image?: string;
 };
 
 export const shorts: Short[] = [

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { cx } from "@/lib/cx";
 import type { Short } from "@/lib/content/shorts";
@@ -36,6 +37,19 @@ export function ShortTile({
         className
       )}
     >
+      {short.image && (
+        <Image
+          src={short.image}
+          alt=""
+          fill
+          sizes="220px"
+          className={cx(
+            "object-cover transition-opacity duration-500 ease-out",
+            embedLoaded && "opacity-0"
+          )}
+        />
+      )}
+
       {inView && (
         <iframe
           ref={iframeRef}

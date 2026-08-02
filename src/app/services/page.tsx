@@ -5,6 +5,8 @@ import {
   photoServices,
   diffusionFormats,
 } from "@/lib/content/services";
+import { shorts } from "@/lib/content/shorts";
+import { withVimeoPosters } from "@/lib/vimeo";
 import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
@@ -22,7 +24,9 @@ const palette = [
   "var(--accent-cyan)",
 ];
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const shortsWithPosters = await withVimeoPosters(shorts);
+
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
@@ -102,7 +106,7 @@ export default function ServicesPage() {
           poste — la version courte, en vidéo.
         </p>
         <div className="mt-6">
-          <ShortsStrip />
+          <ShortsStrip shorts={shortsWithPosters} />
         </div>
       </Reveal>
 

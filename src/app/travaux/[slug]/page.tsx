@@ -5,6 +5,7 @@ import { VideoTile } from "@/components/video-tile";
 import { Reveal } from "@/components/reveal";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
+import { withVimeoPosters } from "@/lib/vimeo";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -31,8 +32,9 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
-  if (!project) notFound();
+  const rawProject = getProjectBySlug(slug);
+  if (!rawProject) notFound();
+  const [project] = await withVimeoPosters([rawProject]);
 
   return (
     <article className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">

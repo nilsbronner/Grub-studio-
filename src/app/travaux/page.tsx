@@ -4,6 +4,7 @@ import { ProjectFilter } from "@/components/project-filter";
 import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { projects } from "@/lib/content/projects";
+import { withVimeoPosters } from "@/lib/vimeo";
 
 export const metadata: Metadata = {
   title: "Travaux",
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
     "Spots pub, campagnes ADS, contenu réseaux, motion design et photo B2B — les productions Bemotion.",
 };
 
-export default function TravauxPage() {
+export default async function TravauxPage() {
+  const projectsWithPosters = await withVimeoPosters(projects);
+
   return (
     <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
@@ -21,7 +24,7 @@ export default function TravauxPage() {
         </h1>
       </Reveal>
       <div className="mt-10">
-        <ProjectFilter projects={projects} />
+        <ProjectFilter projects={projectsWithPosters} />
       </div>
 
       <Reveal className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">

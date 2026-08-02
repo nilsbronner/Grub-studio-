@@ -5,6 +5,7 @@ import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
+import { withVimeoPosters } from "@/lib/vimeo";
 
 const palette = [
   "var(--accent-purple)",
@@ -13,8 +14,8 @@ const palette = [
   "var(--accent-cyan)",
 ];
 
-export default function Home() {
-  const featured = getFeaturedProjects();
+export default async function Home() {
+  const featured = await withVimeoPosters(getFeaturedProjects());
 
   return (
     <>
