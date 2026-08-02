@@ -35,14 +35,7 @@ export function ServiceCardList({ services }: { services: Service[] }) {
           />
 
           <span
-            aria-hidden
-            className="pointer-events-none absolute -right-1 -top-3 select-none font-mono text-6xl font-bold opacity-[0.07]"
-          >
-            {String(i + 1).padStart(2, "0")}
-          </span>
-
-          <span
-            className="font-mono text-xs"
+            className="font-mono text-sm font-bold"
             style={{ color: palette[i % 4] }}
           >
             {String(i + 1).padStart(2, "0")}
