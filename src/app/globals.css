@@ -64,17 +64,6 @@ body {
   }
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .hero-subhead {
-    opacity: 0;
-    transition: opacity 0.4s ease-out;
-  }
-
-  .hero-subhead-trigger:hover .hero-subhead {
-    opacity: 1;
-  }
-}
-
 @keyframes reveal-up {
   from {
     opacity: 0;

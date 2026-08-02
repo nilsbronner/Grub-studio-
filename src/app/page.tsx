@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
+import { PitchNarrative } from "@/components/pitch-narrative";
 import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { getFeaturedProjects } from "@/lib/content/projects";
@@ -22,38 +23,38 @@ export default async function Home() {
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
           <EyebrowPill>Studio Bemotion</EyebrowPill>
-          <div className="hero-subhead-trigger mt-4 inline-block">
-            <h1 className="max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl">
-              Bemotion. Studio de production audiovisuelle, Strasbourg.
-            </h1>
-            <p className="hero-subhead mt-4 max-w-xl text-base leading-relaxed text-foreground/70">
-              On écrit, on tourne et on monte des films et des photos pour des
-              marques qui ont quelque chose à raconter — de la première idée
-              au fichier prêt à diffuser.
-            </p>
+          <h1 className="mt-4 max-w-3xl text-3xl font-medium tracking-tight sm:text-5xl">
+            Bemotion. Studio de production audiovisuelle, Strasbourg.
+          </h1>
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground/80 sm:text-xl">
+            On écrit, on tourne et on monte des films et des photos pour des
+            marques qui ont quelque chose à raconter — de la première idée
+            au fichier prêt à diffuser.
+          </p>
+
+          <div className="mt-8 flex items-center gap-6">
+            <Link
+              href="/contact"
+              data-cursor="→"
+              className="border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+            >
+              Contact
+            </Link>
+            <Link
+              href="/travaux"
+              className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            >
+              Tous les travaux →
+            </Link>
           </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="mt-8 sm:mt-10">
+        <Reveal delay={0.1} className="mt-12 sm:mt-14">
           <HorizontalProjectGrid projects={featured} />
         </Reveal>
-
-        <div className="mx-auto mt-8 flex max-w-7xl items-center justify-between px-5 sm:px-8">
-          <Link
-            href="/travaux"
-            className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
-          >
-            Tous les travaux →
-          </Link>
-          <Link
-            href="/contact"
-            data-cursor="→"
-            className="border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
-          >
-            Contact
-          </Link>
-        </div>
       </section>
+
+      <PitchNarrative />
 
       <Reveal className="border-t border-border">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">

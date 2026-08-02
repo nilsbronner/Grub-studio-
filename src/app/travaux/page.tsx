@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ProjectFilter } from "@/components/project-filter";
 import { Reveal } from "@/components/reveal";
-import { EyebrowPill } from "@/components/eyebrow-pill";
+import { SectionKicker } from "@/components/section-kicker";
 import { projects } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
 
@@ -17,12 +17,9 @@ export default async function TravauxPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
-      <Reveal>
-        <EyebrowPill>Portfolio</EyebrowPill>
-        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
-          Travaux
-        </h1>
-      </Reveal>
+      <SectionKicker kicker="Cas concrets">
+        Une sélection de projets récents
+      </SectionKicker>
       <div className="mt-10">
         <ProjectFilter projects={projectsWithPosters} />
       </div>

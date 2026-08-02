@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Sparkle, PenTool, ClipboardList, Aperture } from "lucide-react";
@@ -9,14 +10,16 @@ import {
   type MethodStepIcon,
 } from "@/lib/content/team";
 import { Reveal } from "@/components/reveal";
+import { TournageDiagram } from "@/components/tournage-diagram";
+import { MethodTimeline } from "@/components/method-timeline";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { LogoMark } from "@/components/logo-mark";
 
-const methodIcons: Partial<Record<MethodStepIcon, typeof Sparkle>> = {
-  kickoff: Sparkle,
-  conception: PenTool,
-  "pre-production": ClipboardList,
-  production: Aperture,
+const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
+  kickoff: <Sparkle className="h-4 w-4" strokeWidth={1.75} />,
+  conception: <PenTool className="h-4 w-4" strokeWidth={1.75} />,
+  "pre-production": <ClipboardList className="h-4 w-4" strokeWidth={1.75} />,
+  production: <Aperture className="h-4 w-4" strokeWidth={1.75} />,
 };
 
 export const metadata: Metadata = {
@@ -65,34 +68,26 @@ export default function StudioPage() {
         ))}
       </div>
 
-      <Reveal className="mt-20">
+      <Reveal className="mt-20 border-t border-border pt-12">
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-          Méthode
+          Un tournage, plusieurs contenus
         </h2>
-        <ol className="mt-6 grid gap-8 sm:grid-cols-5">
-          {methodSteps.map((step) => {
-            const Icon = methodIcons[step.icon];
-            return (
-              <li key={step.step} className="group">
-                <div className="flex items-center gap-2">
-                  {Icon ? (
-                    <Icon
-                      className="h-4 w-4 text-muted transition-colors duration-300 group-hover:text-accent"
-                      strokeWidth={1.75}
-                    />
-                  ) : (
-                    <LogoMark className="h-4 w-auto" />
-                  )}
-                  <p className="font-mono text-xs text-muted transition-colors duration-300 group-hover:text-accent">
-                    {String(step.step).padStart(2, "0")}
-                  </p>
-                </div>
-                <p className="mt-2 text-sm font-medium">{step.title}</p>
-                <p className="mt-1 text-sm text-muted">{step.description}</p>
-              </li>
-            );
-          })}
-        </ol>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
+          À partir d&rsquo;un spot principal, nous créons une série de
+          contenus déclinés pour chaque cible.
+        </p>
+        <TournageDiagram />
+      </Reveal>
+
+      <Reveal className="mt-14">
+        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          Méthode — une production en 5 étapes clés
+        </h2>
+        <MethodTimeline
+          steps={methodSteps}
+          icons={methodIcons}
+          fallbackIcon={<LogoMark className="h-4 w-auto" />}
+        />
       </Reveal>
 
       <Reveal className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">
