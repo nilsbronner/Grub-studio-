@@ -60,6 +60,7 @@ export default async function ProjectPage({
         <VideoTile
           project={project}
           priority
+          lightbox
           className="aspect-video w-full"
         />
       </Reveal>

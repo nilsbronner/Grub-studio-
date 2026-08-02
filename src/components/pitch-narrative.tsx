@@ -3,6 +3,44 @@
 import { motion } from "framer-motion";
 import { AnimatedNumber } from "@/components/animated-number";
 
+function ClapperIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-6 w-6"
+      aria-hidden
+    >
+      <path d="M4 8.5 19 5l1 4-15 3.5Z" />
+      <path d="M4 10v9a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-8" />
+      <path d="m8 6 2 3M13 5l2 3" />
+    </svg>
+  );
+}
+
+function TargetIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.75}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-6 w-6"
+      aria-hidden
+    >
+      <circle cx="12" cy="12" r="8" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="12" cy="12" r="0.5" fill="currentColor" />
+    </svg>
+  );
+}
+
 const headingWords = "Les codes ont changé".split(" ");
 
 const avantPoints = [
@@ -110,10 +148,13 @@ export function PitchNarrative() {
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="rounded-xl border border-border p-6"
             >
-              <p className="text-xs font-medium uppercase tracking-[0.15em] text-muted">
-                Avant
-              </p>
-              <ul className="mt-4 space-y-2.5 text-sm text-foreground/70">
+              <div className="flex items-center gap-2.5 text-muted">
+                <ClapperIcon />
+                <p className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                  Avant
+                </p>
+              </div>
+              <ul className="mt-5 space-y-2.5 text-sm text-foreground/70">
                 {avantPoints.map((point, i) => (
                   <motion.li
                     key={point}
@@ -139,10 +180,13 @@ export function PitchNarrative() {
               }}
               className="rounded-xl bg-accent-purple p-6 text-white"
             >
-              <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/70">
-                Maintenant
-              </p>
-              <ul className="mt-4 space-y-2.5 text-sm">
+              <div className="flex items-center gap-2.5">
+                <TargetIcon />
+                <p className="text-2xl font-bold tracking-tight sm:text-3xl">
+                  Maintenant
+                </p>
+              </div>
+              <ul className="mt-5 space-y-2.5 text-sm">
                 {maintenantPoints.map((point, i) => (
                   <motion.li
                     key={point}

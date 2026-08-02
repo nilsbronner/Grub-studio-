@@ -10,6 +10,13 @@ const targets = [
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+const palette = [
+  "var(--accent-purple)",
+  "var(--accent-pink)",
+  "var(--accent-yellow)",
+  "var(--accent-cyan)",
+];
+
 export function TournageDiagram() {
   return (
     <div className="flex flex-col items-center py-4">
@@ -63,7 +70,8 @@ export function TournageDiagram() {
                     duration: 0.3,
                     delay: 0.95 + i * 0.12 + j * 0.06,
                   }}
-                  className="h-1.5 w-1.5 rounded-full bg-accent"
+                  style={{ backgroundColor: palette[i % palette.length] }}
+                  className="h-1.5 w-1.5 rounded-full"
                 />
               ))}
             </div>
