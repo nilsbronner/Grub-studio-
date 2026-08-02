@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
+import { PitchNarrative } from "@/components/pitch-narrative";
 import { Reveal } from "@/components/reveal";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
@@ -51,6 +52,8 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      <PitchNarrative />
 
       <Reveal className="border-t border-border">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">

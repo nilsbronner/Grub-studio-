@@ -7,19 +7,14 @@ import {
 } from "@/lib/content/services";
 import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
+import { ServiceCardList } from "@/components/service-card-list";
+import { FormatShowcase } from "@/components/format-showcase";
 
 export const metadata: Metadata = {
   title: "Services",
   description:
     "Vidéo et photo pour les marques : spot pub, ADS, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
 };
-
-const palette = [
-  "var(--accent-purple)",
-  "var(--accent-pink)",
-  "var(--accent-yellow)",
-  "var(--accent-cyan)",
-];
 
 export default function ServicesPage() {
   return (
@@ -39,56 +34,14 @@ export default function ServicesPage() {
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Vidéo
         </h2>
-        <ul className="mt-6 grid gap-x-8 gap-y-9 sm:grid-cols-2">
-          {videoServices.map((service, i) => (
-            <li
-              key={service.slug}
-              className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
-              style={{ borderTop: `2px solid ${palette[i % 4]}` }}
-            >
-              <div className="flex items-baseline gap-3">
-                <span
-                  className="font-mono text-xs"
-                  style={{ color: palette[i % 4] }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-base font-medium">{service.title}</p>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-                {service.description}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <ServiceCardList services={videoServices} />
       </Reveal>
 
       <Reveal className="mt-16">
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Photo
         </h2>
-        <ul className="mt-6 grid gap-x-8 gap-y-9 sm:grid-cols-2">
-          {photoServices.map((service, i) => (
-            <li
-              key={service.slug}
-              className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
-              style={{ borderTop: `2px solid ${palette[i % 4]}` }}
-            >
-              <div className="flex items-baseline gap-3">
-                <span
-                  className="font-mono text-xs"
-                  style={{ color: palette[i % 4] }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <p className="text-base font-medium">{service.title}</p>
-              </div>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/70">
-                {service.description}
-              </p>
-            </li>
-          ))}
-        </ul>
+        <ServiceCardList services={photoServices} />
       </Reveal>
 
       <Reveal className="mt-16">
@@ -111,21 +64,9 @@ export default function ServicesPage() {
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
           {diffusionFormats.intro}
         </p>
-        <ul className="mt-6 grid gap-6 sm:grid-cols-3">
-          {diffusionFormats.formats.map((format, i) => (
-            <li
-              key={format.ratio}
-              className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
-              style={{ borderTop: `2px solid ${palette[i % 4]}` }}
-            >
-              <p className="font-mono text-xs" style={{ color: palette[i % 4] }}>
-                {format.ratio}
-              </p>
-              <p className="mt-2 text-base font-medium">{format.label}</p>
-              <p className="mt-1 text-sm text-foreground/70">{format.usage}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-8">
+          <FormatShowcase formats={diffusionFormats.formats} />
+        </div>
       </Reveal>
 
       <Reveal className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">

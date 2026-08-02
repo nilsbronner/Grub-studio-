@@ -23,24 +23,26 @@ export default function ContactPage() {
           <ContactForm />
         </Reveal>
 
-        <Reveal delay={0.1} className="space-y-6">
-          <div className="group relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-border">
-            <Image
-              src="/images/team/nils-bronner-profile.jpg"
-              alt={contact.name}
-              fill
-              sizes="260px"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-              priority
-            />
-          </div>
+        <div className="space-y-6">
+          <Reveal delay={0.1}>
+            <div className="group relative aspect-[4/5] w-full max-w-xs overflow-hidden border border-border">
+              <Image
+                src="/images/team/nils-bronner-profile.jpg"
+                alt={contact.name}
+                fill
+                sizes="260px"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                priority
+              />
+            </div>
+          </Reveal>
 
-          <div>
+          <Reveal delay={0.18}>
             <p className="text-sm font-medium">{contact.name}</p>
             <p className="text-sm text-muted">{contact.title}</p>
-          </div>
+          </Reveal>
 
-          <div className="space-y-1">
+          <Reveal delay={0.24} className="space-y-1">
             <a
               href={contact.phoneHref}
               data-cursor="→"
@@ -55,19 +57,21 @@ export default function ContactPage() {
             >
               {contact.emailPro}
             </a>
-          </div>
+          </Reveal>
 
-          <p className="text-sm text-muted">{contact.address}</p>
+          <Reveal delay={0.3}>
+            <p className="text-sm text-muted">{contact.address}</p>
+          </Reveal>
 
-          <div className="border-t border-border pt-6">
+          <Reveal delay={0.36} className="border-t border-border pt-6">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
               {contact.coordinates.latitude} / {contact.coordinates.longitude}
             </p>
             <p className="mt-1 text-sm text-muted">
               {contact.coordinates.city}
             </p>
-          </div>
-        </Reveal>
+          </Reveal>
+        </div>
       </div>
     </div>
   );

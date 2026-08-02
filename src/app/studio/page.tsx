@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { team, studioPositioning, methodSteps } from "@/lib/content/team";
 import { Reveal } from "@/components/reveal";
+import { TournageDiagram } from "@/components/tournage-diagram";
+import { MethodTimeline } from "@/components/method-timeline";
 
 export const metadata: Metadata = {
   title: "Studio",
@@ -20,6 +22,17 @@ export default function StudioPage() {
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
           {studioPositioning}
         </p>
+      </Reveal>
+
+      <Reveal className="mt-14 border-t border-border pt-12">
+        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          Un tournage, plusieurs contenus
+        </h2>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
+          À partir d&rsquo;un spot principal, nous créons une série de
+          contenus déclinés pour chaque cible.
+        </p>
+        <TournageDiagram />
       </Reveal>
 
       <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
@@ -51,19 +64,9 @@ export default function StudioPage() {
 
       <Reveal className="mt-20">
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-          Méthode
+          Méthode — une production en 5 étapes clés
         </h2>
-        <ol className="mt-6 grid gap-8 sm:grid-cols-5">
-          {methodSteps.map((step) => (
-            <li key={step.step} className="group">
-              <p className="font-mono text-xs text-muted transition-colors duration-300 group-hover:text-accent">
-                {String(step.step).padStart(2, "0")}
-              </p>
-              <p className="mt-2 text-sm font-medium">{step.title}</p>
-              <p className="mt-1 text-sm text-muted">{step.description}</p>
-            </li>
-          ))}
-        </ol>
+        <MethodTimeline steps={methodSteps} />
       </Reveal>
 
       <Reveal className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">

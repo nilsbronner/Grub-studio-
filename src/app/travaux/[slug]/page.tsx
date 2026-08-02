@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { VideoTile } from "@/components/video-tile";
 import { Reveal } from "@/components/reveal";
+import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
 
@@ -93,26 +94,19 @@ export default async function ProjectPage({
           <p className="mt-3 text-sm">
             {project.categories.map((c) => categoryLabel(c)).join(" · ")}
           </p>
-
-          {project.stats && project.stats.length > 0 && (
-            <>
-              <h2 className="mt-10 text-sm uppercase tracking-[0.15em] text-muted">
-                Chiffres clés
-              </h2>
-              <dl className="mt-3 space-y-3">
-                {project.stats.map((s) => (
-                  <div key={s.label}>
-                    <dt className="text-xs text-muted">{s.label}</dt>
-                    <dd className="tabular text-lg font-medium">
-                      {s.value}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </>
-          )}
         </div>
       </Reveal>
+
+      {project.stats && project.stats.length > 0 && (
+        <Reveal delay={0.1} className="mt-10">
+          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+            Chiffres clés
+          </h2>
+          <div className="mt-4">
+            <StatStrip stats={project.stats} />
+          </div>
+        </Reveal>
+      )}
 
       <Reveal
         delay={0.05}
