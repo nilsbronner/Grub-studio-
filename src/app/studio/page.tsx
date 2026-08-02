@@ -24,17 +24,6 @@ export default function StudioPage() {
         </p>
       </Reveal>
 
-      <Reveal className="mt-14 border-t border-border pt-12">
-        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-          Un tournage, plusieurs contenus
-        </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
-          À partir d&rsquo;un spot principal, nous créons une série de
-          contenus déclinés pour chaque cible.
-        </p>
-        <TournageDiagram />
-      </Reveal>
-
       <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
         {team.map((member, i) => (
           <Reveal key={member.name} delay={i * 0.05}>
@@ -62,7 +51,18 @@ export default function StudioPage() {
         ))}
       </div>
 
-      <Reveal className="mt-20">
+      <Reveal className="mt-20 border-t border-border pt-12">
+        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          Un tournage, plusieurs contenus
+        </h2>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
+          À partir d&rsquo;un spot principal, nous créons une série de
+          contenus déclinés pour chaque cible.
+        </p>
+        <TournageDiagram />
+      </Reveal>
+
+      <Reveal className="mt-14">
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Méthode — une production en 5 étapes clés
         </h2>
