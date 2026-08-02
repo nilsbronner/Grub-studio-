@@ -6,6 +6,20 @@ import Player from "@vimeo/player";
 import { cx } from "@/lib/cx";
 import type { Short } from "@/lib/content/shorts";
 import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
+import { VideoLightbox } from "@/components/video-lightbox";
+
+function PlayIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-5 w-5"
+      aria-hidden
+    >
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  );
+}
 
 function SpeakerIcon({ muted }: { muted: boolean }) {
   return (
@@ -45,6 +59,7 @@ export function ShortTile({
   const ref = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [inView, setInView] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const embedLoaded = useVimeoPlaying(iframeRef, inView);
 
   useEffect(() => {
@@ -71,8 +86,18 @@ export function ShortTile({
   return (
     <div
       ref={ref}
+      role="button"
+      tabIndex={0}
+      data-cursor="voir"
+      onClick={() => setLightboxOpen(true)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setLightboxOpen(true);
+        }
+      }}
       className={cx(
-        "group relative aspect-[9/16] overflow-hidden border border-border bg-[#141412] transition-all duration-300",
+        "group relative aspect-[9/16] cursor-pointer overflow-hidden border border-border bg-[#141412] transition-all duration-300",
         isActive && "z-10 scale-[1.03] border-accent",
         dimmed && "opacity-50",
         className
@@ -96,7 +121,7 @@ export function ShortTile({
           ref={iframeRef}
           src={`https://player.vimeo.com/video/${short.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
           className={cx(
-            "absolute inset-0 h-full w-full transition-opacity duration-700 ease-out",
+            "pointer-events-none absolute inset-0 h-full w-full transition-opacity duration-700 ease-out",
             embedLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{ backgroundColor: "var(--background)" }}
@@ -107,6 +132,12 @@ export function ShortTile({
       )}
       <div className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/80 via-black/10 to-transparent p-3">
         <p className="text-xs font-medium text-white">{short.title}</p>
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm">
+          <PlayIcon />
+        </span>
       </div>
 
       {onActivate && (
@@ -129,6 +160,14 @@ export function ShortTile({
           <SpeakerIcon muted={!isActive} />
         </button>
       )}
+
+      <VideoLightbox
+        vimeoId={short.vimeoId}
+        title={short.title}
+        open={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        vertical
+      />
     </div>
   );
 }

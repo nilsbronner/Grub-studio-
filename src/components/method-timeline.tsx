@@ -6,6 +6,13 @@ import type { MethodStep, MethodStepIcon } from "@/lib/content/team";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+const palette = [
+  "var(--accent-purple)",
+  "var(--accent-pink)",
+  "var(--accent-yellow)",
+  "var(--accent-cyan)",
+];
+
 export function MethodTimeline({
   steps,
   icons,
@@ -23,13 +30,17 @@ export function MethodTimeline({
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.9, ease }}
-        style={{ transformOrigin: "left" }}
-        className="absolute left-0 right-0 top-[7px] hidden h-px bg-accent sm:block"
+        style={{
+          transformOrigin: "left",
+          background: `linear-gradient(90deg, ${palette.join(", ")})`,
+        }}
+        className="absolute left-0 right-0 top-[7px] hidden h-px sm:block"
       />
 
       <ol className="grid gap-8 sm:grid-cols-5">
         {steps.map((step, i) => {
           const icon = icons?.[step.icon] ?? fallbackIcon;
+          const color = palette[i % palette.length];
           return (
             <li key={step.step} className="group relative">
               <motion.span
@@ -37,7 +48,8 @@ export function MethodTimeline({
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.3, ease, delay: 0.15 + i * 0.15 }}
-                className="hidden h-3.5 w-3.5 rounded-full border-2 border-accent bg-background sm:block"
+                style={{ borderColor: color }}
+                className="hidden h-3.5 w-3.5 rounded-full border-2 bg-background sm:block"
               />
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -48,11 +60,11 @@ export function MethodTimeline({
               >
                 <div className="flex items-center gap-2">
                   {icon && (
-                    <span className="text-muted transition-colors duration-300 group-hover:text-accent">
+                    <span style={{ color }} className="flex">
                       {icon}
                     </span>
                   )}
-                  <p className="font-mono text-xs text-accent">
+                  <p className="font-mono text-xs" style={{ color }}>
                     {String(step.step).padStart(2, "0")}
                   </p>
                 </div>

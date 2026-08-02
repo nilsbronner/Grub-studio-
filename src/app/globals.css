@@ -33,6 +33,7 @@
 
 html {
   color-scheme: dark;
+  background: var(--background);
 }
 
 body {

@@ -7,22 +7,41 @@ import { cx } from "@/lib/cx";
 import type { Project } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
 import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
+import { VideoLightbox } from "@/components/video-lightbox";
+
+function PlayIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-6 w-6"
+      aria-hidden
+    >
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  );
+}
 
 export function VideoTile({
   project,
   className,
   priority,
+  lightbox = false,
 }: {
   project: Project;
   className?: string;
   priority?: boolean;
+  /** Open the video in a lightbox on click instead of linking to the project page — for the project's own hero video, which would otherwise link to itself. */
+  lightbox?: boolean;
 }) {
-  const ref = useRef<HTMLAnchorElement>(null);
+  const anchorRef = useRef<HTMLAnchorElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [inView, setInView] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = lightbox ? divRef.current : anchorRef.current;
     if (!el || !project.vimeoId) return;
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
@@ -30,28 +49,23 @@ export function VideoTile({
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [project.vimeoId]);
+  }, [project.vimeoId, lightbox]);
 
   const showEmbed = inView && Boolean(project.vimeoId);
   const embedLoaded = useVimeoPlaying(iframeRef, showEmbed);
 
-  return (
-    <Link
-      ref={ref}
-      href={`/travaux/${project.slug}`}
-      data-cursor="voir"
-      className={cx(
-        "group relative block aspect-video overflow-hidden bg-cover bg-center",
-        className
-      )}
-      style={
-        project.image
-          ? undefined
-          : {
-              backgroundImage: `linear-gradient(160deg, ${project.accent} 0%, #0b0b0a 85%)`,
-            }
-      }
-    >
+  const tileClassName = cx(
+    "group relative block aspect-video cursor-pointer overflow-hidden bg-cover bg-center",
+    className
+  );
+  const tileStyle = project.image
+    ? undefined
+    : {
+        backgroundImage: `linear-gradient(160deg, ${project.accent} 0%, #0b0b0a 85%)`,
+      };
+
+  const content = (
+    <>
       {project.image && (
         <Image
           src={project.image}
@@ -72,7 +86,7 @@ export function VideoTile({
           key={project.vimeoId}
           src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
           className={cx(
-            "absolute inset-0 h-full w-full transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.04]",
+            "pointer-events-none absolute inset-0 h-full w-full transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.04]",
             embedLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{ backgroundColor: "var(--background)" }}
@@ -97,6 +111,53 @@ export function VideoTile({
       </div>
 
       <div className="pointer-events-none absolute inset-0 border border-white/0 transition-colors duration-300 group-hover:border-white/20" />
+    </>
+  );
+
+  if (lightbox) {
+    return (
+      <div
+        ref={divRef}
+        role="button"
+        tabIndex={0}
+        data-cursor="voir"
+        onClick={() => setLightboxOpen(true)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setLightboxOpen(true);
+          }
+        }}
+        className={tileClassName}
+        style={tileStyle}
+      >
+        {content}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm">
+            <PlayIcon />
+          </span>
+        </div>
+        {project.vimeoId && (
+          <VideoLightbox
+            vimeoId={project.vimeoId}
+            title={project.title}
+            open={lightboxOpen}
+            onClose={() => setLightboxOpen(false)}
+          />
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <Link
+      ref={anchorRef}
+      href={`/travaux/${project.slug}`}
+      data-cursor="voir"
+      className={tileClassName}
+      style={tileStyle}
+    >
+      {content}
     </Link>
   );
 }
