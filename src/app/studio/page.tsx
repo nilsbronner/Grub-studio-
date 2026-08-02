@@ -1,8 +1,23 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { team, studioPositioning, methodSteps } from "@/lib/content/team";
+import { Sparkle, PenTool, ClipboardList, Aperture } from "lucide-react";
+import {
+  team,
+  studioPositioning,
+  methodSteps,
+  type MethodStepIcon,
+} from "@/lib/content/team";
 import { Reveal } from "@/components/reveal";
+import { EyebrowPill } from "@/components/eyebrow-pill";
+import { LogoMark } from "@/components/logo-mark";
+
+const methodIcons: Partial<Record<MethodStepIcon, typeof Sparkle>> = {
+  kickoff: Sparkle,
+  conception: PenTool,
+  "pre-production": ClipboardList,
+  production: Aperture,
+};
 
 export const metadata: Metadata = {
   title: "Studio",
@@ -14,7 +29,8 @@ export default function StudioPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
+        <EyebrowPill>L&rsquo;équipe</EyebrowPill>
+        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
           Studio
         </h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
@@ -54,15 +70,28 @@ export default function StudioPage() {
           Méthode
         </h2>
         <ol className="mt-6 grid gap-8 sm:grid-cols-5">
-          {methodSteps.map((step) => (
-            <li key={step.step} className="group">
-              <p className="font-mono text-xs text-muted transition-colors duration-300 group-hover:text-accent">
-                {String(step.step).padStart(2, "0")}
-              </p>
-              <p className="mt-2 text-sm font-medium">{step.title}</p>
-              <p className="mt-1 text-sm text-muted">{step.description}</p>
-            </li>
-          ))}
+          {methodSteps.map((step) => {
+            const Icon = methodIcons[step.icon];
+            return (
+              <li key={step.step} className="group">
+                <div className="flex items-center gap-2">
+                  {Icon ? (
+                    <Icon
+                      className="h-4 w-4 text-muted transition-colors duration-300 group-hover:text-accent"
+                      strokeWidth={1.75}
+                    />
+                  ) : (
+                    <LogoMark className="h-4 w-auto" />
+                  )}
+                  <p className="font-mono text-xs text-muted transition-colors duration-300 group-hover:text-accent">
+                    {String(step.step).padStart(2, "0")}
+                  </p>
+                </div>
+                <p className="mt-2 text-sm font-medium">{step.title}</p>
+                <p className="mt-1 text-sm text-muted">{step.description}</p>
+              </li>
+            );
+          })}
         </ol>
       </Reveal>
 

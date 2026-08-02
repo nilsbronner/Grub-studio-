@@ -7,6 +7,7 @@ import {
 } from "@/lib/content/services";
 import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
+import { EyebrowPill } from "@/components/eyebrow-pill";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -25,7 +26,8 @@ export default function ServicesPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
+        <EyebrowPill>Ce qu&rsquo;on fait</EyebrowPill>
+        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
           Services
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/70">

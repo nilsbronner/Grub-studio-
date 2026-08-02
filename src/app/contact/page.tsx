@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { contact } from "@/lib/content/contact";
 import { Reveal } from "@/components/reveal";
+import { EyebrowPill } from "@/components/eyebrow-pill";
 import { ContactForm } from "@/components/contact-form";
 
 export const metadata: Metadata = {
@@ -13,7 +14,8 @@ export default function ContactPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <h1 className="text-2xl font-medium tracking-tight sm:text-4xl">
+        <EyebrowPill>Contact</EyebrowPill>
+        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-4xl">
           Discutons de votre projet.
         </h1>
       </Reveal>

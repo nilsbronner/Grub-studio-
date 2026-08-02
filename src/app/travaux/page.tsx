@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ProjectFilter } from "@/components/project-filter";
 import { Reveal } from "@/components/reveal";
+import { EyebrowPill } from "@/components/eyebrow-pill";
 import { projects } from "@/lib/content/projects";
 
 export const metadata: Metadata = {
@@ -14,7 +15,8 @@ export default function TravauxPage() {
   return (
     <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
+        <EyebrowPill>Portfolio</EyebrowPill>
+        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
           Travaux
         </h1>
       </Reveal>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
 import { Reveal } from "@/components/reveal";
+import { EyebrowPill } from "@/components/eyebrow-pill";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
 
@@ -19,7 +20,8 @@ export default function Home() {
     <>
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="hero-subhead-trigger inline-block">
+          <EyebrowPill>Studio Bemotion</EyebrowPill>
+          <div className="hero-subhead-trigger mt-4 inline-block">
             <h1 className="max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl">
               Bemotion. Studio de production audiovisuelle, Strasbourg.
             </h1>
