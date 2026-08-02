@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { team, studioPositioning, methodSteps } from "@/lib/content/team";
+import { Sparkle, PenTool, ClipboardList, Aperture } from "lucide-react";
+import {
+  team,
+  studioPositioning,
+  methodSteps,
+  type MethodStepIcon,
+} from "@/lib/content/team";
 import { Reveal } from "@/components/reveal";
 import { TournageDiagram } from "@/components/tournage-diagram";
 import { MethodTimeline } from "@/components/method-timeline";
+import { EyebrowPill } from "@/components/eyebrow-pill";
+import { LogoMark } from "@/components/logo-mark";
+
+const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
+  kickoff: <Sparkle className="h-4 w-4" strokeWidth={1.75} />,
+  conception: <PenTool className="h-4 w-4" strokeWidth={1.75} />,
+  "pre-production": <ClipboardList className="h-4 w-4" strokeWidth={1.75} />,
+  production: <Aperture className="h-4 w-4" strokeWidth={1.75} />,
+};
 
 export const metadata: Metadata = {
   title: "Studio",
@@ -16,7 +32,8 @@ export default function StudioPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
+        <EyebrowPill>L&rsquo;équipe</EyebrowPill>
+        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
           Studio
         </h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
@@ -66,7 +83,11 @@ export default function StudioPage() {
         <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
           Méthode — une production en 5 étapes clés
         </h2>
-        <MethodTimeline steps={methodSteps} />
+        <MethodTimeline
+          steps={methodSteps}
+          icons={methodIcons}
+          fallbackIcon={<LogoMark className="h-4 w-auto" />}
+        />
       </Reveal>
 
       <Reveal className="mt-24 flex flex-col items-start gap-6 border-t border-border pt-12 sm:flex-row sm:items-center sm:justify-between">

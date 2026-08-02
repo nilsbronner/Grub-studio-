@@ -3,8 +3,10 @@ import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
 import { PitchNarrative } from "@/components/pitch-narrative";
 import { Reveal } from "@/components/reveal";
+import { EyebrowPill } from "@/components/eyebrow-pill";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
+import { withVimeoPosters } from "@/lib/vimeo";
 
 const palette = [
   "var(--accent-purple)",
@@ -13,14 +15,15 @@ const palette = [
   "var(--accent-cyan)",
 ];
 
-export default function Home() {
-  const featured = getFeaturedProjects();
+export default async function Home() {
+  const featured = await withVimeoPosters(getFeaturedProjects());
 
   return (
     <>
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
-          <h1 className="max-w-3xl text-3xl font-medium tracking-tight sm:text-5xl">
+          <EyebrowPill>Studio Bemotion</EyebrowPill>
+          <h1 className="mt-4 max-w-3xl text-3xl font-medium tracking-tight sm:text-5xl">
             Bemotion. Studio de production audiovisuelle, Strasbourg.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-foreground/80 sm:text-xl">

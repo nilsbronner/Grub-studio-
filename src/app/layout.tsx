@@ -44,6 +44,12 @@ export default function RootLayout({
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
+      <head>
+        <link rel="preconnect" href="https://player.vimeo.com" />
+        <link rel="preconnect" href="https://i.vimeocdn.com" />
+        <link rel="dns-prefetch" href="https://player.vimeo.com" />
+        <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
+      </head>
       <body className="flex min-h-full flex-col antialiased">
         <CustomCursor />
         <SiteHeader />

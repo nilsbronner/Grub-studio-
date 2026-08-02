@@ -6,6 +6,7 @@ import { Reveal } from "@/components/reveal";
 import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
+import { withVimeoPosters } from "@/lib/vimeo";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -22,6 +23,7 @@ export async function generateMetadata({
   return {
     title: project.client,
     description: project.hook,
+    keywords: project.keywords,
   };
 }
 
@@ -31,15 +33,23 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
-  if (!project) notFound();
+  const rawProject = getProjectBySlug(slug);
+  if (!rawProject) notFound();
+  const [project] = await withVimeoPosters([rawProject]);
 
   return (
     <article className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <p className="text-xs uppercase tracking-[0.2em] text-muted">
-          {project.sector}
-        </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <p className="text-xs uppercase tracking-[0.2em] text-muted">
+            {project.sector}
+          </p>
+          {project.price && (
+            <span className="rounded-full border border-border px-3 py-1 text-xs font-medium text-accent">
+              {project.price}
+            </span>
+          )}
+        </div>
         <h1 className="mt-2 text-2xl font-medium tracking-tight sm:text-4xl">
           {project.client}
         </h1>

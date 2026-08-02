@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { EyebrowPill } from "@/components/eyebrow-pill";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -33,15 +34,15 @@ export function SectionKicker({
 
   return (
     <div className={className}>
-      <motion.span
+      <motion.div
         initial={{ opacity: 0, y: -8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.4, ease }}
-        className="inline-block rounded-full border border-border px-4 py-1 text-xs uppercase tracking-[0.15em] text-muted"
+        className="inline-block"
       >
-        {kicker}
-      </motion.span>
+        <EyebrowPill>{kicker}</EyebrowPill>
+      </motion.div>
 
       <motion.div
         variants={container}

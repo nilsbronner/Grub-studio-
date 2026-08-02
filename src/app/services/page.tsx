@@ -5,10 +5,13 @@ import {
   photoServices,
   diffusionFormats,
 } from "@/lib/content/services";
+import { shorts } from "@/lib/content/shorts";
+import { withVimeoPosters } from "@/lib/vimeo";
 import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
 import { ServiceCardList } from "@/components/service-card-list";
 import { FormatShowcase } from "@/components/format-showcase";
+import { EyebrowPill } from "@/components/eyebrow-pill";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -16,11 +19,14 @@ export const metadata: Metadata = {
     "Vidéo et photo pour les marques : spot pub, ADS, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const shortsWithPosters = await withVimeoPosters(shorts);
+
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
-        <h1 className="text-2xl font-medium tracking-tight sm:text-3xl">
+        <EyebrowPill>Ce qu&rsquo;on fait</EyebrowPill>
+        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
           Services
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/70">
@@ -53,7 +59,7 @@ export default function ServicesPage() {
           poste — la version courte, en vidéo.
         </p>
         <div className="mt-6">
-          <ShortsStrip />
+          <ShortsStrip shorts={shortsWithPosters} />
         </div>
       </Reveal>
 
