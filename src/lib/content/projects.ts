@@ -26,6 +26,10 @@ export type Project = {
   /** Accent used for the placeholder tile gradient when no image/footage is set. */
   accent: string;
   featuredHome?: boolean;
+  /** SEO keywords for this project's page metadata. */
+  keywords?: string[];
+  /** Indicative price shown on the project page. Omit for Bemotion showreels. */
+  price?: string;
 };
 
 export const projects: Project[] = [
