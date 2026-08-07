@@ -4,7 +4,6 @@ import { ClientLogosBand } from "@/components/client-logos-band";
 import { PitchNarrative } from "@/components/pitch-narrative";
 import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
-import { HeroMotif } from "@/components/hero-motif";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
 import { withVimeoPosters } from "@/lib/vimeo";
@@ -23,36 +22,30 @@ export default async function Home() {
     <>
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1fr_320px] lg:items-center">
-            <div>
-              <EyebrowPill>Studio Bemotion</EyebrowPill>
-              <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
-                Bemotion. Studio de production audiovisuelle, Strasbourg.
-              </h1>
-              <p className="mt-5 max-w-md text-lg leading-relaxed text-foreground sm:text-xl">
-                On écrit, on tourne et on monte des films et des photos pour
-                des marques qui ont quelque chose à raconter — de la
-                première idée au fichier prêt à diffuser.
-              </p>
+          <EyebrowPill>Studio Bemotion</EyebrowPill>
+          <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
+            Bemotion. Studio de production audiovisuelle, Strasbourg.
+          </h1>
+          <p className="mt-5 max-w-md text-lg leading-relaxed text-foreground sm:text-xl">
+            On écrit, on tourne et on monte des films et des photos pour des
+            marques qui ont quelque chose à raconter — de la première idée
+            au fichier prêt à diffuser.
+          </p>
 
-              <div className="mt-8 flex items-center gap-6">
-                <Link
-                  href="/contact"
-                  data-cursor="→"
-                  className="border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
-                >
-                  Contact
-                </Link>
-                <Link
-                  href="/travaux"
-                  className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
-                >
-                  Tous les travaux →
-                </Link>
-              </div>
-            </div>
-
-            <HeroMotif className="hidden lg:block" />
+          <div className="mt-8 flex items-center gap-6">
+            <Link
+              href="/contact"
+              data-cursor="→"
+              className="border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+            >
+              Contact
+            </Link>
+            <Link
+              href="/travaux"
+              className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            >
+              Tous les travaux →
+            </Link>
           </div>
         </Reveal>
 
