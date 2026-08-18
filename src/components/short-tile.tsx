@@ -88,7 +88,6 @@ export function ShortTile({
       ref={ref}
       role="button"
       tabIndex={0}
-      data-cursor="voir"
       onClick={() => setLightboxOpen(true)}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -143,7 +142,6 @@ export function ShortTile({
       {onActivate && (
         <button
           type="button"
-          data-cursor="•"
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();

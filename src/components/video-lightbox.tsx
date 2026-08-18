@@ -67,7 +67,6 @@ export function VideoLightbox({
             type="button"
             onClick={onClose}
             aria-label="Fermer la vidéo"
-            data-cursor="✕"
             className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:border-white"
           >
             ✕

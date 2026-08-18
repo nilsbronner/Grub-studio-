@@ -149,7 +149,6 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        data-cursor="→"
         className="group flex items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent disabled:opacity-50"
       >
         {status === "sending" ? "Envoi..." : "Envoyer"}

@@ -35,7 +35,6 @@ export default async function Home() {
           <div className="mt-8 flex items-center gap-6">
             <Link
               href="/contact"
-              data-cursor="→"
               className="border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
             >
               Contact
@@ -64,7 +63,6 @@ export default async function Home() {
             </h2>
             <Link
               href="/services"
-              data-cursor="→"
               className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
             >
               Tous les services →
@@ -100,7 +98,6 @@ export default async function Home() {
           </h2>
           <Link
             href="/contact"
-            data-cursor="→"
             className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
           >
             Discutons de votre projet

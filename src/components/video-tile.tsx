@@ -120,7 +120,6 @@ export function VideoTile({
         ref={divRef}
         role="button"
         tabIndex={0}
-        data-cursor="voir"
         onClick={() => setLightboxOpen(true)}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -153,7 +152,6 @@ export function VideoTile({
     <Link
       ref={anchorRef}
       href={`/travaux/${project.slug}`}
-      data-cursor="voir"
       className={tileClassName}
       style={tileStyle}
     >

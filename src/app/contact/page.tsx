@@ -47,14 +47,12 @@ export default function ContactPage() {
           <Reveal delay={0.24} className="space-y-1">
             <a
               href={contact.phoneHref}
-              data-cursor="→"
               className="inline-block text-sm transition-colors hover:text-accent"
             >
               {contact.phone}
             </a>
             <a
               href={`mailto:${contact.emailPro}`}
-              data-cursor="→"
               className="block text-sm transition-colors hover:text-accent"
             >
               {contact.emailPro}

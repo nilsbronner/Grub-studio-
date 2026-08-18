@@ -96,7 +96,6 @@ export default function StudioPage() {
         </h2>
         <Link
           href="/contact"
-          data-cursor="→"
           className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
         >
           Discutons de votre projet
