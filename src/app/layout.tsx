@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { CustomCursor } from "@/components/custom-cursor";
 import { FloatingContactCta } from "@/components/floating-contact-cta";
 import "./globals.css";
 
@@ -51,7 +50,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
       </head>
       <body className="flex min-h-full flex-col antialiased">
-        <CustomCursor />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
