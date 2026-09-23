@@ -62,10 +62,10 @@ export function OfferList({ offers }: { offers: Offer[] }) {
               className="absolute inset-x-0 top-0 h-1"
             />
 
-            <p className="text-xl font-semibold tracking-tight">
+            <p className="min-h-[3.5rem] text-xl font-semibold tracking-tight">
               {offer.title}
             </p>
-            <p className="mt-3 text-sm leading-relaxed text-foreground/60">
+            <p className="mt-3 min-h-[5.75rem] text-sm leading-relaxed text-foreground/60">
               {offer.description}
             </p>
 
