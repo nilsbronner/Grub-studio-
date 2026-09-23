@@ -13,6 +13,25 @@ const links = [
   { href: "/contact", label: "Contact" },
 ];
 
+const cowork = { href: "https://www.le-grub.com/", label: "Grub Cowork" };
+
+function ExternalLinkIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-3 w-3"
+      aria-hidden
+    >
+      <path d="M7 17 17 7M8 7h9v9" />
+    </svg>
+  );
+}
+
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -26,7 +45,7 @@ export function SiteHeader() {
           onClick={() => setOpen(false)}
         >
           <LogoMark className="h-5 w-auto" />
-          <span className="text-lg font-bold tracking-tight">Bemotion</span>
+          <span className="text-lg font-bold tracking-tight">Grub Studio</span>
         </Link>
 
         <nav className="hidden gap-8 text-sm uppercase tracking-[0.15em] sm:flex">
@@ -52,6 +71,15 @@ export function SiteHeader() {
               </Link>
             );
           })}
+          <a
+            href={cowork.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-1.5 py-1 text-muted transition-colors hover:text-foreground"
+          >
+            {cowork.label}
+            <ExternalLinkIcon />
+          </a>
         </nav>
 
         <button
@@ -82,6 +110,15 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <a
+            href={cowork.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 py-2 text-muted transition-colors"
+          >
+            {cowork.label}
+            <ExternalLinkIcon />
+          </a>
         </nav>
       )}
     </header>

@@ -22,9 +22,9 @@ export default async function Home() {
     <>
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
-          <EyebrowPill>Studio Bemotion</EyebrowPill>
+          <EyebrowPill>Grub Studio</EyebrowPill>
           <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
-            Bemotion. Studio de production audiovisuelle, Strasbourg.
+            Grub Studio. Production audiovisuelle, Strasbourg.
           </h1>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-foreground sm:text-xl">
             On écrit, on tourne et on monte des films et des photos pour des

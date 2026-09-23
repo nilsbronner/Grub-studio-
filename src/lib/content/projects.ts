@@ -28,7 +28,7 @@ export type Project = {
   featuredHome?: boolean;
   /** SEO keywords for this project's page metadata. */
   keywords?: string[];
-  /** Indicative price shown on the project page. Omit for Bemotion showreels. */
+  /** Indicative price shown on the project page. Omit for Grub Studio showreels. */
   price?: string;
 };
 
@@ -139,7 +139,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-2024",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Showreel",
     title: "Showreel 2024",
     hook: "Une sélection de plans tournés pour plusieurs clients au cours de l'année.",
@@ -153,7 +153,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-motion",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Motion design",
     title: "Showreel Motion",
     hook: "Une sélection d'animations et d'habillages graphiques.",
@@ -166,7 +166,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-immobilier",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Immobilier",
     title: "Showreel Immobilier",
     hook: "Production vidéo pensée pour les acteurs de l'immobilier.",
@@ -180,7 +180,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-teambuilding",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Événementiel",
     title: "Showreel Teambuilding",
     hook: "Captation d'un événement d'entreprise et de teambuilding.",
@@ -193,7 +193,7 @@ export const projects: Project[] = [
   },
   {
     slug: "spot-pub-showreel",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Spot publicitaire",
     title: "Spot",
     hook: "Sélection de spots publicitaires produits pour des marques.",
@@ -246,7 +246,7 @@ export const projects: Project[] = [
   },
   {
     slug: "interview-entreprise",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Interview",
     title: "Interview entreprise",
     hook: "Prise de parole d'un intervenant face caméra.",
@@ -259,7 +259,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-interview",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Showreel",
     title: "Showreel Interviews",
     hook: "Une sélection d'interviews tournées pour différents clients.",
@@ -286,7 +286,7 @@ export const projects: Project[] = [
   },
   {
     slug: "circuits-sport-auto",
-    client: "Bemotion",
+    client: "Grub Studio",
     sector: "Sport automobile",
     title: "Circuits Sport Auto",
     hook: "Immersion sur circuit pour un contenu sport automobile.",

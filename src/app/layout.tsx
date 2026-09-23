@@ -20,15 +20,15 @@ const siteUrl = "https://www.bemotion.fr";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Bemotion — Studio de production audiovisuelle, Strasbourg",
-    template: "%s — Bemotion",
+    default: "Grub Studio — Production audiovisuelle, Strasbourg",
+    template: "%s — Grub Studio",
   },
   description:
-    "Bemotion, studio de production audiovisuelle basé à Strasbourg : spot pub, motion design, contenu réseaux, photo B2B.",
+    "Grub Studio, studio de production audiovisuelle basé à Strasbourg : spot pub, motion design, contenu réseaux, photo B2B.",
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    siteName: "Bemotion",
+    siteName: "Grub Studio",
     url: siteUrl,
   },
 };
