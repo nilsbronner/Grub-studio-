@@ -33,9 +33,10 @@ export default async function Home() {
                 Production audiovisuelle, Strasbourg.
               </h1>
               <p className="mt-5 max-w-md text-lg leading-relaxed text-foreground sm:text-xl">
-                On produit vos vidéos et photos pour marques : spots
-                publicitaires, contenus réseaux, motion design, reportages
-                — de l&rsquo;idée au fichier prêt à diffuser.
+                On produit vos photos, vos vidéos et votre identité de
+                marque : spots publicitaires, contenus réseaux, motion
+                design, reportages — de l&rsquo;idée au fichier prêt à
+                diffuser.
               </p>
 
               <div className="mt-8 flex items-center gap-6">
