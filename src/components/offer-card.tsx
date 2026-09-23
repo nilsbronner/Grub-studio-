@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { cx } from "@/lib/cx";
 import type { Offer } from "@/lib/content/offers";
 
 const palette = [
@@ -32,7 +33,14 @@ function CheckIcon({ color }: { color: string }) {
 
 export function OfferList({ offers }: { offers: Offer[] }) {
   return (
-    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    <ul
+      className={cx(
+        "grid gap-5",
+        offers.length >= 3
+          ? "sm:grid-cols-2 lg:grid-cols-3"
+          : offers.length === 2 && "sm:grid-cols-2"
+      )}
+    >
       {offers.map((offer, i) => {
         const color = palette[i % palette.length];
         return (
