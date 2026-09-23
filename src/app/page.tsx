@@ -57,8 +57,8 @@ export default async function Home() {
             </div>
 
             <div className="hidden gap-5 lg:grid lg:grid-cols-2">
-              <OfferList offers={offers.slice(0, 1)} />
               <ConseilCapsule />
+              <OfferList offers={offers.slice(0, 1)} />
             </div>
           </div>
         </Reveal>
