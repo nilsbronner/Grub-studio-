@@ -13,13 +13,9 @@ export function ConseilCapsule() {
       className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border p-6 transition-colors hover:border-accent"
     >
       <div className="absolute inset-x-0 top-0 h-1 bg-accent-cyan" />
-      <p className="text-xs uppercase tracking-[0.15em] text-accent-cyan">
-        Gratuit
-      </p>
-      <p className="mt-2 text-lg font-semibold tracking-tight">
-        Grub Conseil
-      </p>
-      <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+
+      <p className="text-xl font-semibold tracking-tight">Grub Conseil</p>
+      <p className="mt-3 text-sm leading-relaxed text-foreground/60">
         Un audit gratuit sur le sujet de votre choix, avec les
         recommandations de Nils.
       </p>
@@ -35,12 +31,21 @@ export function ConseilCapsule() {
         ))}
       </ol>
 
-      <span className="mt-auto flex items-center gap-2 pt-6 text-sm uppercase tracking-[0.15em] text-muted transition-colors group-hover:text-accent">
-        En savoir plus
-        <span className="transition-transform duration-300 group-hover:translate-x-1">
-          →
+      <div className="mt-auto pt-6">
+        <div className="flex items-baseline gap-2">
+          <span className="text-3xl font-bold tracking-tight text-accent-cyan">
+            Gratuit
+          </span>
+          <span className="text-sm text-muted">sans engagement</span>
+        </div>
+
+        <span className="mt-6 flex items-center justify-center gap-2 border border-border py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 group-hover:border-accent group-hover:text-accent">
+          En savoir plus
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
         </span>
-      </span>
+      </div>
     </Link>
   );
 }
