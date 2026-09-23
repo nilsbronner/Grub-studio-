@@ -7,8 +7,8 @@ export const contact = {
   emailPro: "hello@le-grub.com",
   address: "91 route des Romains, 67200 Strasbourg",
   coordinates: {
-    latitude: "48.5734° N",
-    longitude: "7.7521° E",
+    latitude: "48.5777° N",
+    longitude: "7.7097° E",
     city: "Strasbourg, France",
   },
 };
