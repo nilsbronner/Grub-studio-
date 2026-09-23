@@ -25,7 +25,7 @@ export default async function Home() {
     <>
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1fr_360px] lg:items-start">
+          <div className="grid gap-10 lg:grid-cols-[1fr_640px] lg:items-start">
             <div>
               <EyebrowPill>Grub Studio</EyebrowPill>
               <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
@@ -56,7 +56,7 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="hidden space-y-5 lg:block">
+            <div className="hidden gap-5 lg:grid lg:grid-cols-2">
               <OfferList offers={offers.slice(0, 1)} />
               <ConseilCapsule />
             </div>
