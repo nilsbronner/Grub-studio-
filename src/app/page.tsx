@@ -5,6 +5,7 @@ import { PitchNarrative } from "@/components/pitch-narrative";
 import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { OfferList } from "@/components/offer-card";
+import { ConseilCapsule } from "@/components/conseil-capsule";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
 import { offers } from "@/lib/content/offers";
@@ -55,8 +56,9 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="hidden lg:block">
+            <div className="hidden space-y-5 lg:block">
               <OfferList offers={offers.slice(0, 1)} />
+              <ConseilCapsule />
             </div>
           </div>
         </Reveal>
