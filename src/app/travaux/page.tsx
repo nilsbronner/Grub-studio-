@@ -9,7 +9,7 @@ import { withVimeoPosters } from "@/lib/vimeo";
 export const metadata: Metadata = {
   title: "Travaux",
   description:
-    "Spots pub, campagnes ADS, contenu réseaux, motion design et photo B2B — les productions Bemotion.",
+    "Spots pub, campagnes ADS, contenu réseaux, motion design et photo B2B — les productions Grub Studio.",
 };
 
 export default async function TravauxPage() {

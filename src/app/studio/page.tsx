@@ -25,7 +25,7 @@ const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
 export const metadata: Metadata = {
   title: "Studio",
   description:
-    "L'équipe Bemotion : Nils Bronner et une équipe interne resserrée, renforcée par un réseau de freelances et studios partenaires.",
+    "L'équipe Grub Studio : Nils Bronner et une équipe interne resserrée, renforcée par un réseau de freelances et studios partenaires.",
 };
 
 export default function StudioPage() {

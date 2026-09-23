@@ -5,12 +5,14 @@ import {
   photoServices,
   diffusionFormats,
 } from "@/lib/content/services";
+import { offers } from "@/lib/content/offers";
 import { shorts } from "@/lib/content/shorts";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
 import { ServiceCardList } from "@/components/service-card-list";
 import { FormatShowcase } from "@/components/format-showcase";
+import { OfferList } from "@/components/offer-card";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 
 export const metadata: Metadata = {
@@ -34,6 +36,18 @@ export default async function ServicesPage() {
           pensés pour leur diffusion réelle plutôt que pour le seul jour du
           tournage.
         </p>
+      </Reveal>
+
+      <Reveal className="mt-14">
+        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          Nos offres
+        </h2>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
+          Des formats clé en main, à prix fixe, pour démarrer vite.
+        </p>
+        <div className="mt-6">
+          <OfferList offers={offers} />
+        </div>
       </Reveal>
 
       <Reveal className="mt-14">
