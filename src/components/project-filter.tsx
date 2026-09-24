@@ -50,7 +50,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
 
       {active === null ? (
         <div className="mt-10">
-          <HorizontalProjectGrid projects={projects} />
+          <HorizontalProjectGrid projects={projects} rowCount={2} />
         </div>
       ) : (
         <motion.div

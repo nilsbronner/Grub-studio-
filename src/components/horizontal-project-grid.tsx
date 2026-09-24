@@ -8,8 +8,15 @@ function chunk<T>(arr: T[], n: number): T[][] {
   ).filter((c) => c.length > 0);
 }
 
-export function HorizontalProjectGrid({ projects }: { projects: Project[] }) {
-  const rows = chunk(projects, 3);
+export function HorizontalProjectGrid({
+  projects,
+  rowCount = 3,
+}: {
+  projects: Project[];
+  /** Fewer rows means fewer simultaneously-visible autoplaying previews. */
+  rowCount?: number;
+}) {
+  const rows = chunk(projects, rowCount);
 
   return (
     <div className="flex flex-col gap-4">
