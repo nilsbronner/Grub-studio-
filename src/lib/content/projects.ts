@@ -83,7 +83,7 @@ export const projects: Project[] = [
       { label: "Panier moyen", value: "7 000 €" },
     ],
     accent: "#2f6b5e",
-    image: "/images/projects/squarea.jpg",
+    vimeoId: "1098155108",
     featuredHome: true,
   },
   {
