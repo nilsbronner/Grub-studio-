@@ -5,7 +5,7 @@ import type { Project } from "@/lib/content/projects";
 export function ProjectCard({ project }: { project: Project }) {
   return (
     <article>
-      <VideoTile project={project} />
+      <VideoTile project={project} trigger="hover" />
       <div className="mt-3 flex items-baseline justify-between gap-4">
         <div>
           <p className="text-sm font-medium">{project.client}</p>

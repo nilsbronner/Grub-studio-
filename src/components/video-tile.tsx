@@ -27,31 +27,64 @@ export function VideoTile({
   className,
   priority,
   lightbox = false,
+  trigger = "view",
 }: {
   project: Project;
   className?: string;
   priority?: boolean;
   /** Open the video in a lightbox on click instead of linking to the project page — for the project's own hero video, which would otherwise link to itself. */
   lightbox?: boolean;
+  /**
+   * "view" (default) starts the preview as soon as the tile scrolls into
+   * view — used for the small number of tiles in the home marquee and a
+   * project's own hero. "hover" only loads the embed once the pointer
+   * rests on the tile, so a full catalog grid doesn't run a dozen live
+   * Vimeo players at once while scrolling.
+   */
+  trigger?: "view" | "hover";
 }) {
   const anchorRef = useRef<HTMLAnchorElement>(null);
   const divRef = useRef<HTMLDivElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [inView, setInView] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const hoverTimeout = useRef<number | undefined>(undefined);
   const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
+    if (trigger !== "view") return;
     const el = lightbox ? divRef.current : anchorRef.current;
     if (!el || !project.vimeoId) return;
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { rootMargin: "240px 0px", threshold: 0.15 }
+      { rootMargin: "80px 0px", threshold: 0.15 }
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [project.vimeoId, lightbox]);
+  }, [project.vimeoId, lightbox, trigger]);
 
-  const showEmbed = inView && Boolean(project.vimeoId);
+  useEffect(() => {
+    return () => window.clearTimeout(hoverTimeout.current);
+  }, []);
+
+  const hoverHandlers =
+    trigger === "hover"
+      ? {
+          onMouseEnter: () => {
+            hoverTimeout.current = window.setTimeout(
+              () => setHovered(true),
+              150
+            );
+          },
+          onMouseLeave: () => {
+            window.clearTimeout(hoverTimeout.current);
+            setHovered(false);
+          },
+        }
+      : {};
+
+  const showEmbed =
+    (trigger === "view" ? inView : hovered) && Boolean(project.vimeoId);
   const embedLoaded = useVimeoPlaying(iframeRef, showEmbed);
 
   const tileClassName = cx(
@@ -129,6 +162,7 @@ export function VideoTile({
         }}
         className={tileClassName}
         style={tileStyle}
+        {...hoverHandlers}
       >
         {content}
         <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
@@ -154,6 +188,7 @@ export function VideoTile({
       href={`/travaux/${project.slug}`}
       className={tileClassName}
       style={tileStyle}
+      {...hoverHandlers}
     >
       {content}
     </Link>
