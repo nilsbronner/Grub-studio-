@@ -7,6 +7,7 @@ export type ContactPayload = {
   company?: string;
   projectType?: string;
   message: string;
+  consent: boolean;
 };
 
 function isValidPayload(data: unknown): data is ContactPayload {
@@ -18,7 +19,8 @@ function isValidPayload(data: unknown): data is ContactPayload {
     typeof d.email === "string" &&
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email) &&
     typeof d.message === "string" &&
-    d.message.trim().length > 0
+    d.message.trim().length > 0 &&
+    d.consent === true
   );
 }
 

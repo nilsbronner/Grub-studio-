@@ -7,6 +7,7 @@ export type ConseilPayload = {
   topic: string;
   context: string;
   goal?: string;
+  consent: boolean;
 };
 
 function isValidPayload(data: unknown): data is ConseilPayload {
@@ -20,7 +21,8 @@ function isValidPayload(data: unknown): data is ConseilPayload {
     typeof d.topic === "string" &&
     d.topic.trim().length > 0 &&
     typeof d.context === "string" &&
-    d.context.trim().length > 0
+    d.context.trim().length > 0 &&
+    d.consent === true
   );
 }
 

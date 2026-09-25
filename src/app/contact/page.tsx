@@ -37,6 +37,14 @@ export default function ContactPage() {
                 priority
               />
             </div>
+            <a
+              href="https://www.instagram.com/studio.schweycki"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 block text-xs text-muted transition-colors hover:text-accent"
+            >
+              Photo : @studio.schweycki
+            </a>
           </Reveal>
 
           <Reveal delay={0.18}>
