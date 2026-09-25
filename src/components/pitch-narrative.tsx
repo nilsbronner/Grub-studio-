@@ -89,15 +89,16 @@ export function PitchNarrative() {
           viewport={{ once: true, margin: "-80px" }}
         >
           {headingWords.map((w, i) => (
-            <motion.span
-              key={i}
-              variants={wordVariant}
-              aria-hidden="true"
-              className="inline-block"
-            >
-              {w}
+            <span key={i}>
+              <motion.span
+                variants={wordVariant}
+                aria-hidden="true"
+                className="inline-block"
+              >
+                {w}
+              </motion.span>
               {i < headingWords.length - 1 ? " " : ""}
-            </motion.span>
+            </span>
           ))}
         </motion.h2>
 

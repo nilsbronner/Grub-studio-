@@ -55,15 +55,16 @@ export function SectionKicker({
           className="mt-4 max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl"
         >
           {words.map((w, i) => (
-            <motion.span
-              key={i}
-              variants={word}
-              aria-hidden="true"
-              className="inline-block"
-            >
-              {w}
+            <span key={i}>
+              <motion.span
+                variants={word}
+                aria-hidden="true"
+                className="inline-block"
+              >
+                {w}
+              </motion.span>
               {i < words.length - 1 ? " " : ""}
-            </motion.span>
+            </span>
           ))}
         </Tag>
       </motion.div>
