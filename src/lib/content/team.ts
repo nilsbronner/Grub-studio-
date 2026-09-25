@@ -19,7 +19,7 @@ export const team: TeamMember[] = [
   },
   { name: "Dino", role: "Monteur & Cadreur" },
   { name: "Nicolas", role: "Monteur & Cadreur" },
-  { name: "Taha", role: "Monteur & Motion-designer" },
+  { name: "Taha", role: "Monteur & Motion designer" },
 ];
 
 export const studioPositioning =

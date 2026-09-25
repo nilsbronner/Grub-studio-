@@ -21,7 +21,7 @@ export const offers: Offer[] = [
       "4h de post-production",
       "Livraison sous 5 jours",
     ],
-    price: "500 €",
+    price: "500 €",
     priceNote: "HT",
   },
 ];
