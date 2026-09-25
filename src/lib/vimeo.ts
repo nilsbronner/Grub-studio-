@@ -7,8 +7,12 @@ type OEmbedResponse = {
 // while the player boots, instead of the generic accent-gradient fallback.
 async function fetchVimeoThumbnail(vimeoId: string): Promise<string | null> {
   try {
+    // Without a `width`, Vimeo's oEmbed defaults to a small ~295px-wide
+    // thumbnail — fine as a tiny preview, blurry once stretched across a
+    // full-width responsive `aspect-video` tile. Ask for a size that still
+    // looks sharp at typical hero/card widths.
     const res = await fetch(
-      `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(
+      `https://vimeo.com/api/oembed.json?width=1600&url=${encodeURIComponent(
         `https://vimeo.com/${vimeoId}`
       )}`,
       { next: { revalidate: 86400 }, signal: AbortSignal.timeout(6000) }

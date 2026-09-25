@@ -16,6 +16,16 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
     return projects.filter((p) => p.categories.includes(active));
   }, [projects, active]);
 
+  // Only show a category filter if at least one project is actually
+  // tagged with it — an empty filter is a dead end for visitors.
+  const availableCategories = useMemo(
+    () =>
+      categories.filter((cat) =>
+        projects.some((p) => p.categories.includes(cat.slug))
+      ),
+    [projects]
+  );
+
   return (
     <div>
       <div className="flex flex-wrap gap-2">
@@ -31,7 +41,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
         >
           Tout
         </button>
-        {categories.map((cat) => (
+        {availableCategories.map((cat) => (
           <button
             key={cat.slug}
             type="button"
