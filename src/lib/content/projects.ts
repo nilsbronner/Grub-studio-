@@ -8,6 +8,11 @@ export type ProjectCredit = {
   name: string;
 };
 
+export type ProjectTestimonial = {
+  quote: string;
+  author: string;
+};
+
 export type Project = {
   slug: string;
   client: string;
@@ -15,10 +20,15 @@ export type Project = {
   title: string;
   hook: string;
   categories: string[];
+  /** "L'enjeu" — optional, shown only when set. */
+  stake?: string;
+  /** "Ce qu'on a fait" — written as flowing sentences, not note-style. */
   context: string;
   deliverables: string[];
   stats?: ProjectStat[];
   credits?: ProjectCredit[];
+  /** "Citation client" — optional, shown only when set. */
+  testimonial?: ProjectTestimonial;
   /** Vimeo/Mux embed id — leave undefined until real footage is delivered. */
   vimeoId?: string;
   /** Still frame used as poster/tile background, from the deck until real Vimeo footage is wired in. */
@@ -91,10 +101,12 @@ export const projects: Project[] = [
     client: "Holly's Diner",
     sector: "Restaurant, 260+ couverts",
     title: "Lancement & activation 360° (contenu + social + ads)",
-    hook: "Une campagne d'inauguration pensée comme un lancement média.",
+    hook: "Faire d'une ouverture de restaurant un événement média.",
     categories: ["aftermovie", "ads", "shorts", "photo-evenementiel"],
+    stake:
+      "[Remplir 260 couverts dès l'ouverture, sans notoriété préalable — à confirmer]",
     context:
-      "Stratégie de lancement et campagne d'inauguration. Campagne teaser et organisation d'un événement avec relais presse (influenceurs et médias). Production de l'aftermovie et de contenus réseaux, dont TikTok. Community management et stratégie ads.",
+      "Une campagne teaser sur les réseaux, un événement d'inauguration avec influenceurs et presse, puis l'aftermovie, les photos food et les campagnes ads.",
     deliverables: [
       "Teasers",
       "Aftermovie",
