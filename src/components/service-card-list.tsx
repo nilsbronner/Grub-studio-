@@ -48,7 +48,7 @@ export function ServiceCardList({ services }: { services: Service[] }) {
           </p>
           {service.priceFrom && (
             <p className="mt-3 text-xs uppercase tracking-[0.1em] text-muted">
-              À partir de {service.priceFrom} HT
+              À partir de {service.priceFrom}{" HT"}
             </p>
           )}
         </motion.li>

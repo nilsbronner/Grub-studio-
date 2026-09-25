@@ -7,8 +7,11 @@ import { clientLogos, clientVolumetry } from "@/lib/content/clients";
 export function ClientLogosBand() {
   return (
     <div className="mx-auto max-w-7xl px-5 py-6 sm:px-8">
+      <p className="text-center text-xs uppercase tracking-[0.2em] text-muted">
+        {clientVolumetry}
+      </p>
       <motion.div
-        className="relative aspect-[2400/1269] w-full"
+        className="relative mt-3 aspect-[2400/1269] w-full"
         initial={{ opacity: 0, scale: 1.04, filter: "blur(8px)" }}
         whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
         viewport={{ once: true, margin: "-80px" }}

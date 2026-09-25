@@ -12,6 +12,8 @@ import { homeHighlights } from "@/lib/content/services";
 import { offers } from "@/lib/content/offers";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
+import { siteUrl } from "@/lib/site";
+import { contact } from "@/lib/content/contact";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
@@ -27,11 +29,40 @@ const palette = [
   "var(--accent-cyan)",
 ];
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Grub Studio",
+  parentOrganization: {
+    "@type": "Organization",
+    name: "LE GRUB SAS",
+  },
+  url: siteUrl,
+  telephone: contact.phoneHref.replace("tel:", ""),
+  email: contact.emailPro,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "91 route des Romains",
+    postalCode: "67200",
+    addressLocality: "Strasbourg",
+    addressCountry: "FR",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 48.5777,
+    longitude: 7.7097,
+  },
+};
+
 export default async function Home() {
   const featured = await withVimeoPosters(getFeaturedProjects());
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
+      />
       <section className="pt-10 sm:pt-16">
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[1fr_640px] lg:items-start">
