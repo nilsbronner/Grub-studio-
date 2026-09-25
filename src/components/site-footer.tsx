@@ -34,6 +34,14 @@ export function SiteFooter() {
           >
             Grub Cowork
           </a>
+          <a
+            href="https://linktr.ee/nils.bronner"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent"
+          >
+            Réseaux
+          </a>
         </div>
       </div>
 

@@ -52,6 +52,7 @@ const localBusinessJsonLd = {
     latitude: 48.5777,
     longitude: 7.7097,
   },
+  sameAs: ["https://linktr.ee/nils.bronner"],
 };
 
 export default async function Home() {

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { AnimatedNumber } from "@/components/animated-number";
 
 function ClapperIcon() {
   return (
@@ -123,7 +124,8 @@ export function PitchNarrative() {
           className="mt-14 flex flex-col items-start gap-6 rounded-2xl border border-border bg-gradient-to-br from-accent-purple/15 via-transparent to-transparent p-8 sm:flex-row sm:items-center sm:gap-10 sm:p-12"
         >
           <p className="font-mono text-6xl font-semibold tracking-tight sm:text-7xl">
-            [63] %
+            <AnimatedNumber value={73} duration={1.6} />
+            <span>%</span>
           </p>
           <div>
             <p className="max-w-md text-base leading-relaxed sm:text-lg">
@@ -131,8 +133,7 @@ export function PitchNarrative() {
               clé dans les 3 premières secondes.
             </p>
             <p className="mt-3 text-xs uppercase tracking-[0.15em] text-muted">
-              Source : TikTok Marketing Science — ⚠️ chiffre à vérifier
-              avant mise en ligne
+              Source : TikTok Marketing Science
             </p>
           </div>
         </motion.div>

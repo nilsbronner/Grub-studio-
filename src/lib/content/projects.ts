@@ -104,7 +104,7 @@ export const projects: Project[] = [
     hook: "Faire d'une ouverture de restaurant un événement média.",
     categories: ["aftermovie", "ads", "shorts", "photo-evenementiel"],
     stake:
-      "[Remplir 260 couverts dès l'ouverture, sans notoriété préalable — à confirmer]",
+      "Remplir 260 couverts dès l'ouverture, sans notoriété préalable.",
     context:
       "Une campagne teaser sur les réseaux, un événement d'inauguration avec influenceurs et presse, puis l'aftermovie, les photos food et les campagnes ads.",
     deliverables: [
@@ -364,7 +364,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-2024",
-    client: "Grub Studio",
+    client: "Grub Showreel",
     sector: "Showreel",
     title: "Showreel 2024",
     hook: "Une sélection de plans tournés pour plusieurs clients au cours de l'année.",
@@ -378,7 +378,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-motion",
-    client: "Grub Studio",
+    client: "Grub Motion",
     sector: "Motion design",
     title: "Showreel Motion",
     hook: "Une sélection d'animations et d'habillages graphiques.",
@@ -391,7 +391,7 @@ export const projects: Project[] = [
   },
   {
     slug: "showreel-teambuilding",
-    client: "Grub Studio",
+    client: "Grub Teambuilding",
     sector: "Événementiel",
     title: "Showreel Teambuilding",
     hook: "Captation d'un événement d'entreprise et de teambuilding.",
@@ -404,7 +404,7 @@ export const projects: Project[] = [
   },
   {
     slug: "spot-pub-showreel",
-    client: "Grub Studio",
+    client: "Grub Spot Pub",
     sector: "Spot publicitaire",
     title: "Spot",
     hook: "Sélection de spots publicitaires produits pour des marques.",
@@ -418,7 +418,7 @@ export const projects: Project[] = [
   },
   {
     slug: "interview-entreprise",
-    client: "Grub Studio",
+    client: "Grub Interview",
     sector: "Interview",
     title: "Interview entreprise",
     hook: "Prise de parole d'un intervenant face caméra.",
@@ -431,7 +431,7 @@ export const projects: Project[] = [
   },
   {
     slug: "circuits-sport-auto",
-    client: "Grub Studio",
+    client: "Grub Sport Auto",
     sector: "Sport automobile",
     title: "Circuits Sport Auto",
     hook: "Immersion sur circuit pour un contenu sport automobile.",
