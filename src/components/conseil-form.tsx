@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Link from "next/link";
 import { contact } from "@/lib/content/contact";
 
 type Status = "idle" | "sending" | "sent" | "unavailable" | "error";
@@ -14,6 +15,7 @@ export function ConseilForm() {
     topic: "",
     context: "",
     goal: "",
+    consent: false,
   });
 
   const mailtoHref = `mailto:${contact.emailPro}?subject=${encodeURIComponent(
@@ -129,6 +131,26 @@ export function ConseilForm() {
           className="w-full resize-none border-b border-border bg-transparent py-2 text-sm outline-none transition-colors focus:border-accent"
         />
       </Field>
+
+      <label className="flex items-start gap-3 text-sm text-muted">
+        <input
+          required
+          type="checkbox"
+          checked={values.consent}
+          onChange={(e) =>
+            setValues((v) => ({ ...v, consent: e.target.checked }))
+          }
+          className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--accent)]"
+        />
+        <span>
+          J&rsquo;accepte que ces informations soient utilisées par Grub
+          Studio pour traiter ma demande d&rsquo;audit et me recontacter.{" "}
+          <Link href="/confidentialite" className="text-accent underline">
+            En savoir plus
+          </Link>
+          .
+        </span>
+      </label>
 
       <button
         type="submit"

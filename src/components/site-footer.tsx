@@ -24,6 +24,9 @@ export function SiteFooter() {
           <Link href="/contact" className="hover:text-accent">
             Contact
           </Link>
+          <Link href="/confidentialite" className="hover:text-accent">
+            Confidentialité
+          </Link>
         </div>
       </div>
     </footer>
