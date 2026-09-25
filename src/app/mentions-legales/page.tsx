@@ -26,7 +26,8 @@ export default function MentionsLegalesPage() {
           </h2>
           <p className="mt-3">
             Le site studio.le-grub.com est édité par LE GRUB SAS, au capital
-            de [capital] €, immatriculée au RCS Strasbourg sous le numéro
+            de 8&nbsp;000&nbsp;€, immatriculée au RCS Strasbourg sous le
+            numéro
             829 379 643, SIRET 829 379 643 00028, numéro de TVA
             intracommunautaire FR89829379643.
             <br />
