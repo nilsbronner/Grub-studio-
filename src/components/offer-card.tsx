@@ -89,7 +89,7 @@ export function OfferList({ offers }: { offers: Offer[] }) {
               href="/contact"
               className="group mt-6 flex items-center justify-center gap-2 border border-border py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
             >
-              Réserver ce tournage
+              Réserver mon tournage
               <span className="transition-transform duration-300 group-hover:translate-x-1">
                 →
               </span>

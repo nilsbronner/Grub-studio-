@@ -7,9 +7,12 @@ import type { ProjectStat } from "@/lib/content/projects";
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function StatStrip({ stats }: { stats: ProjectStat[] }) {
+  const visibleStats = stats.filter((stat) => stat.value.trim().length > 0);
+  if (visibleStats.length === 0) return null;
+
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-5 rounded-xl border border-border px-6 py-6 sm:px-8">
-      {stats.map((stat, i) => (
+      {visibleStats.map((stat, i) => (
         <div key={stat.label} className="flex items-center gap-6">
           {i > 0 && (
             <motion.span

@@ -1,6 +1,6 @@
 export const contact = {
   name: "Nils Bronner",
-  title: "Fondateur et Président",
+  title: "Cofondateur & Directeur général",
   phone: "06 48 65 66 20",
   phoneHref: "tel:+33648656620",
   emailPersonal: "nils.bronner@gmail.com",

@@ -6,7 +6,7 @@ import { contact } from "@/lib/content/contact";
 
 const projectTypes = [
   "Spot publicitaire",
-  "Campagne digitale / ADS",
+  "Campagne digitale / Ads",
   "Contenu réseaux (shorts)",
   "Aftermovie / événementiel",
   "Reportage vidéo",
@@ -161,7 +161,7 @@ export function ContactForm() {
         <span>
           J&rsquo;accepte que ces informations soient utilisées par Grub
           Studio pour traiter ma demande et me recontacter.{" "}
-          <Link href="/confidentialite" className="text-accent underline">
+          <Link href="/politique-de-confidentialite" className="text-accent underline">
             En savoir plus
           </Link>
           .

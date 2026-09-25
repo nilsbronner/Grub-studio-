@@ -64,7 +64,7 @@ export const projects: Project[] = [
     slug: "squarea",
     client: "Squarea",
     sector: "Marque e-commerce",
-    title: "Stratégie contenu & ADS sur le long terme",
+    title: "Stratégie contenu & Ads sur le long terme",
     hook: "Cinq ans d'accompagnement vidéo et photo continu.",
     categories: ["ads", "interview", "photo-produit"],
     context:

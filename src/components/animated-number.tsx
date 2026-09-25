@@ -26,17 +26,29 @@ export function AnimatedNumber({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [display, setDisplay] = useState(0);
+  // Start at the final value (matches the SSR/no-JS markup) rather than 0,
+  // so crawlers, share-preview scrapers and no-JS visitors never see a
+  // placeholder "0". The count-up-from-0 effect only kicks in client-side,
+  // once in view, and only when the visitor hasn't asked for less motion.
+  const [display, setDisplay] = useState(value);
 
   useEffect(() => {
     if (!inView) return;
+    // display already starts at `value`; reduced motion just leaves it be.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Defer the reset to 0 out of the synchronous effect body — the
+    // animation's own onUpdate then carries it back up to `value`.
+    const raf = requestAnimationFrame(() => setDisplay(0));
     const controls = animate(0, value, {
       duration,
       delay,
       ease: [0.16, 1, 0.3, 1],
       onUpdate: setDisplay,
     });
-    return () => controls.stop();
+    return () => {
+      cancelAnimationFrame(raf);
+      controls.stop();
+    };
   }, [inView, value, duration, delay]);
 
   return (

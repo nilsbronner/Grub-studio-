@@ -50,14 +50,19 @@ export function SectionKicker({
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
       >
-        <Tag className="mt-4 max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl">
+        <Tag
+          aria-label={children}
+          className="mt-4 max-w-2xl text-2xl font-medium tracking-tight sm:text-3xl"
+        >
           {words.map((w, i) => (
             <motion.span
               key={i}
               variants={word}
-              className="mr-[0.25em] inline-block"
+              aria-hidden="true"
+              className="inline-block"
             >
               {w}
+              {i < words.length - 1 ? " " : ""}
             </motion.span>
           ))}
         </Tag>
