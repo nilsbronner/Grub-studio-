@@ -145,7 +145,7 @@ export function ConseilForm() {
         <span>
           J&rsquo;accepte que ces informations soient utilisées par Grub
           Studio pour traiter ma demande d&rsquo;audit et me recontacter.{" "}
-          <Link href="/confidentialite" className="text-accent underline">
+          <Link href="/politique-de-confidentialite" className="text-accent underline">
             En savoir plus
           </Link>
           .

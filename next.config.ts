@@ -9,6 +9,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/confidentialite",
+        destination: "/politique-de-confidentialite",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

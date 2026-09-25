@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingContactCta } from "@/components/floating-contact-cta";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -15,8 +16,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = "https://www.bemotion.fr";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -25,11 +24,12 @@ export const metadata: Metadata = {
   },
   description:
     "Grub Studio, studio de production audiovisuelle basé à Strasbourg : spot pub, motion design, contenu réseaux, photo B2B.",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "fr_FR",
     siteName: "Grub Studio",
-    url: siteUrl,
+    url: "/",
   },
 };
 

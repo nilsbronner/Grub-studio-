@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
@@ -10,6 +11,14 @@ import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
 import { offers } from "@/lib/content/offers";
 import { withVimeoPosters } from "@/lib/vimeo";
+import { pageMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = pageMetadata({
+  path: "/",
+  title: "Agence de production vidéo à Strasbourg",
+  description:
+    "Spots pub, vidéos réseaux, films de marque et photo d'entreprise à Strasbourg. Un tournage, des contenus pour tous vos canaux. +200 marques accompagnées.",
+});
 
 const palette = [
   "var(--accent-purple)",
@@ -27,31 +36,34 @@ export default async function Home() {
         <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-10 lg:grid-cols-[1fr_640px] lg:items-start">
             <div>
-              <EyebrowPill>Grub Studio</EyebrowPill>
+              <EyebrowPill>
+                Grub Studio — Production audiovisuelle, Strasbourg
+              </EyebrowPill>
               <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
-                Grub Studio.
-                <br />
-                Production audiovisuelle, Strasbourg.
+                Un tournage. Des contenus pour tous vos réseaux.
               </h1>
               <p className="mt-5 max-w-md text-lg leading-relaxed text-foreground sm:text-xl">
-                On produit vos photos, vos vidéos et votre identité de
-                marque : spots publicitaires, contenus réseaux, motion
-                design, reportages — de l&rsquo;idée au fichier prêt à
-                diffuser.
+                Studio de production vidéo et photo à Strasbourg. On écrit,
+                on tourne et on décline vos contenus pour chaque format :
+                spots pub, vidéos courtes, films de marque, événementiel.
+              </p>
+              <p className="mt-4 max-w-md text-sm text-muted">
+                +200 marques accompagnées, dont Mercedes-Benz, Galeries
+                Lafayette et Lidl.
               </p>
 
               <div className="mt-8 flex items-center gap-6">
                 <Link
-                  href="/contact"
+                  href="/travaux"
                   className="border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
                 >
-                  Contact
+                  Voir nos réalisations
                 </Link>
                 <Link
-                  href="/travaux"
+                  href="/contact"
                   className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
                 >
-                  Tous les travaux →
+                  Parler de votre projet →
                 </Link>
               </div>
             </div>

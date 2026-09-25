@@ -14,12 +14,14 @@ import { ServiceCardList } from "@/components/service-card-list";
 import { FormatShowcase } from "@/components/format-showcase";
 import { OfferList } from "@/components/offer-card";
 import { EyebrowPill } from "@/components/eyebrow-pill";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata: Metadata = pageMetadata({
+  path: "/services",
+  title: "Vidéo & photo pour entreprises à Strasbourg — Services",
   description:
-    "Vidéo et photo pour les marques : spot pub, ADS, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
-};
+    "Vidéo et photo pour les marques : spot pub, Ads, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
+});
 
 export default async function ServicesPage() {
   const shortsWithPosters = await withVimeoPosters(shorts);
@@ -29,12 +31,12 @@ export default async function ServicesPage() {
       <Reveal>
         <EyebrowPill>Ce qu&rsquo;on fait</EyebrowPill>
         <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
-          Services
+          Vidéo et photo pour les marques qui veulent être vues.
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/70">
-          Écriture, tournage, montage — vidéo et photo pour les marques,
-          pensés pour leur diffusion réelle plutôt que pour le seul jour du
-          tournage.
+          On part de l&rsquo;endroit où votre contenu sera diffusé (site,
+          LinkedIn, pub, salon) pour décider comment le tourner. Pas
+          l&rsquo;inverse.
         </p>
       </Reveal>
 
@@ -69,8 +71,7 @@ export default async function ServicesPage() {
           Nos services, expliqués par Nils
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
-          Quelques minutes pour comprendre comment on travaille, poste par
-          poste — la version courte, en vidéo.
+          2 min pour savoir ce qu&rsquo;on peut faire pour vous.
         </p>
         <div className="mt-6">
           <ShortsStrip shorts={shortsWithPosters} />

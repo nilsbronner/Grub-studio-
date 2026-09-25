@@ -2,6 +2,8 @@ import Link from "next/link";
 import { contact } from "@/lib/content/contact";
 
 export function SiteFooter() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-t border-border">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-12 sm:flex-row sm:items-end sm:justify-between sm:px-8">
@@ -24,9 +26,28 @@ export function SiteFooter() {
           <Link href="/contact" className="hover:text-accent">
             Contact
           </Link>
-          <Link href="/confidentialite" className="hover:text-accent">
+          <a
+            href="https://le-grub.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent"
+          >
+            Grub Cowork
+          </a>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-7xl px-5 pb-8 sm:px-8">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-6 text-xs text-muted">
+          <Link href="/mentions-legales" className="hover:text-accent">
+            Mentions légales
+          </Link>
+          <span aria-hidden>·</span>
+          <Link href="/politique-de-confidentialite" className="hover:text-accent">
             Confidentialité
           </Link>
+          <span aria-hidden>·</span>
+          <span>© {year} LE GRUB SAS</span>
         </div>
       </div>
     </footer>

@@ -10,9 +10,9 @@ export type Offer = {
 export const offers: Offer[] = [
   {
     slug: "tournage-5-shorts",
-    title: "Tournage en studio — 5 shorts",
+    title: "Pack Shorts — 5 vidéos verticales en 5 jours",
     description:
-      "Une session de tournage clé en main dans notre studio, pensée pour produire rapidement une série de contenus courts prêts à diffuser.",
+      "Vous passez 1 h dans notre studio, on s'occupe du reste : montage, rythme, formats prêts pour Reels, TikTok et Shorts. Idéal pour lancer ou relancer vos réseaux.",
     includes: [
       "1 tournage en studio",
       "5 shorts montés",

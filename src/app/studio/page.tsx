@@ -14,6 +14,7 @@ import { TournageDiagram } from "@/components/tournage-diagram";
 import { MethodTimeline } from "@/components/method-timeline";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { LogoMark } from "@/components/logo-mark";
+import { pageMetadata } from "@/lib/metadata";
 
 const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
   kickoff: <Sparkle className="h-4 w-4" strokeWidth={1.75} />,
@@ -22,11 +23,12 @@ const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
   production: <Aperture className="h-4 w-4" strokeWidth={1.75} />,
 };
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/studio",
   title: "Studio",
   description:
     "L'équipe Grub Studio : Nils Bronner et une équipe interne resserrée, renforcée par un réseau de freelances et studios partenaires.",
-};
+});
 
 export default function StudioPage() {
   return (
@@ -36,7 +38,10 @@ export default function StudioPage() {
         <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
           Studio
         </h1>
-        <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+        <p className="mt-4 max-w-2xl text-lg font-medium sm:text-xl">
+          Une petite équipe, un grand réseau.
+        </p>
+        <p className="mt-3 max-w-2xl leading-relaxed text-muted">
           {studioPositioning}
         </p>
       </Reveal>
@@ -64,6 +69,11 @@ export default function StudioPage() {
             </div>
             <p className="mt-3 text-sm font-medium">{member.name}</p>
             <p className="text-xs text-muted">{member.role}</p>
+            {member.quote && (
+              <p className="mt-1 text-xs italic text-foreground/60">
+                {member.quote}
+              </p>
+            )}
           </Reveal>
         ))}
       </div>
@@ -73,8 +83,8 @@ export default function StudioPage() {
           Un tournage, plusieurs contenus
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
-          À partir d&rsquo;un spot principal, nous créons une série de
-          contenus déclinés pour chaque cible.
+          À partir d&rsquo;un spot principal, on crée une série de contenus
+          déclinés pour chaque cible.
         </p>
         <TournageDiagram />
       </Reveal>

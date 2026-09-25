@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AnimatedNumber } from "@/components/animated-number";
 
 function ClapperIcon() {
   return (
@@ -82,6 +81,7 @@ export function PitchNarrative() {
         </p>
 
         <motion.h2
+          aria-label="Les codes ont changé"
           className="mt-4 max-w-3xl text-2xl font-medium tracking-tight sm:text-4xl"
           variants={headingContainer}
           initial="hidden"
@@ -92,9 +92,11 @@ export function PitchNarrative() {
             <motion.span
               key={i}
               variants={wordVariant}
-              className="mr-[0.3em] inline-block"
+              aria-hidden="true"
+              className="inline-block"
             >
               {w}
+              {i < headingWords.length - 1 ? " " : ""}
             </motion.span>
           ))}
         </motion.h2>
@@ -120,16 +122,16 @@ export function PitchNarrative() {
           className="mt-14 flex flex-col items-start gap-6 rounded-2xl border border-border bg-gradient-to-br from-accent-purple/15 via-transparent to-transparent p-8 sm:flex-row sm:items-center sm:gap-10 sm:p-12"
         >
           <p className="font-mono text-6xl font-semibold tracking-tight sm:text-7xl">
-            <AnimatedNumber value={71} duration={1.6} />
-            <span>%</span>
+            [63] %
           </p>
           <div>
             <p className="max-w-md text-base leading-relaxed sm:text-lg">
-              C&rsquo;est le pourcentage de personnes qui décident de rester
-              ou de scroller dans les 3 premières secondes.
+              des vidéos TikTok les plus performantes placent leur message
+              clé dans les 3 premières secondes.
             </p>
             <p className="mt-3 text-xs uppercase tracking-[0.15em] text-muted">
-              Source : TikTok Marketing Report
+              Source : TikTok Marketing Science — ⚠️ chiffre à vérifier
+              avant mise en ligne
             </p>
           </div>
         </motion.div>
@@ -210,8 +212,7 @@ export function PitchNarrative() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="mt-14 max-w-xl text-base leading-relaxed text-foreground/70"
         >
-          Nous pensons chaque projet comme une stratégie de contenu, pas
-          comme une simple production.
+          On ne pense pas un tournage, on pense une stratégie de contenu.
         </motion.p>
       </div>
     </section>

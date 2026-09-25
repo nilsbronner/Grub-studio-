@@ -2,6 +2,8 @@ export type Service = {
   slug: string;
   title: string;
   description: string;
+  /** "À partir de [x] € HT" — omit to hide the price line. */
+  priceFrom?: string;
 };
 
 export const videoServices: Service[] = [
@@ -9,49 +11,49 @@ export const videoServices: Service[] = [
     slug: "spot-pub",
     title: "Spot publicitaire",
     description:
-      "Un film qui porte votre message et se souvient de votre marque, du concept au montage final.",
+      "Un film court et percutant pour vos campagnes TV, web ou salon.",
   },
   {
     slug: "ads",
-    title: "Campagnes digitales / ADS",
+    title: "Campagnes digitales / Ads",
     description:
-      "Des formats pensés pour arrêter le scroll et servir vos objectifs de campagne, plateforme par plateforme.",
+      "Des créas pensées pour la performance, testées et déclinées en variantes.",
   },
   {
     slug: "shorts",
     title: "Contenu réseaux (shorts)",
     description:
-      "Du vertical rythmé, tourné et monté pour les réseaux — pas des extraits recadrés d'un format télé.",
+      "Des vidéos verticales rythmées, pensées pour arrêter le scroll.",
   },
   {
     slug: "aftermovie",
     title: "Aftermovie",
     description:
-      "L'énergie de votre événement condensée en deux minutes, prête à être partagée dès le lendemain.",
+      "Votre événement résumé en 1 à 2 min, prêt à partager le lendemain.",
   },
   {
     slug: "reportage",
     title: "Reportage vidéo",
     description:
-      "Vos équipes, vos métiers, vos coulisses — racontés avec justesse, sans mise en scène artificielle.",
+      "Votre savoir-faire filmé sur le terrain, sans mise en scène artificielle.",
   },
   {
     slug: "interview",
     title: "Interview",
     description:
-      "Une prise de parole cadrée et éclairée, qui donne du poids à ce que dit votre intervenant.",
+      "Vos dirigeants, équipes ou clients face caméra, pour parler vrai.",
   },
   {
     slug: "podcast",
     title: "Podcast vidéo",
     description:
-      "Vos échanges filmés et montés pour exister au-delà de l'antenne, sur tous les formats.",
+      "Plateau multicam clé en main au Grub, de la captation au montage.",
   },
   {
     slug: "motion-design",
     title: "Motion design",
     description:
-      "Des idées et des chiffres complexes rendus limpides en mouvement, en habillage ou en explainer.",
+      "Expliquer un produit ou un chiffre complexe en 60 secondes.",
   },
 ];
 
@@ -60,25 +62,25 @@ export const photoServices: Service[] = [
     slug: "photo-portrait",
     title: "Portraits professionnels",
     description:
-      "Des visages qui inspirent confiance sur un site ou un profil, sans la raideur d'un studio classique.",
+      "Des portraits d'équipe cohérents, pour votre site et LinkedIn.",
   },
   {
     slug: "photo-entreprise",
     title: "Reportage d'entreprise",
     description:
-      "Une immersion dans votre activité pour montrer vos métiers, vos équipes et vos coulisses en images.",
+      "Vos locaux, vos équipes, vos coulisses, en images qui inspirent confiance.",
   },
   {
     slug: "photo-produit",
     title: "Produits & packshots",
     description:
-      "Des visuels produit nets et précis, prêts pour le site, la fiche produit ou la campagne publicitaire.",
+      "Des visuels produits nets, en studio ou en situation.",
   },
   {
     slug: "photo-evenementiel",
-    title: "Événementiel",
+    title: "Événementiel (photo)",
     description:
-      "Chaque instant clé capté sans jamais se faire remarquer, pour un souvenir fidèle de l'événement.",
+      "Les moments forts de votre événement, livrés sous [48 h].",
   },
 ];
 

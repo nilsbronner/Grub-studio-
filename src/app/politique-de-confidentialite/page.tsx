@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
+import { pageMetadata } from "@/lib/metadata";
 import { contact } from "@/lib/content/contact";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/politique-de-confidentialite",
   title: "Politique de confidentialité",
   description:
-    "Comment Grub Studio collecte, utilise et protège les données transmises via les formulaires du site.",
-};
+    "Comment Grub Studio (LE GRUB SAS) collecte, utilise et protège les données transmises via les formulaires du site.",
+});
 
-export default function ConfidentialitePage() {
+export default function PolitiqueDeConfidentialitePage() {
   return (
     <div className="mx-auto max-w-3xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
@@ -26,9 +28,15 @@ export default function ConfidentialitePage() {
             Responsable du traitement
           </h2>
           <p className="mt-3">
-            Les données collectées via ce site sont traitées par{" "}
-            {contact.name}, exploitant Grub Studio, {contact.address}.
-            Contact : <a href={`mailto:${contact.emailPro}`} className="text-accent underline">{contact.emailPro}</a>.
+            Les données collectées via ce site sont traitées par LE GRUB SAS
+            (Grub Studio), {contact.address}. Contact :{" "}
+            <a
+              href={`mailto:${contact.emailPro}`}
+              className="text-accent underline"
+            >
+              {contact.emailPro}
+            </a>
+            .
           </p>
         </section>
 
@@ -42,7 +50,8 @@ export default function ConfidentialitePage() {
             email, téléphone et société (facultatifs selon le formulaire),
             et le contenu de votre message ou de votre demande d&rsquo;audit.
             Aucune donnée n&rsquo;est collectée à votre insu, et le site
-            n&rsquo;utilise aucun cookie de suivi ou de mesure d&rsquo;audience.
+            n&rsquo;utilise aucun cookie de suivi ou de mesure
+            d&rsquo;audience.
           </p>
         </section>
 
@@ -52,11 +61,11 @@ export default function ConfidentialitePage() {
           </h2>
           <p className="mt-3">
             Ces informations sont utilisées exclusivement pour répondre à
-            votre demande : vous recontacter au sujet d&rsquo;un projet, ou
-            réaliser l&rsquo;audit gratuit Grub Conseil. Le traitement repose
-            sur votre consentement, recueilli lors de l&rsquo;envoi du
-            formulaire, ainsi que sur l&rsquo;intérêt légitime à répondre à
-            une demande de contact commercial.
+            votre demande : vous recontacter au sujet d&rsquo;un projet ou
+            d&rsquo;un devis, ou réaliser l&rsquo;audit gratuit Grub Conseil.
+            Le traitement repose sur votre consentement, recueilli lors de
+            l&rsquo;envoi du formulaire, ainsi que sur l&rsquo;intérêt
+            légitime à répondre à une demande précontractuelle.
           </p>
         </section>
 
@@ -65,12 +74,11 @@ export default function ConfidentialitePage() {
             Destinataires
           </h2>
           <p className="mt-3">
-            Les données sont adressées directement à {contact.name}{" "}
-            par email et ne sont ni vendues, ni cédées, ni utilisées à des fins
-            commerciales autres que le traitement de votre demande. Elles
-            transitent par un prestataire technique d&rsquo;envoi
-            d&rsquo;email (Resend) uniquement pour l&rsquo;acheminement du
-            message.
+            Les données sont adressées directement à LE GRUB et ne sont ni
+            vendues, ni cédées, ni utilisées à des fins commerciales autres
+            que le traitement de votre demande. Elles transitent par un
+            sous-traitant technique d&rsquo;envoi d&rsquo;email (Resend)
+            uniquement pour l&rsquo;acheminement du message.
           </p>
         </section>
 
@@ -95,7 +103,10 @@ export default function ConfidentialitePage() {
             d&rsquo;accès, de rectification, d&rsquo;effacement, de
             limitation, d&rsquo;opposition et de portabilité sur vos
             données. Pour l&rsquo;exercer, écrivez à{" "}
-            <a href={`mailto:${contact.emailPro}`} className="text-accent underline">
+            <a
+              href={`mailto:${contact.emailPro}`}
+              className="text-accent underline"
+            >
               {contact.emailPro}
             </a>
             . Vous pouvez également introduire une réclamation auprès de la

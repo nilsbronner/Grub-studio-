@@ -7,6 +7,7 @@ import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
 import { withVimeoPosters } from "@/lib/vimeo";
+import { pageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -21,8 +22,11 @@ export async function generateMetadata({
   const project = getProjectBySlug(slug);
   if (!project) return {};
   return {
-    title: project.client,
-    description: project.hook,
+    ...pageMetadata({
+      path: `/travaux/${project.slug}`,
+      title: project.client,
+      description: project.hook,
+    }),
     keywords: project.keywords,
   };
 }

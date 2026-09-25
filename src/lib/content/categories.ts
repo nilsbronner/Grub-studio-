@@ -8,7 +8,7 @@ export type Category = {
 
 export const categories: Category[] = [
   { slug: "spot-pub", label: "Spot pub", group: "video" },
-  { slug: "ads", label: "Campagnes digitales / ADS", group: "video" },
+  { slug: "ads", label: "Campagnes digitales / Ads", group: "video" },
   { slug: "shorts", label: "Contenu réseaux (shorts)", group: "video" },
   { slug: "aftermovie", label: "Aftermovie", group: "video" },
   { slug: "reportage", label: "Reportage vidéo", group: "video" },

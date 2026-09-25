@@ -4,11 +4,14 @@ import { contact } from "@/lib/content/contact";
 import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { ContactForm } from "@/components/contact-form";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/contact",
   title: "Contact",
-  description: `${contact.name} — ${contact.title}. ${contact.address}.`,
-};
+  description:
+    "Nils Bronner, cofondateur & directeur général. 91 route des Romains, 67200 Strasbourg. Réponse sous 24 h ouvrées.",
+});
 
 export default function ContactPage() {
   return (
@@ -18,6 +21,9 @@ export default function ContactPage() {
         <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-4xl">
           Discutons de votre projet.
         </h1>
+        <p className="mt-3 text-sm text-muted">
+          Réponse sous 24 h ouvrées. Devis gratuit.
+        </p>
       </Reveal>
 
       <div className="mt-10 grid gap-12 sm:grid-cols-[1fr_260px] sm:items-start">

@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { ConseilForm } from "@/components/conseil-form";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/conseil",
   title: "Grub Conseil",
   description:
     "Un audit gratuit sur le sujet de votre choix : quelques questions, une réponse personnalisée de Nils avec des recommandations concrètes. Gratuit, sans engagement.",
-};
+});
 
 const steps = [
   {

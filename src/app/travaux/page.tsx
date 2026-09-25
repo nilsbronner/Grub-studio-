@@ -5,12 +5,14 @@ import { Reveal } from "@/components/reveal";
 import { SectionKicker } from "@/components/section-kicker";
 import { projects } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/travaux",
   title: "Travaux",
   description:
-    "Spots pub, campagnes ADS, contenu réseaux, motion design et photo B2B — les productions Grub Studio.",
-};
+    "Spots pub, campagnes Ads, contenu réseaux, motion design et photo B2B — les productions Grub Studio.",
+});
 
 export default async function TravauxPage() {
   const projectsWithPosters = await withVimeoPosters(projects);

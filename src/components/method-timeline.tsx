@@ -70,6 +70,11 @@ export function MethodTimeline({
                 </div>
                 <p className="mt-2 text-sm font-medium">{step.title}</p>
                 <p className="mt-1 text-sm text-muted">{step.description}</p>
+                {step.note && (
+                  <p className="mt-1 text-xs italic text-foreground/50">
+                    {step.note}
+                  </p>
+                )}
               </motion.div>
             </li>
           );

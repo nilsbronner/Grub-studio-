@@ -19,7 +19,7 @@ export function ConseilCapsule() {
       </p>
       <p className="mt-3 min-h-[5.75rem] text-sm leading-relaxed text-foreground/60">
         Un audit gratuit sur le sujet de votre choix, avec les
-        recommandations de Nils.
+        recommandations de Nils Bronner, cofondateur du studio.
       </p>
 
       <ol className="mt-5 space-y-2">
