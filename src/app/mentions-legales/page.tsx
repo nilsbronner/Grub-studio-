@@ -27,8 +27,8 @@ export default function MentionsLegalesPage() {
           <p className="mt-3">
             Le site studio.le-grub.com est édité par LE GRUB SAS, au capital
             de [capital] €, immatriculée au RCS Strasbourg sous le numéro
-            [n° RCS], SIRET 829 379 643 00028, numéro de TVA intracommunautaire
-            [n° TVA].
+            829 379 643, SIRET 829 379 643 00028, numéro de TVA
+            intracommunautaire FR89829379643.
             <br />
             Siège social : {contact.address}.
             <br />
@@ -41,7 +41,7 @@ export default function MentionsLegalesPage() {
             </a>{" "}
             — {contact.phone}.
             <br />
-            Directeur de la publication : [Nom, fonction].
+            Directeur de la publication : Luc Rohmer, Président.
           </p>
         </section>
 
@@ -50,8 +50,8 @@ export default function MentionsLegalesPage() {
             Hébergement
           </h2>
           <p className="mt-3">
-            Le site est hébergé par [nom, adresse, téléphone de
-            l&rsquo;hébergeur].
+            Le site est hébergé par Vercel Inc., 340 S Lemon Ave #4133,
+            Walnut, CA 91789, États-Unis.
           </p>
         </section>
 
