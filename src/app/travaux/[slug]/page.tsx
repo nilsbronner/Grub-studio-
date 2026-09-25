@@ -71,8 +71,17 @@ export default async function ProjectPage({
 
       <Reveal delay={0.15} className="mt-12 grid gap-10 sm:grid-cols-[2fr_1fr]">
         <div>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-            Contexte
+          {project.stake && (
+            <>
+              <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+                L&rsquo;enjeu
+              </h2>
+              <p className="mt-3 leading-relaxed">{project.stake}</p>
+            </>
+          )}
+
+          <h2 className="mt-10 text-sm uppercase tracking-[0.15em] text-muted first:mt-0">
+            Ce qu&rsquo;on a fait
           </h2>
           <p className="mt-3 leading-relaxed">{project.context}</p>
 
@@ -115,11 +124,25 @@ export default async function ProjectPage({
       {project.stats && project.stats.length > 0 && (
         <Reveal delay={0.1} className="mt-10">
           <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-            Chiffres clés
+            Résultats
           </h2>
           <div className="mt-4">
             <StatStrip stats={project.stats} />
           </div>
+        </Reveal>
+      )}
+
+      {project.testimonial && (
+        <Reveal delay={0.1} className="mt-10 border-t border-border pt-10">
+          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+            Citation client
+          </h2>
+          <blockquote className="mt-4 max-w-2xl text-lg leading-relaxed">
+            &laquo;&nbsp;{project.testimonial.quote}&nbsp;&raquo;
+          </blockquote>
+          <p className="mt-3 text-sm text-muted">
+            — {project.testimonial.author}
+          </p>
         </Reveal>
       )}
 
