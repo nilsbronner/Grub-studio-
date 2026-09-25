@@ -19,11 +19,10 @@ export const team: TeamMember[] = [
   },
   { name: "Dino", role: "Monteur & Cadreur" },
   { name: "Nicolas", role: "Monteur & Cadreur" },
-  { name: "Taha", role: "Monteur & Motion designer" },
 ];
 
 export const studioPositioning =
-  "Un noyau de 5 personnes au Grub, à Strasbourg, et un réseau de freelances et de studios partenaires qu'on mobilise selon la taille du projet. Vous gardez un seul interlocuteur du brief à la livraison.";
+  "Un noyau de 4 personnes au Grub, à Strasbourg, et un réseau de freelances et de studios partenaires qu'on mobilise selon la taille du projet. Vous gardez un seul interlocuteur du brief à la livraison.";
 
 export type MethodStepIcon =
   | "kickoff"

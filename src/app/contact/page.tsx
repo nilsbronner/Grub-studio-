@@ -24,6 +24,17 @@ export default function ContactPage() {
         <p className="mt-3 text-sm text-muted">
           Réponse sous 24 h ouvrées. Devis gratuit.
         </p>
+        <a
+          href="https://calendly.com/nils-bronner/reunion-de-30-minutes-clone?month=2026-09"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group mt-5 inline-flex items-center gap-3 border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+        >
+          Réserver un appel avec Nils
+          <span className="transition-transform duration-300 group-hover:translate-x-1">
+            →
+          </span>
+        </a>
       </Reveal>
 
       <div className="mt-10 grid gap-12 sm:grid-cols-[1fr_260px] sm:items-start">
