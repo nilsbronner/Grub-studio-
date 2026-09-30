@@ -150,6 +150,25 @@ export const projects: Project[] = [
     featuredHome: true,
   },
   {
+    slug: "strasbourg-esport-days",
+    client: "Strasbourg Esport Days",
+    sector: "Événementiel · Esport",
+    title: "Partenaire production depuis la première édition",
+    hook: "3 M d'impressions pour la campagne 2026.",
+    categories: ["ads", "shorts", "reportage"],
+    context:
+      "Partenaire production de l'événement depuis sa première édition. Campagne de teasing avec sketchs partenaires, annonces et contenus UGC, puis captation et interviews sur place pour les sponsors de l'événement.",
+    deliverables: [
+      "Teasing (sketchs, annonces, UGC)",
+      "Spots sponsors",
+      "Captation événement",
+      "Interviews",
+    ],
+    stats: [{ label: "Impressions", value: "3 M" }],
+    accent: "#e0483f",
+    featuredHome: true,
+  },
+  {
     slug: "once-upon-a-dime-backstage",
     client: "Once Upon a Dime",
     sector: "Coulisses de tournage",
