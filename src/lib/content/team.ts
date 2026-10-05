@@ -2,6 +2,8 @@ export type TeamMember = {
   name: string;
   role: string;
   image?: string;
+  /** CSS object-position for the portrait crop — omit for a centered crop. */
+  imagePosition?: string;
   /** Short one-liner shown under the role — omit to hide. */
   quote?: string;
 };
@@ -11,6 +13,7 @@ export const team: TeamMember[] = [
     name: "Nils Bronner",
     role: "Photographe & Chef de projet",
     image: "/images/team/nils-bronner.jpg",
+    imagePosition: "center top",
   },
   {
     name: "Matteo",
@@ -18,11 +21,17 @@ export const team: TeamMember[] = [
     image: "/images/team/matteo.jpg",
     quote: "C'est lui qui transforme votre brief en image.",
   },
-  { name: "Dino", role: "Monteur & Cadreur", image: "/images/team/dino.jpg" },
+  {
+    name: "Dino",
+    role: "Monteur & Cadreur",
+    image: "/images/team/dino.jpg",
+    imagePosition: "center top",
+  },
   {
     name: "Nicolas",
     role: "Monteur & Cadreur",
     image: "/images/team/nicolas.jpg",
+    imagePosition: "center top",
   },
 ];
 
