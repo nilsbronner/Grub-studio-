@@ -7,8 +7,8 @@ import { cx } from "@/lib/cx";
 import { LogoMark } from "@/components/logo-mark";
 
 const links = [
-  { href: "/travaux", label: "Travaux" },
-  { href: "/studio", label: "Studio" },
+  { href: "/travaux", label: "Nos réalisations" },
+  { href: "/studio", label: "Notre savoir-faire" },
   { href: "/services", label: "Services" },
   { href: "/conseil", label: "Conseil" },
   { href: "/contact", label: "Contact" },

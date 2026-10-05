@@ -15,10 +15,15 @@ export const team: TeamMember[] = [
   {
     name: "Matteo",
     role: "Réalisateur & Directeur artistique",
+    image: "/images/team/matteo.jpg",
     quote: "C'est lui qui transforme votre brief en image.",
   },
-  { name: "Dino", role: "Monteur & Cadreur" },
-  { name: "Nicolas", role: "Monteur & Cadreur" },
+  { name: "Dino", role: "Monteur & Cadreur", image: "/images/team/dino.jpg" },
+  {
+    name: "Nicolas",
+    role: "Monteur & Cadreur",
+    image: "/images/team/nicolas.jpg",
+  },
 ];
 
 export const studioPositioning =

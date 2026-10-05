@@ -25,7 +25,7 @@ const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
 
 export const metadata: Metadata = pageMetadata({
   path: "/studio",
-  title: "Studio",
+  title: "Notre savoir-faire",
   description:
     "L'équipe Grub Studio : Nils Bronner et une équipe interne resserrée, renforcée par un réseau de freelances et studios partenaires.",
 });
@@ -36,7 +36,7 @@ export default function StudioPage() {
       <Reveal>
         <EyebrowPill>L&rsquo;équipe</EyebrowPill>
         <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
-          Studio
+          Notre savoir-faire
         </h1>
         <p className="mt-4 max-w-2xl text-lg font-medium sm:text-xl">
           Une petite équipe, un grand réseau.

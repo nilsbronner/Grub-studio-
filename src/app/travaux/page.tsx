@@ -9,7 +9,7 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
   path: "/travaux",
-  title: "Travaux",
+  title: "Nos réalisations",
   description:
     "Spots pub, campagnes Ads, contenu réseaux, motion design et photo B2B — les productions Grub Studio.",
 });
