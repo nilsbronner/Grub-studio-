@@ -202,7 +202,7 @@ export default async function ServicesPage() {
           </p>
           <ServiceCardList services={studioOffers} />
         </div>
-        <div className="relative aspect-[4/5] overflow-hidden border border-border lg:order-last">
+        <div className="relative aspect-[4/5] overflow-hidden lg:order-last">
           <Image
             src="/images/studio/plateau-podcast.jpg"
             alt="Le plateau podcast du Grub, Parc Gruber"
@@ -210,6 +210,8 @@ export default async function ServicesPage() {
             sizes="(min-width: 1024px) 360px, 100vw"
             className="object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          <div className="absolute inset-y-0 left-0 hidden w-16 bg-gradient-to-r from-background to-transparent lg:block" />
         </div>
       </Reveal>
 

@@ -164,36 +164,35 @@ export default async function Home() {
         </Reveal>
       </div>
 
-      <Reveal className="border-t border-border">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_480px] lg:items-center lg:gap-12">
-          <div>
-            <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-              Le lieu
-            </h2>
-            <p className="mt-4 max-w-2xl text-lg leading-relaxed text-foreground/80">
-              Le Grub, c&rsquo;est aussi un lieu : studio, plateau et coworking
-              au Parc Gruber. Vous pouvez y créer vous-même, et on vient en
-              appui quand le projet grandit, jusqu&rsquo;à la production
-              ciné.
-            </p>
-            <a
-              href="https://le-grub.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
-            >
-              Découvrir le Grub Cowork →
-            </a>
-          </div>
-          <div className="relative aspect-[4/3] overflow-hidden border border-border">
-            <Image
-              src="/images/studio/grub-cowork-salle.jpg"
-              alt="Une salle du Grub Cowork, au Parc Gruber"
-              fill
-              sizes="(min-width: 1024px) 480px, 100vw"
-              className="object-cover"
-            />
-          </div>
+      <Reveal className="relative overflow-hidden border-t border-border">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/studio/grub-cowork-salle.jpg"
+            alt="Une salle du Grub Cowork, au Parc Gruber"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/92 to-background/25 sm:bg-gradient-to-r sm:from-background sm:via-background/88 sm:to-background/15" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+            Le lieu
+          </h2>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-foreground/80">
+            Le Grub, c&rsquo;est aussi un lieu : studio, plateau et coworking
+            au Parc Gruber. Vous pouvez y créer vous-même, et on vient en
+            appui quand le projet grandit, jusqu&rsquo;à la production
+            ciné.
+          </p>
+          <a
+            href="https://le-grub.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+          >
+            Découvrir le Grub Cowork →
+          </a>
         </div>
       </Reveal>
 
