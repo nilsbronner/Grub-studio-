@@ -25,7 +25,7 @@ const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
 
 export const metadata: Metadata = pageMetadata({
   path: "/studio",
-  title: "Studio",
+  title: "Notre savoir-faire",
   description:
     "L'équipe Grub Studio : Nils Bronner et une équipe interne resserrée, renforcée par un réseau de freelances et studios partenaires.",
 });
@@ -36,13 +36,28 @@ export default function StudioPage() {
       <Reveal>
         <EyebrowPill>L&rsquo;équipe</EyebrowPill>
         <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
-          Studio
+          Notre savoir-faire
         </h1>
         <p className="mt-4 max-w-2xl text-lg font-medium sm:text-xl">
           Une petite équipe, un grand réseau.
         </p>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted">
           {studioPositioning}
+        </p>
+      </Reveal>
+
+      <Reveal className="relative mt-10 aspect-[16/9] overflow-hidden sm:aspect-[3/1]">
+        <Image
+          src="/images/studio/plateau-tournage.jpg"
+          alt="Tournage en studio au Grub, Parc Gruber"
+          fill
+          sizes="(min-width: 1024px) 1024px, 100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-transparent" />
+        <p className="absolute bottom-4 left-4 text-xs uppercase tracking-[0.15em] text-foreground/80 sm:bottom-6 sm:left-6">
+          Le plateau — Parc Gruber
         </p>
       </Reveal>
 

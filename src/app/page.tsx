@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
@@ -7,8 +8,10 @@ import { Reveal } from "@/components/reveal";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { OfferList } from "@/components/offer-card";
 import { ConseilCapsule } from "@/components/conseil-capsule";
+import { StatStrip } from "@/components/stat-strip";
 import { getFeaturedProjects } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
+import { homeStats } from "@/lib/content/home-stats";
 import { offers } from "@/lib/content/offers";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
@@ -144,11 +147,54 @@ export default async function Home() {
         </div>
       </Reveal>
 
+      <Reveal className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+            Chiffres clés
+          </h2>
+          <div className="mt-6">
+            <StatStrip stats={homeStats} />
+          </div>
+        </div>
+      </Reveal>
+
       <div className="mt-4 sm:mt-8">
         <Reveal>
           <ClientLogosBand />
         </Reveal>
       </div>
+
+      <Reveal className="relative overflow-hidden border-t border-border">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/studio/grub-cowork-salle.jpg"
+            alt="Une salle du Grub Cowork, au Parc Gruber"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/92 to-background/25 sm:bg-gradient-to-r sm:from-background sm:via-background/88 sm:to-background/15" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
+          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+            Le lieu
+          </h2>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-foreground/80">
+            Le Grub, c&rsquo;est aussi un lieu : studio, plateau et coworking
+            au Parc Gruber. Vous pouvez y créer vous-même, et on vient en
+            appui quand le projet grandit, jusqu&rsquo;à la production
+            ciné.
+          </p>
+          <a
+            href="https://le-grub.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+          >
+            Découvrir le Grub Cowork →
+          </a>
+        </div>
+      </Reveal>
 
       <Reveal className="border-t border-border">
         <div className="mx-auto flex max-w-7xl flex-col items-start gap-6 px-5 py-16 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-20">
