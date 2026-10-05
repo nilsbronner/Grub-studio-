@@ -71,6 +71,7 @@ export default function StudioPage() {
                   alt={member.name}
                   fill
                   sizes="(min-width: 640px) 33vw, 50vw"
+                  style={{ objectPosition: member.imagePosition ?? "center" }}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
                 />
               ) : (
