@@ -46,6 +46,16 @@ export default function StudioPage() {
         </p>
       </Reveal>
 
+      <Reveal className="relative mt-10 aspect-[21/9] overflow-hidden border border-border">
+        <Image
+          src="/images/studio/plateau-tournage.jpg"
+          alt="Tournage en studio au Grub, Parc Gruber"
+          fill
+          sizes="(min-width: 1024px) 1024px, 100vw"
+          className="object-cover"
+        />
+      </Reveal>
+
       <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3">
         {team.map((member, i) => (
           <Reveal key={member.name} delay={i * 0.05}>

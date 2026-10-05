@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   videoServices,
@@ -191,14 +192,25 @@ export default async function ServicesPage() {
         <ServiceCardList services={photoServices} />
       </Reveal>
 
-      <Reveal className="mt-16">
-        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-          Le studio
-        </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
-          Un plateau au Parc Gruber, avec ou sans accompagnement.
-        </p>
-        <ServiceCardList services={studioOffers} />
+      <Reveal className="mt-16 grid gap-8 lg:grid-cols-[1fr_360px] lg:items-start lg:gap-10">
+        <div>
+          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+            Le studio
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
+            Un plateau au Parc Gruber, avec ou sans accompagnement.
+          </p>
+          <ServiceCardList services={studioOffers} />
+        </div>
+        <div className="relative aspect-[4/5] overflow-hidden border border-border lg:order-last">
+          <Image
+            src="/images/studio/plateau-podcast.jpg"
+            alt="Le plateau podcast du Grub, Parc Gruber"
+            fill
+            sizes="(min-width: 1024px) 360px, 100vw"
+            className="object-cover"
+          />
+        </div>
       </Reveal>
 
       <Reveal className="mt-16">
