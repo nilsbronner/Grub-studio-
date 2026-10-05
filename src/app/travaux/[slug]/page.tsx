@@ -158,7 +158,7 @@ export default async function ProjectPage({
             href="/travaux"
             className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
           >
-            ← Tous les travaux
+            ← Toutes nos réalisations
           </Link>
           <Link
             href="/contact"
