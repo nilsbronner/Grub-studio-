@@ -36,6 +36,8 @@ export type Project = {
   /** Accent used for the placeholder tile gradient when no image/footage is set. */
   accent: string;
   featuredHome?: boolean;
+  /** One of the 14 flagship client case studies — shown in the home carousel and linked from /services. */
+  caseStudy?: boolean;
   /** SEO keywords for this project's page metadata. */
   keywords?: string[];
   /** Indicative price shown on the project page. Omit for Grub Studio showreels. */
@@ -49,52 +51,41 @@ export const projects: Project[] = [
     sector: "Experts-comptables",
     title: "Film de marque immersif & contenu multi-formats",
     hook:
-      "Un film de marque ambitieux pour raconter l'histoire des fondateurs.",
+      "Un spot publicitaire majeur devenu un temps fort d'entreprise.",
     categories: ["spot-pub", "interview", "shorts"],
     context:
-      "Film de marque avec acteur professionnel, décor sur-mesure et équipe de 15 personnes, retraçant l'histoire des fondateurs. Interviews CEO et collaborateurs déclinées en contenus courts. Production pensée multi-usage : branding, RH, RSE, offres, LinkedIn.",
+      "Nouvelle identité de marque, nouveaux contenus : un spot publicitaire majeur avec tous les corps de métier mobilisés — direction artistique, script, décoration, équipe complète. Le tournage est devenu un véritable événement interne, les décors sont restés en place dans l'univers de la marque. En déclinaison : petits spots en motion design, interviews marque employeur des dirigeants, backstage et aftermovie — un contenu qui continue d'être exploité dans la durée.",
     deliverables: [
-      "Film principal",
-      "Interviews",
-      "Shorts / reels",
-      "Contenus social media",
-    ],
-    stats: [
-      { label: "Tournage", value: "2 jours" },
-      { label: "Spot pub", value: "1" },
-      { label: "Vidéos", value: "30" },
-      { label: "Photos", value: "500" },
+      "Spot publicitaire principal",
+      "Déclinaisons motion design",
+      "Interviews marque employeur",
+      "Backstage & aftermovie",
     ],
     accent: "#c9622f",
     image: "/images/projects/once-upon-a-dime.jpg",
     vimeoId: "1173949481",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "squarea",
     client: "Squarea",
     sector: "Marque e-commerce",
     title: "Stratégie contenu & Ads sur le long terme",
-    hook: "Cinq ans d'accompagnement vidéo et photo continu.",
+    hook: "Depuis 2019, photo, vidéo et Ads pour chaque étape du produit.",
     categories: ["ads", "interview", "photo-produit"],
     context:
-      "Accompagnement global depuis 5 ans. Interviews de 15 clients pour crédibilité et preuve sociale. Production de contenus pour le site, les réseaux et les campagnes ads. Shooting produit lifestyle et packshots studio.",
+      "Accompagnement continu depuis 2019 : photos et vidéos produit, tous les tutoriels d'utilisation, de maintenance, de manutention et de réparation. Puis des campagnes Meta Ads, des publicités virales et des formats institutionnels — trois ans de campagnes construites ensemble.",
     deliverables: [
-      "Témoignages vidéo",
-      "Contenus social",
-      "Créas ads",
-      "Visuels produit",
-    ],
-    stats: [
-      { label: "Durée campagne", value: "5 mois" },
-      { label: "CPC", value: "0,70 €" },
-      { label: "Leads", value: "51" },
-      { label: "CPL", value: "89 €" },
-      { label: "Panier moyen", value: "7 000 €" },
+      "Photos & vidéos produit",
+      "Tutoriels",
+      "Créas Ads",
+      "Formats institutionnels",
     ],
     accent: "#2f6b5e",
     vimeoId: "1098155108",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "hollys-diner",
@@ -106,67 +97,57 @@ export const projects: Project[] = [
     stake:
       "Remplir 260 couverts dès l'ouverture, sans notoriété préalable.",
     context:
-      "Une campagne teaser sur les réseaux, un événement d'inauguration avec influenceurs et presse, puis l'aftermovie, les photos food et les campagnes ads.",
+      "Communication lancée en amont de l'ouverture, puis activation événementielle complète : soirée inaugurale et soirées RP, vidéo principale, teasers, gros reportage sur deux jours. Campagnes Meta Ads et TikTok Ads, avec une community manager placée en interne. Livrables pensés pour durer : vidéos publicitaires, marque employeur, institutionnelles, storytelling, reportage et photos de la carte.",
     deliverables: [
-      "Teasers",
-      "Aftermovie",
-      "Contenus social",
-      "Photos food",
-      "Campagnes ads",
-    ],
-    stats: [
-      { label: "CPC campagne", value: "0,05 €" },
-      { label: "Influenceurs", value: "20" },
-      { label: "Vues", value: "350 K" },
-      { label: "Avis clients (1 weekend)", value: "600+" },
-      { label: "Médias relais", value: "10" },
+      "Teasers & vidéo principale",
+      "Reportage 2 jours",
+      "Campagnes Ads (Meta, TikTok)",
+      "Photos food & carte",
     ],
     accent: "#b8933a",
     image: "/images/projects/hollys-diner.jpg",
     vimeoId: "1214544969",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "myfood",
     client: "MyFood",
     sector: "Start-up green-tech",
-    title: "Contenu européen & campagne crowdfunding",
-    hook: "Huit interviews à travers l'Europe pour une levée à 1 M€.",
+    title: "Contenu européen & campagnes crowdfunding",
+    hook: "Des interviews aux quatre coins de l'Europe, chaque année depuis 3 ans.",
     categories: ["interview", "ads"],
     context:
-      "Huit interviews tournées à travers l'Europe, en français et en allemand. Vidéos Kickstarter conçues pour soutenir la campagne et la conversion. Création d'une base vidéo pour alimenter les creative ads dans la durée. Production pensée pour le brand, le social et l'acquisition.",
+      "Client fidèle depuis plus de 3 ans. Chaque année, au minimum 8 interviews clients en France et en Allemagne, en formats mi-longs — témoignages et anecdotes sur le produit et ses usages. Deux campagnes de crowdfunding accompagnées, avec des vidéos dédiées pour la conversion. L'équipe interne réutilise ensuite les contenus à l'infini : capsules, publicités, tutoriels.",
     deliverables: [
       "Interviews FR/DE",
-      "Vidéo crowdfunding",
-      "Base de creative ads",
-    ],
-    stats: [
-      { label: "Levée de fonds", value: "1 M€" },
-      { label: "Leads (contenu ads)", value: "7 193" },
+      "Vidéos crowdfunding",
+      "Base de contenus réutilisable",
     ],
     accent: "#3a5f8f",
     image: "/images/projects/myfood.jpg",
     vimeoId: "1214545694",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "strasbourg-esport-days",
     client: "Strasbourg Esport Days",
     sector: "Événementiel · Esport",
-    title: "Partenaire production depuis la première édition",
-    hook: "3 M d'impressions pour la campagne 2026.",
+    title: "Tout le contenu de l'événement, depuis la première édition",
+    hook: "Du Media Day aux spots sponsors, saison après saison.",
     categories: ["ads", "shorts", "reportage"],
     context:
-      "Partenaire production de l'événement depuis sa première édition. Campagne de teasing avec sketchs partenaires, annonces et contenus UGC, puis captation et interviews sur place pour les sponsors de l'événement.",
+      "Volet événementiel de l'équipe esport, accompagné depuis la première édition : photos, vidéos, identité graphique et motion design. Chaque saison, un Media Day, du contenu viral et institutionnel, des visuels pour les decks, Twitch, Wikipédia et les sponsors, ainsi que des spots et des ads dédiés aux marques partenaires. Un événement créé de toutes pièces, suivi de contenus de remerciement pour les partenaires.",
     deliverables: [
-      "Teasing (sketchs, annonces, UGC)",
+      "Media Day & contenu viral",
+      "Identité graphique & motion design",
       "Spots sponsors",
-      "Captation événement",
-      "Interviews",
+      "Visuels Twitch / decks / sponsors",
     ],
-    stats: [{ label: "Impressions", value: "3 M" }],
     accent: "#e0483f",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "once-upon-a-dime-backstage",
@@ -237,17 +218,22 @@ export const projects: Project[] = [
   },
   {
     slug: "galeries-lafayette-histoire",
-    client: "Galeries Lafayette",
+    client: "Galeries Lafayette Strasbourg",
     sector: "Grand magasin",
-    title: "L'histoire des Galeries Lafayette",
-    hook: "Un film retraçant l'histoire et le patrimoine de l'enseigne.",
+    title: "Cinq ans de reportages, jusqu'au film des 100 ans",
+    hook: "Une dizaine de reportages par an, puis le film des 100 ans du magasin.",
     categories: ["reportage", "spot-pub"],
     context:
-      "Film retraçant l'histoire et le patrimoine des Galeries Lafayette.",
-    deliverables: ["Film"],
+      "Cinq ans d'accompagnement : une dizaine de reportages photo et vidéo événementiels chaque année, puis des courts-métrages, des films institutionnels et des reportages plus ambitieux — jusqu'à la vidéo des 100 ans du magasin, tournée avec témoignages et dispositifs sur place.",
+    deliverables: [
+      "Reportages événementiels annuels",
+      "Films institutionnels",
+      "Film des 100 ans",
+    ],
     accent: "#8f2f5a",
     vimeoId: "1173948552",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "skillcamp-interview",
@@ -315,31 +301,43 @@ export const projects: Project[] = [
     featuredHome: true,
   },
   {
-    slug: "instinct-vert",
-    client: "Instinct Vert",
-    sector: "Lancement produit",
-    title: "Vidéo de lancement Instinct Vert",
-    hook: "Une vidéo pour accompagner un lancement produit.",
+    slug: "instant-vert",
+    client: "Instant Vert",
+    sector: "Start-up",
+    title: "Un spot de lancement, entièrement en stock footage",
+    hook: "Un lancement produit tourné sans tourner : 100 % stock footage.",
     categories: ["spot-pub", "ads"],
     context:
-      "Vidéo de lancement produit réalisée pour accompagner la sortie d'une nouvelle offre Instinct Vert.",
-    deliverables: ["Vidéo de lancement"],
+      "Spot de lancement conçu entièrement à partir de stock footage — la saison de tournage voulue n'était plus possible. Script, recherche d'images, découpage technique, montage et voix off produits en interne, avec des plans du produit tournés en studio.",
+    deliverables: [
+      "Spot de lancement",
+      "Script & découpage",
+      "Voix off",
+      "Plans produit studio",
+    ],
     accent: "#2f9a5a",
     vimeoId: "1214545033",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "sas3b",
-    client: "SAS3B",
-    sector: "Événementiel",
-    title: "Aftermovie SAS3B",
-    hook: "Captation et montage d'un événement SAS3B.",
+    client: "SAS 3B",
+    sector: "Immobilier / BTP",
+    title: "Six ans de reportages chantiers, du lancement à la livraison",
+    hook: "Des photos de chantier aux événements de livraison.",
     categories: ["aftermovie", "photo-evenementiel"],
-    context: "Aftermovie réalisé pour capter les temps forts de l'événement SAS3B.",
-    deliverables: ["Aftermovie"],
+    context:
+      "Plus de 6 ans d'accompagnement : reportages photo de chantiers, du lancement à la livraison, puis reportages photo et vidéo événementiels pour chaque livraison et les temps forts de l'entreprise.",
+    deliverables: [
+      "Reportages chantiers",
+      "Reportages de livraison",
+      "Photo & vidéo événementielle",
+    ],
     accent: "#9a5a2f",
     vimeoId: "1214544952",
     featuredHome: true,
+    caseStudy: true,
   },
   {
     slug: "vimersio",
@@ -460,11 +458,125 @@ export const projects: Project[] = [
     accent: "#4d9a6b",
     vimeoId: "1214545638",
   },
-
+  {
+    slug: "alsace-habitat",
+    client: "Alsace Habitat",
+    sector: "Bailleur social",
+    title: "Reportages institutionnels sur plusieurs années",
+    hook: "Les temps forts de l'entreprise, documentés année après année.",
+    categories: ["reportage", "photo-evenementiel"],
+    context:
+      "Accompagnement pluriannuel : reportages de tous les événements internes, poses de première pierre, livraisons de chantier et discours officiels.",
+    deliverables: [
+      "Reportages événementiels",
+      "Captation de discours",
+      "Photo & vidéo",
+    ],
+    accent: "#4a7a5c",
+    featuredHome: true,
+    caseStudy: true,
+  },
+  {
+    slug: "atelier-chers-scipions",
+    client: "L'Atelier à mes Chers Scipions",
+    sector: "Bijouterie",
+    title: "Catalogues et contenus produit, année après année",
+    hook: "Un catalogue bijoux par an, et des contenus qui durent.",
+    categories: ["photo-produit", "reportage"],
+    context:
+      "Un catalogue produit par an, des photos de mise en situation avec décors, des vidéos de création et de livraison, ainsi que des showreels produits — une base de contenus qui continue d'alimenter le site des années après le tournage.",
+    deliverables: [
+      "Catalogue produit annuel",
+      "Photos de mise en situation",
+      "Vidéos de création & livraison",
+      "Showreel produits",
+    ],
+    accent: "#b8793a",
+    featuredHome: true,
+    caseStudy: true,
+  },
+  {
+    slug: "herbapac",
+    client: "Herbapac",
+    sector: "Agroalimentaire",
+    title: "La chaîne de production, du thé brut au sachet",
+    hook: "Un motion design intégré aux locaux pour suivre la production.",
+    categories: ["motion-design", "reportage"],
+    context:
+      "Vidéo avec motion design intégré dans les locaux, en tracking, pour montrer toute la chaîne de production : du thé brut jusqu'au sachet prêt à livrer ou à mettre en rayon.",
+    deliverables: ["Vidéo avec motion design", "Tournage en tracking"],
+    accent: "#2f9a7a",
+    featuredHome: true,
+    caseStudy: true,
+  },
+  {
+    slug: "cft",
+    client: "CFT",
+    sector: "Comptoir Français du Thé",
+    title: "Nouvelle vidéo promotionnelle du système de vente",
+    hook: "Une vidéo pour présenter leur système et leurs produits.",
+    categories: ["spot-pub"],
+    context:
+      "Nouvelle vidéo promotionnelle pour présenter le système et la façon de vendre du Comptoir Français du Thé, avec leurs différents types de produits.",
+    deliverables: ["Vidéo promotionnelle"],
+    accent: "#8a6b3a",
+    featuredHome: true,
+    caseStudy: true,
+  },
+  {
+    slug: "maison-rouge",
+    client: "Hôtel de la Maison Rouge",
+    sector: "Hôtellerie",
+    title: "Un tour operateur pour promouvoir l'hôtel dans le monde",
+    hook: "Reportage événementiel et vidéo tour operateur, pour particuliers et professionnels.",
+    categories: ["reportage", "photo-evenementiel"],
+    context:
+      "Reportage photo et vidéo événementiel, puis une vidéo tour operateur pensée pour deux publics — particuliers et professionnels — afin de promouvoir l'hôtel à l'international.",
+    deliverables: ["Reportage événementiel", "Vidéo tour operateur"],
+    accent: "#7a3a4a",
+    featuredHome: true,
+    caseStudy: true,
+  },
+  {
+    slug: "sofitel-strasbourg",
+    client: "Sofitel Strasbourg",
+    sector: "Hôtellerie",
+    title: "Reportage photo et vidéo",
+    hook: "De nouvelles photos et un reportage vidéo pour le site de l'hôtel.",
+    categories: ["reportage", "photo-evenementiel"],
+    context:
+      "Reportage photo et vidéo, avec de nouvelles photos produites pour le site de l'hôtel.",
+    deliverables: ["Reportage photo", "Reportage vidéo"],
+    accent: "#3a6b9a",
+    featuredHome: true,
+    caseStudy: true,
+  },
+  {
+    slug: "s-automobile",
+    client: "S-Automobile",
+    sector: "Automobile",
+    title: "Trois spots publicitaires, tous formats et médias",
+    hook: "Script, casting, tournage et montage — jusqu'à la radio.",
+    categories: ["spot-pub"],
+    context:
+      "Trois spots publicitaires produits de A à Z : script, constitution d'équipe, tournage, montage et direction de comédiens. Déclinés sur tous les formats et tous les médias, jusqu'à l'audio pour la radio.",
+    deliverables: [
+      "3 spots publicitaires",
+      "Direction de comédiens",
+      "Déclinaison radio",
+    ],
+    accent: "#4a4a8a",
+    featuredHome: true,
+    caseStudy: true,
+  },
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+export function getCaseStudies(): Project[] {
+  return projects.filter((p) => p.caseStudy);
 }
 
 export function getFeaturedProjects(): Project[] {
