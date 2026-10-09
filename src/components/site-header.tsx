@@ -6,11 +6,16 @@ import { useState } from "react";
 import { cx } from "@/lib/cx";
 import { LogoMark } from "@/components/logo-mark";
 
+// Flip to false to pull /conseil from the nav without deleting the page —
+// its place on the site is still under discussion (brief Oct 9, "en suspens").
+const CONSEIL_NAV_ENABLED = true;
+
 const links = [
   { href: "/travaux", label: "Nos réalisations" },
   { href: "/studio", label: "Notre savoir-faire" },
   { href: "/services", label: "Services" },
-  { href: "/conseil", label: "Conseil" },
+  ...(CONSEIL_NAV_ENABLED ? [{ href: "/conseil", label: "Conseil" }] : []),
+  { href: "/offre-speciale", label: "Offre spéciale" },
   { href: "/contact", label: "Contact" },
 ];
 
