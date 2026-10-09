@@ -5,12 +5,18 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { cx } from "@/lib/cx";
 import { LogoMark } from "@/components/logo-mark";
+import { AnimatedHighlight } from "@/components/animated-highlight";
+
+// Flip to false to pull /conseil from the nav without deleting the page —
+// its place on the site is still under discussion (brief Oct 9, "en suspens").
+const CONSEIL_NAV_ENABLED = true;
 
 const links = [
   { href: "/travaux", label: "Nos réalisations" },
   { href: "/studio", label: "Notre savoir-faire" },
   { href: "/services", label: "Services" },
-  { href: "/conseil", label: "Conseil" },
+  ...(CONSEIL_NAV_ENABLED ? [{ href: "/conseil", label: "Conseil" }] : []),
+  { href: "/rush", label: "Rush" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -62,13 +68,19 @@ export function SiteHeader() {
                   active ? "text-foreground" : "text-muted"
                 )}
               >
-                {link.label}
-                <span
-                  className={cx(
-                    "absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100",
-                    active && "scale-x-100"
-                  )}
-                />
+                {link.href === "/rush" ? (
+                  <AnimatedHighlight>{link.label}</AnimatedHighlight>
+                ) : (
+                  <>
+                    {link.label}
+                    <span
+                      className={cx(
+                        "absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-accent transition-transform duration-300 ease-out group-hover:scale-x-100",
+                        active && "scale-x-100"
+                      )}
+                    />
+                  </>
+                )}
               </Link>
             );
           })}
@@ -108,7 +120,11 @@ export function SiteHeader() {
                   : "text-muted"
               )}
             >
-              {link.label}
+              {link.href === "/rush" ? (
+                <AnimatedHighlight>{link.label}</AnimatedHighlight>
+              ) : (
+                link.label
+              )}
             </Link>
           ))}
           <a

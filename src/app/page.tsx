@@ -1,22 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { HorizontalProjectGrid } from "@/components/horizontal-project-grid";
 import { ClientLogosBand } from "@/components/client-logos-band";
-import { PitchNarrative } from "@/components/pitch-narrative";
+import { HeroShowreel } from "@/components/hero-showreel";
+import { ClientCarousel } from "@/components/client-carousel";
 import { Reveal } from "@/components/reveal";
-import { EyebrowPill } from "@/components/eyebrow-pill";
-import { OfferList } from "@/components/offer-card";
-import { ConseilCapsule } from "@/components/conseil-capsule";
-import { StatStrip } from "@/components/stat-strip";
-import { getFeaturedProjects } from "@/lib/content/projects";
+import { getCaseStudies } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
-import { homeStats } from "@/lib/content/home-stats";
-import { offers } from "@/lib/content/offers";
-import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import { contact } from "@/lib/content/contact";
+import { withVimeoPosters } from "@/lib/vimeo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
@@ -59,7 +53,7 @@ const localBusinessJsonLd = {
 };
 
 export default async function Home() {
-  const featured = await withVimeoPosters(getFeaturedProjects());
+  const caseStudies = await withVimeoPosters(getCaseStudies());
 
   return (
     <>
@@ -67,55 +61,30 @@ export default async function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
       />
-      <section className="pt-10 sm:pt-16">
-        <Reveal className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1fr_640px] lg:items-start">
-            <div>
-              <EyebrowPill>
-                Grub Studio — Production audiovisuelle, Strasbourg
-              </EyebrowPill>
-              <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
-                Un tournage. Des contenus pour tous vos réseaux.
-              </h1>
-              <p className="mt-5 max-w-md text-lg leading-relaxed text-foreground sm:text-xl">
-                Studio de production vidéo et photo à Strasbourg. On écrit,
-                on tourne et on décline vos contenus pour chaque format :
-                spots pub, vidéos courtes, films de marque, événementiel.
-              </p>
-              <p className="mt-4 max-w-md text-sm text-muted">
-                +200 marques accompagnées, dont Mercedes-Benz, Galeries
-                Lafayette et Lidl.
-              </p>
 
-              <div className="mt-8 flex items-center gap-6">
-                <Link
-                  href="/travaux"
-                  className="border border-border px-4 py-2 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
-                >
-                  Voir nos réalisations
-                </Link>
-                <Link
-                  href="/contact"
-                  className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
-                >
-                  Parler de votre projet →
-                </Link>
-              </div>
-            </div>
+      <HeroShowreel
+        vimeoId="1214532172"
+        catchphrase="GRUB. Le créateur de contenu de vos marques préférées."
+      />
 
-            <div className="hidden gap-5 lg:grid lg:grid-cols-2">
-              <ConseilCapsule />
-              <OfferList offers={offers.slice(0, 1)} />
-            </div>
+      <Reveal className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="text-xl font-medium tracking-tight sm:text-2xl">
+              Ce qu&rsquo;on a produit pour eux
+            </h2>
+            <Link
+              href="/travaux"
+              className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            >
+              Toutes nos réalisations →
+            </Link>
           </div>
-        </Reveal>
-
-        <Reveal delay={0.1} className="mt-12 sm:mt-14">
-          <HorizontalProjectGrid projects={featured} />
-        </Reveal>
-      </section>
-
-      <PitchNarrative />
+          <div className="mt-10">
+            <ClientCarousel projects={caseStudies} />
+          </div>
+        </div>
+      </Reveal>
 
       <Reveal className="border-t border-border">
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -144,17 +113,6 @@ export default async function Home() {
               </li>
             ))}
           </ul>
-        </div>
-      </Reveal>
-
-      <Reveal className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
-            Chiffres clés
-          </h2>
-          <div className="mt-6">
-            <StatStrip stats={homeStats} />
-          </div>
         </div>
       </Reveal>
 

@@ -5,7 +5,7 @@
   --foreground: #f3f2ee;
   --muted: #8a8a84;
   --border: #232320;
-  /* Bemotion logo palette, sampled from the deck */
+  /* Grub Studio logo palette, sampled from the deck */
   --accent: #d73096;
   --accent-purple: #5035a9;
   --accent-pink: #d73096;
@@ -62,5 +62,30 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes rush-highlight {
+  to {
+    background-position: 300% 50%;
+  }
+}
+
+.rush-highlight {
+  background-image: linear-gradient(
+    90deg,
+    var(--accent-purple),
+    var(--accent-pink),
+    var(--accent-yellow),
+    var(--accent-cyan),
+    var(--accent-purple)
+  );
+  background-size: 300% 100%;
+  animation: rush-highlight 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rush-highlight {
+    animation: none;
   }
 }
