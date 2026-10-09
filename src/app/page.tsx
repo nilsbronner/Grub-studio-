@@ -10,6 +10,7 @@ import { homeHighlights } from "@/lib/content/services";
 import { pageMetadata } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import { contact } from "@/lib/content/contact";
+import { withVimeoPosters } from "@/lib/vimeo";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
@@ -51,8 +52,8 @@ const localBusinessJsonLd = {
   sameAs: ["https://linktr.ee/nils.bronner"],
 };
 
-export default function Home() {
-  const caseStudies = getCaseStudies();
+export default async function Home() {
+  const caseStudies = await withVimeoPosters(getCaseStudies());
 
   return (
     <>

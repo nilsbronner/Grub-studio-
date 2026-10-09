@@ -5,6 +5,7 @@ import { diffusionFormats } from "@/lib/content/services";
 import { studioOffers } from "@/lib/content/studio-offers";
 import { shorts } from "@/lib/content/shorts";
 import { serviceCases } from "@/lib/content/service-cases";
+import { getProjectBySlug, type Project } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
@@ -23,6 +24,20 @@ export const metadata: Metadata = pageMetadata({
 
 export default async function ServicesPage() {
   const shortsWithPosters = await withVimeoPosters(shorts);
+
+  const caseProjects = serviceCases
+    .map((item) => ({ item, project: getProjectBySlug(item.caseSlug) }))
+    .filter(
+      (x): x is { item: typeof serviceCases[number]; project: Project } =>
+        !!x.project
+    );
+  const projectsWithPosters = await withVimeoPosters(
+    caseProjects.map((x) => x.project)
+  );
+  const serviceCasesWithPosters = caseProjects.map((x, i) => ({
+    ...x.item,
+    project: projectsWithPosters[i],
+  }));
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
@@ -46,7 +61,7 @@ export default async function ServicesPage() {
           Un service, une preuve : chaque format qu&rsquo;on propose est illustré par un projet qu&rsquo;on a vraiment livré.
         </p>
         <div className="mt-8">
-          <ServiceCaseGrid cases={serviceCases} />
+          <ServiceCaseGrid cases={serviceCasesWithPosters} />
         </div>
       </Reveal>
 

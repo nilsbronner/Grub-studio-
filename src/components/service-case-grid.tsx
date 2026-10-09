@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ServiceCase } from "@/lib/content/service-cases";
-import { getProjectBySlug } from "@/lib/content/projects";
+import type { Project } from "@/lib/content/projects";
 
-export function ServiceCaseGrid({ cases }: { cases: ServiceCase[] }) {
+export type ResolvedServiceCase = ServiceCase & { project: Project };
+
+export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
   return (
     <div className="grid gap-6 sm:grid-cols-2">
       {cases.map((item) => {
-        const project = getProjectBySlug(item.caseSlug);
-        if (!project) return null;
+        const project = item.project;
         return (
           <Link
             key={item.caseSlug}
