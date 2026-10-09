@@ -477,8 +477,8 @@ export const projects: Project[] = [
     caseStudy: true,
   },
   {
-    slug: "atelier-chers-scipions",
-    client: "L'Atelier à mes Chers Scipions",
+    slug: "atelier-hammaecher-sipion",
+    client: "Atelier Hammaecher Sipion",
     sector: "Bijouterie",
     title: "Catalogues et contenus produit, année après année",
     hook: "Un catalogue bijoux par an, et des contenus qui durent.",
@@ -539,7 +539,7 @@ export const projects: Project[] = [
   },
   {
     slug: "sofitel-strasbourg",
-    client: "Sofitel Strasbourg",
+    client: "Sofitel Strasbourg Grande Île",
     sector: "Hôtellerie",
     title: "Reportage photo et vidéo",
     hook: "De nouvelles photos et un reportage vidéo pour le site de l'hôtel.",

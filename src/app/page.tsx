@@ -63,7 +63,7 @@ export default function Home() {
 
       <HeroShowreel
         vimeoId="1214532172"
-        catchphrase="[CATCHPHRASE À DÉFINIR : GRUB, votre créateur de contenu]"
+        catchphrase="GRUB. Le créateur de contenu de vos marques préférées."
       />
 
       <Reveal className="border-t border-border">

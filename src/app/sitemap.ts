@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/studio",
     "/services",
     "/conseil",
-    "/offre-speciale",
+    "/rush",
     "/contact",
     "/mentions-legales",
     "/politique-de-confidentialite",

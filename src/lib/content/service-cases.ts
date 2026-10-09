@@ -41,7 +41,7 @@ export const serviceCases: ServiceCase[] = [
     service: "Catalogue & photo produit",
     description:
       "Un catalogue produit par an, des photos de mise en situation et des vidéos de création — une base de contenus qui continue de servir des années après le tournage.",
-    caseSlug: "atelier-chers-scipions",
+    caseSlug: "atelier-hammaecher-sipion",
   },
   {
     service: "Motion design intégré",

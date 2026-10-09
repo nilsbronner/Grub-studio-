@@ -15,7 +15,7 @@ const links = [
   { href: "/studio", label: "Notre savoir-faire" },
   { href: "/services", label: "Services" },
   ...(CONSEIL_NAV_ENABLED ? [{ href: "/conseil", label: "Conseil" }] : []),
-  { href: "/offre-speciale", label: "Offre spéciale" },
+  { href: "/rush", label: "Rush" },
   { href: "/contact", label: "Contact" },
 ];
 

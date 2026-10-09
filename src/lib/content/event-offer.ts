@@ -1,7 +1,7 @@
 import type { Offer } from "@/lib/content/offers";
 
 export const eventOfferIntro = {
-  eyebrow: "Offre spéciale",
+  eyebrow: "Rush",
   hook: "Un reportage pour votre événement, sans y penser à l'avance.",
   description:
     "Soirée, inauguration, conférence, salon, temps fort d'entreprise : on capte l'instant, en photo ou en vidéo, prêt à partager dans la foulée.",

@@ -10,17 +10,14 @@ import {
 } from "@/lib/content/event-offer";
 import { pageMetadata } from "@/lib/metadata";
 
-// Route and nav label are provisional — brief flags the name as "à définir".
-// Renaming later: change the nav label in site-header.tsx, this folder name,
-// and the `path` below.
 export const metadata: Metadata = pageMetadata({
-  path: "/offre-speciale",
-  title: "Offre spéciale — Reportage événementiel",
+  path: "/rush",
+  title: "Rush — Reportage événementiel",
   description:
     "Un reportage photo et/ou vidéo pour votre événement, à partir de 500 € HT.",
 });
 
-export default function OffreSpecialePage() {
+export default function RushPage() {
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
