@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { diffusionFormats } from "@/lib/content/services";
 import { serviceCases } from "@/lib/content/service-cases";
 import { getProjectBySlug, type Project } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { Reveal } from "@/components/reveal";
 import { ServiceCaseGrid } from "@/components/service-case-grid";
-import { FormatShowcase } from "@/components/format-showcase";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { pageMetadata } from "@/lib/metadata";
 
@@ -55,18 +53,6 @@ export default async function ServicesPage() {
         </p>
         <div className="mt-8">
           <ServiceCaseGrid cases={serviceCasesWithPosters} />
-        </div>
-      </Reveal>
-
-      <Reveal className="mt-16">
-        <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
-          Formats de diffusion
-        </h2>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
-          {diffusionFormats.intro}
-        </p>
-        <div className="mt-8">
-          <FormatShowcase formats={diffusionFormats.formats} />
         </div>
       </Reveal>
 
