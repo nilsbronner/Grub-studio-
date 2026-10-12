@@ -67,6 +67,7 @@ export const projects: Project[] = [
     ],
     accent: "#c9622f",
     image: "/images/projects/once-upon-a-dime.jpg",
+    logo: "/images/logos/once-upon-a-dime.svg",
     vimeoId: "1173949481",
     featuredHome: true,
     caseStudy: true,
