@@ -18,7 +18,6 @@ export const studioOffers: Service[] = [
     title: "Journée Comédiens",
     description:
       "Photos, vidéo de présentation et showreel pour les comédiens.",
-    priceFrom: "120 € TTC",
   },
   {
     slug: "location-accompagnement",

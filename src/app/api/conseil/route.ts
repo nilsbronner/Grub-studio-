@@ -49,7 +49,7 @@ async function sendNotificationEmail(payload: ConseilPayload) {
   if (!apiKey) return { attempted: false as const };
 
   const to = process.env.CONTACT_NOTIFY_EMAIL || "nils.bronner@gmail.com";
-  const from = process.env.CONTACT_FROM_EMAIL || "site@bemotion.fr";
+  const from = process.env.CONTACT_FROM_EMAIL || "site@le-grub.com";
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",

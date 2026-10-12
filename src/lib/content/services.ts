@@ -24,7 +24,6 @@ export const videoServices: Service[] = [
     title: "Contenu réseaux (shorts)",
     description:
       "Des vidéos verticales rythmées, pensées pour arrêter le scroll.",
-    priceFrom: "500 € HT",
   },
   {
     slug: "aftermovie",
