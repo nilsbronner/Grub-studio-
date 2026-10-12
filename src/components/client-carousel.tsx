@@ -10,7 +10,7 @@ export function ClientCarousel({ projects }: { projects: Project[] }) {
           <Link
             key={project.slug}
             href={`/travaux/${project.slug}`}
-            className="group flex w-[70vw] shrink-0 snap-start flex-col overflow-hidden border border-border transition-colors duration-300 hover:border-accent/60 sm:w-[320px]"
+            className="group flex w-[78vw] shrink-0 snap-start flex-col overflow-hidden border border-border transition-colors duration-300 hover:border-accent/60 sm:w-[360px]"
           >
             <div
               className="relative aspect-[4/3] bg-cover bg-center"
@@ -37,24 +37,27 @@ export function ClientCarousel({ projects }: { projects: Project[] }) {
               </p>
             </div>
 
-            {/* Logo band — shows the real client logo once supplied; falls back to the name as a wordmark. */}
-            <div className="flex flex-1 flex-col justify-center gap-1.5 bg-foreground px-4 py-4 text-background">
+            {/* Logo band — shows the real client logo once supplied; falls back to the name as a wordmark. Logo/name left, sector right. */}
+            <div className="flex h-16 shrink-0 items-center justify-between gap-3 bg-foreground px-4 text-background">
               {project.logo ? (
-                <div className="relative h-7 w-32">
+                <div className="relative h-7 w-28 shrink-0">
                   <Image
                     src={project.logo}
                     alt={project.client}
                     fill
-                    sizes="128px"
+                    sizes="112px"
                     className="object-contain object-left"
                   />
                 </div>
               ) : (
-                <p className="text-base font-semibold leading-tight tracking-tight">
+                <p className="min-w-0 truncate text-base font-semibold leading-tight tracking-tight">
                   {project.client}
                 </p>
               )}
-              <p className="text-[11px] uppercase leading-tight tracking-[0.1em] text-background/60">
+              <p
+                title={project.sector}
+                className="w-24 shrink-0 truncate text-right text-[11px] uppercase leading-tight tracking-[0.1em] text-background/60"
+              >
                 {project.sector}
               </p>
             </div>
