@@ -35,6 +35,8 @@ export type Project = {
   image?: string;
   /** Accent used for the placeholder tile gradient when no image/footage is set. */
   accent: string;
+  /** Client logo file (transparent background) — shown in the carousel's logo band once supplied. Falls back to the client name as a text wordmark when absent. */
+  logo?: string;
   featuredHome?: boolean;
   /** One of the 14 flagship client case studies — shown in the home carousel and linked from /services. */
   caseStudy?: boolean;
