@@ -7,14 +7,14 @@ export type ResolvedServiceCase = ServiceCase & { project: Project };
 
 export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
   return (
-    <div className="grid gap-6 sm:grid-cols-2">
+    <div className="no-scrollbar -mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 sm:-mx-8 sm:px-8">
       {cases.map((item) => {
         const project = item.project;
         return (
           <Link
             key={item.caseSlug}
             href={`/travaux/${project.slug}`}
-            className="group flex flex-col overflow-hidden border border-border transition-colors duration-300 hover:border-accent/60"
+            className="group flex w-[82vw] shrink-0 snap-start flex-col overflow-hidden border border-border transition-colors duration-300 hover:border-accent/60 sm:w-[360px]"
           >
             <div
               className="relative aspect-video bg-cover bg-center"
@@ -31,7 +31,7 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
                   src={project.image}
                   alt=""
                   fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 640px) 360px, 82vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
               )}

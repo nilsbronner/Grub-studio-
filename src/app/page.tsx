@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ClientLogosBand } from "@/components/client-logos-band";
 import { HeroShowreel } from "@/components/hero-showreel";
 import { ClientCarousel } from "@/components/client-carousel";
+import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
 import { getCaseStudies } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
+import { shorts } from "@/lib/content/shorts";
 import { pageMetadata } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import { contact } from "@/lib/content/contact";
@@ -54,6 +55,7 @@ const localBusinessJsonLd = {
 
 export default async function Home() {
   const caseStudies = await withVimeoPosters(getCaseStudies());
+  const shortsWithPosters = await withVimeoPosters(shorts);
 
   return (
     <>
@@ -116,11 +118,20 @@ export default async function Home() {
         </div>
       </Reveal>
 
-      <div className="mt-4 sm:mt-8">
-        <Reveal>
-          <ClientLogosBand />
-        </Reveal>
-      </div>
+      <Reveal className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
+          <h2 className="text-xl font-medium tracking-tight sm:text-2xl">
+            Comment on travaille
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-foreground/70">
+            2 minutes pour comprendre comment Nils et l&rsquo;équipe
+            produisent vos contenus.
+          </p>
+          <div className="mt-8">
+            <ShortsStrip shorts={shortsWithPosters} />
+          </div>
+        </div>
+      </Reveal>
 
       <Reveal className="relative overflow-hidden border-t border-border">
         <div className="absolute inset-0">

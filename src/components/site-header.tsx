@@ -12,8 +12,6 @@ import { AnimatedHighlight } from "@/components/animated-highlight";
 const CONSEIL_NAV_ENABLED = true;
 
 const links = [
-  { href: "/travaux", label: "Nos réalisations" },
-  { href: "/studio", label: "Notre savoir-faire" },
   { href: "/services", label: "Services" },
   ...(CONSEIL_NAV_ENABLED ? [{ href: "/conseil", label: "Conseil" }] : []),
   { href: "/rush", label: "Rush" },
