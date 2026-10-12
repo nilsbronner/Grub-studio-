@@ -28,15 +28,15 @@ export function ClientCarousel({ projects }: { projects: Project[] }) {
                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
               />
             )}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-5">
               <p className="text-xs uppercase tracking-[0.15em] text-white/70">
                 {project.sector}
               </p>
-              <p className="mt-1 text-lg font-medium text-white">
+              <p className="mt-1 text-2xl font-semibold leading-tight tracking-tight text-white">
                 {project.client}
               </p>
-              <p className="mt-2 text-xs text-white/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <p className="mt-2 text-xs uppercase tracking-[0.15em] text-white/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 Voir le projet →
               </p>
             </div>
