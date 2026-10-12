@@ -42,7 +42,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-b from-background/95 via-background/80 to-transparent backdrop-blur-sm">
+    <header className="sticky top-0 z-50 bg-gradient-to-b from-background/55 via-background/20 to-transparent">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <Link
           href="/"

@@ -33,14 +33,16 @@ export function ClientCarousel({ projects }: { projects: Project[] }) {
 
             <div className="absolute inset-x-0 bottom-0 p-4">
               {project.logo && (
-                <div className="relative mb-2 h-7 w-28">
-                  <Image
-                    src={project.logo}
-                    alt={project.client}
-                    fill
-                    sizes="112px"
-                    className="object-contain object-left"
-                  />
+                <div className="mb-2 inline-flex h-10 items-center rounded-full bg-white px-3">
+                  <div className="relative h-6 w-9">
+                    <Image
+                      src={project.logo}
+                      alt={project.client}
+                      fill
+                      sizes="36px"
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
               )}
               <p className="text-lg font-semibold leading-tight tracking-tight text-white">
