@@ -7,6 +7,7 @@ import { ShortsStrip } from "@/components/shorts-strip";
 import { Reveal } from "@/components/reveal";
 import { getCaseStudies } from "@/lib/content/projects";
 import { homeHighlights } from "@/lib/content/services";
+import { serviceColor } from "@/lib/service-colors";
 import { shorts } from "@/lib/content/shorts";
 import { pageMetadata } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
@@ -19,13 +20,6 @@ export const metadata: Metadata = pageMetadata({
   description:
     "Spots pub, vidéos réseaux, films de marque et photo d'entreprise à Strasbourg. Un tournage, des contenus pour tous vos canaux. +200 marques accompagnées.",
 });
-
-const palette = [
-  "var(--accent-purple)",
-  "var(--accent-pink)",
-  "var(--accent-yellow)",
-  "var(--accent-cyan)",
-];
 
 const localBusinessJsonLd = {
   "@context": "https://schema.org",
@@ -77,7 +71,7 @@ export default async function Home() {
             </h2>
             <Link
               href="/travaux"
-              className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+              className="text-sm font-mono uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
             >
               Toutes nos réalisations →
             </Link>
@@ -96,19 +90,22 @@ export default async function Home() {
             </h2>
             <Link
               href="/services"
-              className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+              className="text-sm font-mono uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
             >
               Tous les services →
             </Link>
           </div>
           <ul className="mt-10 grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:grid-cols-4">
-            {homeHighlights.map((highlight, i) => (
+            {homeHighlights.map((highlight) => (
               <li
                 key={highlight.title}
-                className="pt-4 transition-transform duration-300 hover:-translate-y-0.5"
-                style={{ borderTop: `2px solid ${palette[i % 4]}` }}
+                className="transition-transform duration-300 hover:-translate-y-0.5"
               >
-                <p className="text-base font-medium">{highlight.title}</p>
+                <span
+                  className="block h-1 w-10 rounded-full"
+                  style={{ backgroundColor: serviceColor(highlight.title) }}
+                />
+                <p className="mt-3 text-base font-medium">{highlight.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/70">
                   {highlight.description}
                 </p>
@@ -145,7 +142,7 @@ export default async function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/92 to-background/25 sm:bg-gradient-to-r sm:from-background sm:via-background/88 sm:to-background/15" />
         </div>
         <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32">
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Le lieu
           </h2>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-foreground/80">
@@ -158,7 +155,7 @@ export default async function Home() {
             href="https://le-grub.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            className="mt-5 inline-flex items-center gap-2 text-sm font-mono uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
           >
             Découvrir le Grub Cowork →
           </a>
@@ -172,7 +169,7 @@ export default async function Home() {
           </h2>
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
           >
             Discutons de votre projet
             <span className="transition-transform duration-300 group-hover:translate-x-1">

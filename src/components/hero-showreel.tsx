@@ -38,13 +38,13 @@ export function HeroShowreel({
           <div className="mt-6 flex items-center gap-6">
             <Link
               href="/travaux"
-              className="border border-border bg-background/60 px-4 py-2 text-sm uppercase tracking-[0.15em] backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+              className="border border-border bg-background/60 px-4 py-2 text-sm font-mono uppercase tracking-[0.15em] backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
             >
               Voir nos réalisations
             </Link>
             <Link
               href="/contact"
-              className="text-sm uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:text-foreground"
+              className="text-sm font-mono uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:text-foreground"
             >
               Parler de votre projet →
             </Link>

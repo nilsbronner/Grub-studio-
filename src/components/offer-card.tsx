@@ -78,16 +78,21 @@ export function OfferList({ offers }: { offers: Offer[] }) {
               ))}
             </ul>
 
-            <div className="mt-6 flex items-baseline gap-2">
-              <span className="text-3xl font-bold tracking-tight">
-                {offer.price}
-              </span>
-              <span className="text-sm text-muted">{offer.priceNote}</span>
+            <div className="mt-6">
+              <p className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
+                À partir de
+              </p>
+              <div className="mt-1 flex items-baseline gap-2">
+                <span className="text-3xl font-bold tracking-tight">
+                  {offer.price}
+                </span>
+                <span className="text-sm text-muted">{offer.priceNote}</span>
+              </div>
             </div>
 
             <Link
               href={offer.ctaHref ?? "/contact"}
-              className="group mt-6 flex items-center justify-center gap-2 border border-border py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+              className="group mt-6 flex items-center justify-center gap-2 border border-border py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
             >
               {offer.ctaLabel ?? "Réserver mon tournage"}
               <span className="transition-transform duration-300 group-hover:translate-x-1">

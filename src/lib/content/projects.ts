@@ -33,8 +33,12 @@ export type Project = {
   vimeoId?: string;
   /** Still frame used as poster/tile background, from the deck until real Vimeo footage is wired in. */
   image?: string;
+  /** Multiple real photos for a photo-only project (no vimeoId) — shown as a carousel on the project page instead of a single static image with a dead play button. */
+  images?: string[];
   /** Accent used for the placeholder tile gradient when no image/footage is set. */
   accent: string;
+  /** Client logo file (transparent background) — shown in the carousel's logo band once supplied. Falls back to the client name as a text wordmark when absent. */
+  logo?: string;
   featuredHome?: boolean;
   /** One of the 14 flagship client case studies — shown in the home carousel and linked from /services. */
   caseStudy?: boolean;
@@ -146,6 +150,7 @@ export const projects: Project[] = [
       "Visuels Twitch / decks / sponsors",
     ],
     accent: "#e0483f",
+    image: "/images/projects/strasbourg-esport-days.jpg",
     featuredHome: true,
     caseStudy: true,
   },
@@ -473,6 +478,11 @@ export const projects: Project[] = [
       "Photo & vidéo",
     ],
     accent: "#4a7a5c",
+    image: "/images/projects/alsace-habitat.jpg",
+    images: [
+      "/images/projects/alsace-habitat.jpg",
+      "/images/projects/alsace-habitat-2.jpg",
+    ],
     featuredHome: true,
     caseStudy: true,
   },
@@ -492,6 +502,7 @@ export const projects: Project[] = [
       "Showreel produits",
     ],
     accent: "#b8793a",
+    image: "/images/projects/atelier-hammaecher-sipion.jpg",
     featuredHome: true,
     caseStudy: true,
   },
@@ -534,6 +545,7 @@ export const projects: Project[] = [
       "Reportage photo et vidéo événementiel, puis une vidéo tour operateur pensée pour deux publics — particuliers et professionnels — afin de promouvoir l'hôtel à l'international.",
     deliverables: ["Reportage événementiel", "Vidéo tour operateur"],
     accent: "#7a3a4a",
+    image: "/images/projects/maison-rouge.jpg",
     featuredHome: true,
     caseStudy: true,
   },
@@ -548,6 +560,7 @@ export const projects: Project[] = [
       "Reportage photo et vidéo, avec de nouvelles photos produites pour le site de l'hôtel.",
     deliverables: ["Reportage photo", "Reportage vidéo"],
     accent: "#3a6b9a",
+    image: "/images/projects/sofitel-strasbourg.jpg",
     featuredHome: true,
     caseStudy: true,
   },

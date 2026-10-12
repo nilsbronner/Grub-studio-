@@ -134,7 +134,7 @@ export function VideoTile({
       </div>
 
       <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <p className="text-xs uppercase tracking-[0.15em] text-white/70">
+        <p className="text-xs font-mono uppercase tracking-[0.15em] text-white/70">
           {project.sector}
         </p>
         <p className="text-sm font-medium text-white">{project.client}</p>
@@ -165,11 +165,13 @@ export function VideoTile({
         {...hoverHandlers}
       >
         {content}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm">
-            <PlayIcon />
-          </span>
-        </div>
+        {project.vimeoId && (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm">
+              <PlayIcon />
+            </span>
+          </div>
+        )}
         {project.vimeoId && (
           <VideoLightbox
             vimeoId={project.vimeoId}

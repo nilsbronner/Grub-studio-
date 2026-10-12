@@ -47,7 +47,7 @@ export function ServiceCardList({ services }: { services: Service[] }) {
             {service.description}
           </p>
           {service.priceFrom && (
-            <p className="mt-3 text-xs uppercase tracking-[0.1em] text-muted">
+            <p className="mt-3 text-xs font-mono uppercase tracking-[0.1em] text-muted">
               À partir de {service.priceFrom}
             </p>
           )}

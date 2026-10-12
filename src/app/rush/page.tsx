@@ -10,28 +10,36 @@ import {
   eventOfferNote,
 } from "@/lib/content/event-offer";
 import { getProjectBySlug } from "@/lib/content/projects";
+import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
   path: "/rush",
   title: "Rush — Reportage événementiel",
   description:
-    "Un reportage photo et/ou vidéo pour votre événement, à partir de 500 € HT.",
+    "Un reportage photo et/ou vidéo pour votre événement, de 500 € HT (demi-journée) à 2 900 € HT (journée complète, photo + vidéo).",
 });
 
-// Real photos from past shoots — proof of the photography side of the
-// studio, since this page was otherwise 100% text (brief Oct 9, photo ↔ vidéo).
+// Real photos from past event/reportage shoots — proof of the photography
+// side of the studio (brief Oct 9, photo <-> vidéo). SED, Alsace Habitat,
+// SAS 3B, Sofitel, HMR and Galeries Lafayette, per feedback.
 const reportagePreviewSlugs = [
-  "hollys-diner",
   "once-upon-a-dime",
-  "squarea",
-  "myfood",
+  "alsace-habitat",
+  "sas3b",
+  "sofitel-strasbourg",
+  "maison-rouge",
+  "galeries-lafayette-histoire",
 ];
 
-export default function RushPage() {
-  const reportagePreviews = reportagePreviewSlugs
-    .map((slug) => getProjectBySlug(slug))
-    .filter((p): p is NonNullable<typeof p> => Boolean(p?.image));
+export default async function RushPage() {
+  const reportagePreviews = (
+    await withVimeoPosters(
+      reportagePreviewSlugs
+        .map((slug) => getProjectBySlug(slug))
+        .filter((p): p is NonNullable<typeof p> => Boolean(p))
+    )
+  ).filter((p) => Boolean(p.image));
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
@@ -45,17 +53,12 @@ export default function RushPage() {
         </p>
       </Reveal>
 
-      <Reveal delay={0.1} className="mt-14">
-        <OfferList offers={eventOffers} />
-        <p className="mt-6 max-w-2xl text-sm text-muted">{eventOfferNote}</p>
-      </Reveal>
-
       {reportagePreviews.length > 0 && (
-        <Reveal delay={0.12} className="mt-16">
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+        <Reveal delay={0.08} className="mt-14">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Ce qu&rsquo;on capte sur le terrain
           </h2>
-          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {reportagePreviews.map((project) => (
               <Link
                 key={project.slug}
@@ -66,11 +69,11 @@ export default function RushPage() {
                   src={project.image!}
                   alt={`Reportage photo — ${project.client}`}
                   fill
-                  sizes="(min-width: 640px) 25vw, 50vw"
+                  sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <p className="absolute bottom-3 left-3 text-xs uppercase tracking-[0.15em] text-white/80">
+                <p className="absolute bottom-3 left-3 text-xs font-mono uppercase tracking-[0.15em] text-white/80">
                   {project.client}
                 </p>
               </Link>
@@ -78,6 +81,11 @@ export default function RushPage() {
           </div>
         </Reveal>
       )}
+
+      <Reveal delay={0.14} className="mt-16">
+        <OfferList offers={eventOffers} />
+        <p className="mt-6 max-w-2xl text-sm text-muted">{eventOfferNote}</p>
+      </Reveal>
 
       <Reveal
         delay={0.15}
@@ -89,13 +97,13 @@ export default function RushPage() {
         <div className="flex flex-wrap items-center gap-4">
           <Link
             href="/travaux"
-            className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            className="text-sm font-mono uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
           >
             Voir nos reportages →
           </Link>
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
           >
             Discutons de votre projet
             <span className="transition-transform duration-300 group-hover:translate-x-1">

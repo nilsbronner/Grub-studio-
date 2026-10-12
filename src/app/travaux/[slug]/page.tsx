@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { VideoTile } from "@/components/video-tile";
+import { ProjectGallery } from "@/components/project-gallery";
 import { Reveal } from "@/components/reveal";
 import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
@@ -45,7 +46,7 @@ export default async function ProjectPage({
     <article className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
         <div className="flex flex-wrap items-center gap-3">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted">
+          <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted">
             {project.sector}
           </p>
           {project.price && (
@@ -61,31 +62,39 @@ export default async function ProjectPage({
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        <VideoTile
-          project={project}
-          priority
-          lightbox
-          className="aspect-video w-full"
-        />
+        {!project.vimeoId && project.images && project.images.length > 1 ? (
+          <ProjectGallery
+            images={project.images}
+            alt={project.client}
+            className="aspect-video w-full"
+          />
+        ) : (
+          <VideoTile
+            project={project}
+            priority
+            lightbox
+            className="aspect-video w-full"
+          />
+        )}
       </Reveal>
 
       <Reveal delay={0.15} className="mt-12 grid gap-10 sm:grid-cols-[2fr_1fr]">
         <div>
           {project.stake && (
             <>
-              <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+              <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
                 L&rsquo;enjeu
               </h2>
               <p className="mt-3 leading-relaxed">{project.stake}</p>
             </>
           )}
 
-          <h2 className="mt-10 text-sm uppercase tracking-[0.15em] text-muted first:mt-0">
+          <h2 className="mt-10 text-sm font-mono uppercase tracking-[0.15em] text-muted first:mt-0">
             Ce qu&rsquo;on a fait
           </h2>
           <p className="mt-3 leading-relaxed">{project.context}</p>
 
-          <h2 className="mt-10 text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="mt-10 text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Livrables
           </h2>
           <ul className="mt-3 space-y-1">
@@ -96,7 +105,7 @@ export default async function ProjectPage({
 
           {project.credits && project.credits.length > 0 && (
             <>
-              <h2 className="mt-10 text-sm uppercase tracking-[0.15em] text-muted">
+              <h2 className="mt-10 text-sm font-mono uppercase tracking-[0.15em] text-muted">
                 Crédits
               </h2>
               <ul className="mt-3 space-y-1">
@@ -112,7 +121,7 @@ export default async function ProjectPage({
         </div>
 
         <div>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Catégories
           </h2>
           <p className="mt-3 text-sm">
@@ -123,7 +132,7 @@ export default async function ProjectPage({
 
       {project.stats && project.stats.length > 0 && (
         <Reveal delay={0.1} className="mt-10">
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Résultats
           </h2>
           <div className="mt-4">
@@ -134,7 +143,7 @@ export default async function ProjectPage({
 
       {project.testimonial && (
         <Reveal delay={0.1} className="mt-10 border-t border-border pt-10">
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Citation client
           </h2>
           <blockquote className="mt-4 max-w-2xl text-lg leading-relaxed">
@@ -156,13 +165,13 @@ export default async function ProjectPage({
         <div className="flex flex-wrap items-center gap-4">
           <Link
             href="/travaux"
-            className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            className="text-sm font-mono uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
           >
             ← Toutes nos réalisations
           </Link>
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
           >
             Discutons de votre projet
             <span className="transition-transform duration-300 group-hover:translate-x-1">
