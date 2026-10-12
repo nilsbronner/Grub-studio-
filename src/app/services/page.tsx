@@ -33,7 +33,7 @@ export default async function ServicesPage() {
   }));
 
   return (
-    <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
+    <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
         <EyebrowPill>Ce qu&rsquo;on fait</EyebrowPill>
         <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
