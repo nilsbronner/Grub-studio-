@@ -151,6 +151,10 @@ export const projects: Project[] = [
     ],
     accent: "#e0483f",
     image: "/images/projects/strasbourg-esport-days.jpg",
+    images: [
+      "/images/projects/strasbourg-esport-days.jpg",
+      "/images/projects/strasbourg-esport-days-2.jpg",
+    ],
     featuredHome: true,
     caseStudy: true,
   },
@@ -482,6 +486,7 @@ export const projects: Project[] = [
     images: [
       "/images/projects/alsace-habitat.jpg",
       "/images/projects/alsace-habitat-2.jpg",
+      "/images/projects/alsace-habitat-3.jpg",
     ],
     featuredHome: true,
     caseStudy: true,
@@ -503,6 +508,11 @@ export const projects: Project[] = [
     ],
     accent: "#b8793a",
     image: "/images/projects/atelier-hammaecher-sipion.jpg",
+    images: [
+      "/images/projects/atelier-hammaecher-sipion.jpg",
+      "/images/projects/atelier-hammaecher-sipion-2.jpg",
+      "/images/projects/atelier-hammaecher-sipion-3.jpg",
+    ],
     featuredHome: true,
     caseStudy: true,
   },
@@ -546,6 +556,11 @@ export const projects: Project[] = [
     deliverables: ["Reportage événementiel", "Vidéo tour operateur"],
     accent: "#7a3a4a",
     image: "/images/projects/maison-rouge.jpg",
+    images: [
+      "/images/projects/maison-rouge.jpg",
+      "/images/projects/maison-rouge-2.jpg",
+      "/images/projects/maison-rouge-3.jpg",
+    ],
     featuredHome: true,
     caseStudy: true,
   },
