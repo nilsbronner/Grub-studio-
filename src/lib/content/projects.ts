@@ -312,7 +312,7 @@ export const projects: Project[] = [
   },
   {
     slug: "instant-vert",
-    client: "Instant Vert",
+    client: "Instinct Vert",
     sector: "Start-up",
     title: "Un spot de lancement, entièrement en stock footage",
     hook: "Un lancement produit tourné sans tourner : 100 % stock footage.",
@@ -582,7 +582,7 @@ export const projects: Project[] = [
   },
   {
     slug: "s-automobile",
-    client: "S-Automobile",
+    client: "Hess Automobile",
     sector: "Automobile",
     title: "Trois spots publicitaires, tous formats et médias",
     hook: "Script, casting, tournage et montage — jusqu'à la radio.",
