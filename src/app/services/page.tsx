@@ -47,7 +47,7 @@ export default async function ServicesPage() {
       </Reveal>
 
       <Reveal className="mt-14">
-        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+        <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
           Ce qu&rsquo;on a déjà produit
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
@@ -59,7 +59,7 @@ export default async function ServicesPage() {
       </Reveal>
 
       <Reveal className="mt-16">
-        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+        <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
           Formats de diffusion
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
@@ -76,7 +76,7 @@ export default async function ServicesPage() {
         </h2>
         <Link
           href="/contact"
-          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
         >
           Discutons de votre projet
           <span className="transition-transform duration-300 group-hover:translate-x-1">

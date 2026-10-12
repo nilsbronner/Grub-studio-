@@ -21,7 +21,7 @@ export default function MentionsLegalesPage() {
 
       <Reveal delay={0.05} className="mt-10 space-y-10 leading-relaxed">
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Éditeur du site
           </h2>
           <p className="mt-3">
@@ -47,7 +47,7 @@ export default function MentionsLegalesPage() {
         </section>
 
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Hébergement
           </h2>
           <p className="mt-3">
@@ -57,7 +57,7 @@ export default function MentionsLegalesPage() {
         </section>
 
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Propriété intellectuelle
           </h2>
           <p className="mt-3">

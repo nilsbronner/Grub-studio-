@@ -134,7 +134,7 @@ export function VideoTile({
       </div>
 
       <div className="pointer-events-none absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/85 via-black/20 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <p className="text-xs uppercase tracking-[0.15em] text-white/70">
+        <p className="text-xs font-mono uppercase tracking-[0.15em] text-white/70">
           {project.sector}
         </p>
         <p className="text-sm font-medium text-white">{project.client}</p>

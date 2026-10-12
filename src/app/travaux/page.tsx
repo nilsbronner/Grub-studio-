@@ -32,7 +32,7 @@ export default async function TravauxPage() {
         </h2>
         <Link
           href="/contact"
-          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
         >
           Discutons de votre projet
           <span className="transition-transform duration-300 group-hover:translate-x-1">

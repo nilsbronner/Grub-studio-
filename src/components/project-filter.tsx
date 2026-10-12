@@ -33,7 +33,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
           type="button"
           onClick={() => setActive(null)}
           className={cx(
-            "border px-3 py-1.5 text-xs uppercase tracking-[0.1em] transition-all duration-200 hover:-translate-y-0.5",
+            "border px-3 py-1.5 text-xs font-mono uppercase tracking-[0.1em] transition-all duration-200 hover:-translate-y-0.5",
             active === null
               ? "border-accent text-accent"
               : "border-border text-muted hover:text-foreground"
@@ -47,7 +47,7 @@ export function ProjectFilter({ projects }: { projects: Project[] }) {
             type="button"
             onClick={() => setActive(cat.slug)}
             className={cx(
-              "border px-3 py-1.5 text-xs uppercase tracking-[0.1em] transition-all duration-200 hover:-translate-y-0.5",
+              "border px-3 py-1.5 text-xs font-mono uppercase tracking-[0.1em] transition-all duration-200 hover:-translate-y-0.5",
               active === cat.slug
                 ? "border-accent text-accent"
                 : "border-border text-muted hover:text-foreground"

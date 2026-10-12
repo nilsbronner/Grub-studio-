@@ -155,7 +155,7 @@ export function ConseilForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="group flex items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent disabled:opacity-50"
+        className="group flex items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent disabled:opacity-50"
       >
         {status === "sending" ? "Envoi..." : "Demander mon audit gratuit"}
         <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -185,7 +185,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs uppercase tracking-[0.15em] text-muted">
+      <span className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
         {label}
       </span>
       <div className="mt-1">{children}</div>

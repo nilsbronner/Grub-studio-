@@ -52,7 +52,7 @@ export default function RushPage() {
 
       {reportagePreviews.length > 0 && (
         <Reveal delay={0.12} className="mt-16">
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Ce qu&rsquo;on capte sur le terrain
           </h2>
           <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -70,7 +70,7 @@ export default function RushPage() {
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <p className="absolute bottom-3 left-3 text-xs uppercase tracking-[0.15em] text-white/80">
+                <p className="absolute bottom-3 left-3 text-xs font-mono uppercase tracking-[0.15em] text-white/80">
                   {project.client}
                 </p>
               </Link>
@@ -89,13 +89,13 @@ export default function RushPage() {
         <div className="flex flex-wrap items-center gap-4">
           <Link
             href="/travaux"
-            className="text-sm uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
+            className="text-sm font-mono uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
           >
             Voir nos reportages →
           </Link>
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
           >
             Discutons de votre projet
             <span className="transition-transform duration-300 group-hover:translate-x-1">

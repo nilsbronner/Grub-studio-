@@ -53,7 +53,7 @@ export function SiteHeader() {
           <span className="text-lg font-bold tracking-tight">Grub Studio</span>
         </Link>
 
-        <nav className="hidden gap-8 text-sm uppercase tracking-[0.15em] sm:flex">
+        <nav className="hidden gap-8 text-sm font-mono uppercase tracking-[0.15em] sm:flex">
           {links.map((link) => {
             const active =
               pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -95,7 +95,7 @@ export function SiteHeader() {
 
         <button
           type="button"
-          className="text-sm uppercase tracking-[0.15em] sm:hidden"
+          className="text-sm font-mono uppercase tracking-[0.15em] sm:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label="Menu"
@@ -105,7 +105,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-border px-5 py-4 text-sm uppercase tracking-[0.15em] sm:hidden">
+        <nav className="flex flex-col gap-1 border-t border-border px-5 py-4 text-sm font-mono uppercase tracking-[0.15em] sm:hidden">
           {links.map((link) => (
             <Link
               key={link.href}

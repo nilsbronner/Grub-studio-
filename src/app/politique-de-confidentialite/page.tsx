@@ -24,7 +24,7 @@ export default function PolitiqueDeConfidentialitePage() {
 
       <Reveal delay={0.05} className="mt-10 space-y-10 leading-relaxed">
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Responsable du traitement
           </h2>
           <p className="mt-3">
@@ -41,7 +41,7 @@ export default function PolitiqueDeConfidentialitePage() {
         </section>
 
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Données collectées
           </h2>
           <p className="mt-3">
@@ -56,7 +56,7 @@ export default function PolitiqueDeConfidentialitePage() {
         </section>
 
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Finalité et base légale
           </h2>
           <p className="mt-3">
@@ -70,7 +70,7 @@ export default function PolitiqueDeConfidentialitePage() {
         </section>
 
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Destinataires
           </h2>
           <p className="mt-3">
@@ -83,7 +83,7 @@ export default function PolitiqueDeConfidentialitePage() {
         </section>
 
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Durée de conservation
           </h2>
           <p className="mt-3">
@@ -95,7 +95,7 @@ export default function PolitiqueDeConfidentialitePage() {
         </section>
 
         <section>
-          <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Vos droits
           </h2>
           <p className="mt-3">

@@ -56,7 +56,7 @@ export default function StudioPage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/15 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-transparent to-transparent" />
-        <p className="absolute bottom-4 left-4 text-xs uppercase tracking-[0.15em] text-foreground/80 sm:bottom-6 sm:left-6">
+        <p className="absolute bottom-4 left-4 text-xs font-mono uppercase tracking-[0.15em] text-foreground/80 sm:bottom-6 sm:left-6">
           Le plateau — Parc Gruber
         </p>
       </Reveal>
@@ -95,7 +95,7 @@ export default function StudioPage() {
       </div>
 
       <Reveal className="mt-20 border-t border-border pt-12">
-        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+        <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
           Un tournage, plusieurs contenus
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-relaxed text-foreground/70">
@@ -106,7 +106,7 @@ export default function StudioPage() {
       </Reveal>
 
       <Reveal className="mt-14">
-        <h2 className="text-sm uppercase tracking-[0.15em] text-muted">
+        <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
           Méthode — une production en 5 étapes clés
         </h2>
         <MethodTimeline
@@ -122,7 +122,7 @@ export default function StudioPage() {
         </h2>
         <Link
           href="/contact"
-          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
         >
           Discutons de votre projet
           <span className="transition-transform duration-300 group-hover:translate-x-1">

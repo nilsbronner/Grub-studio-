@@ -32,7 +32,7 @@ export function ClientCarousel({ projects }: { projects: Project[] }) {
                 />
               )}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <p className="absolute bottom-3 left-4 text-xs uppercase tracking-[0.15em] text-white/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <p className="absolute bottom-3 left-4 text-xs font-mono uppercase tracking-[0.15em] text-white/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 Voir le projet →
               </p>
             </div>
