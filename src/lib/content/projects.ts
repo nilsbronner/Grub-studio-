@@ -33,6 +33,8 @@ export type Project = {
   vimeoId?: string;
   /** Still frame used as poster/tile background, from the deck until real Vimeo footage is wired in. */
   image?: string;
+  /** Multiple real photos for a photo-only project (no vimeoId) — shown as a carousel on the project page instead of a single static image with a dead play button. */
+  images?: string[];
   /** Accent used for the placeholder tile gradient when no image/footage is set. */
   accent: string;
   /** Client logo file (transparent background) — shown in the carousel's logo band once supplied. Falls back to the client name as a text wordmark when absent. */
@@ -477,6 +479,10 @@ export const projects: Project[] = [
     ],
     accent: "#4a7a5c",
     image: "/images/projects/alsace-habitat.jpg",
+    images: [
+      "/images/projects/alsace-habitat.jpg",
+      "/images/projects/alsace-habitat-2.jpg",
+    ],
     featuredHome: true,
     caseStudy: true,
   },

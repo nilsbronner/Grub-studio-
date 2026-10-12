@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { VideoTile } from "@/components/video-tile";
+import { ProjectGallery } from "@/components/project-gallery";
 import { Reveal } from "@/components/reveal";
 import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
@@ -61,12 +62,20 @@ export default async function ProjectPage({
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        <VideoTile
-          project={project}
-          priority
-          lightbox
-          className="aspect-video w-full"
-        />
+        {!project.vimeoId && project.images && project.images.length > 1 ? (
+          <ProjectGallery
+            images={project.images}
+            alt={project.client}
+            className="aspect-video w-full"
+          />
+        ) : (
+          <VideoTile
+            project={project}
+            priority
+            lightbox
+            className="aspect-video w-full"
+          />
+        )}
       </Reveal>
 
       <Reveal delay={0.15} className="mt-12 grid gap-10 sm:grid-cols-[2fr_1fr]">
