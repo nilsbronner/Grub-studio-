@@ -610,11 +610,6 @@ export const projects: Project[] = [
       "Reportage photo pour l'agence de développement touristique, à l'occasion de la transhumance à Mittlach : troupeaux de vaches vosgiennes, costumes traditionnels marcaires et ambiance de ferme-auberge dans les Vosges.",
     deliverables: ["Reportage photo"],
     accent: "#5a7247",
-    images: [
-      "/images/projects/adt.jpg",
-      "/images/projects/adt-2.jpg",
-      "/images/projects/adt-3.jpg",
-    ],
   },
   {
     slug: "128-db",
@@ -627,11 +622,6 @@ export const projects: Project[] = [
       "Reportage photo au Festival Décibulles à Neuve-Église : scène, concerts et ambiance du public, le temps d'un week-end de musique en Alsace.",
     deliverables: ["Reportage photo"],
     accent: "#c94f4f",
-    images: [
-      "/images/projects/128-db.jpg",
-      "/images/projects/128-db-2.jpg",
-      "/images/projects/128-db-3.jpg",
-    ],
   },
   {
     slug: "grand-angle",
@@ -654,12 +644,12 @@ export const projects: Project[] = [
     slug: "vinci",
     client: "Vinci Group",
     sector: "BTP / Construction",
-    title: "Reportage photo — chantier et vie d'entreprise",
-    hook: "Chantier, équipes et moment de convivialité, en reportage photo.",
+    title: "Reportage photo — repas d'entreprise",
+    hook: "Équipes réunies et moment de convivialité, en reportage photo.",
     categories: ["photo-entreprise"],
     context:
-      "Reportage photo sur un chantier Vinci Group : prises de vue terrain et moment de convivialité en équipe.",
-    deliverables: ["Reportage photo chantier"],
+      "Reportage photo pour Vinci Group à l'occasion d'un repas d'entreprise réunissant les équipes.",
+    deliverables: ["Reportage photo"],
     accent: "#c9622f",
     images: [
       "/images/projects/vinci.jpg",
@@ -670,19 +660,15 @@ export const projects: Project[] = [
   {
     slug: "nutchel",
     client: "Nutchel",
-    sector: "Agroalimentaire",
-    title: "Photos produit",
-    hook: "Mise en scène produit pour la marque.",
+    sector: "Bien-être",
+    title: "Photo produit — bain nordique",
+    hook: "Le bain nordique mis en scène, grandeur nature.",
     categories: ["photo-produit"],
     context:
-      "Shooting photo produit pour Nutchel, pour habiller le site et les supports de communication de la marque.",
+      "Shooting photo produit pour Nutchel, mettant en scène le bain nordique dans son cadre d'utilisation.",
     deliverables: ["Photos produit"],
     accent: "#d9a441",
-    images: [
-      "/images/projects/nutchel.jpg",
-      "/images/projects/nutchel-2.jpg",
-      "/images/projects/nutchel-3.jpg",
-    ],
+    image: "/images/projects/nutchel.jpg",
   },
   {
     slug: "iae-alsace",
@@ -695,11 +681,6 @@ export const projects: Project[] = [
       "Reportage photo pour l'IAE Alsace, couvrant la vie du campus et ses événements, pour alimenter la communication de l'école.",
     deliverables: ["Reportage photo"],
     accent: "#3a6b9a",
-    images: [
-      "/images/projects/iae.jpg",
-      "/images/projects/iae-2.jpg",
-      "/images/projects/iae-3.jpg",
-    ],
   },
   {
     slug: "grinta-studio",
@@ -715,7 +696,6 @@ export const projects: Project[] = [
     images: [
       "/images/projects/grinta-studio.jpg",
       "/images/projects/grinta-studio-2.jpg",
-      "/images/projects/grinta-studio-3.jpg",
     ],
   },
   {
@@ -729,11 +709,6 @@ export const projects: Project[] = [
       "Shooting photo produit pour Porsche Strasbourg, pour mettre en valeur les véhicules du concessionnaire.",
     deliverables: ["Photos produit"],
     accent: "#1a1a1a",
-    images: [
-      "/images/projects/porsche-strasbourg.jpg",
-      "/images/projects/porsche-strasbourg-2.jpg",
-      "/images/projects/porsche-strasbourg-3.jpg",
-    ],
   },
   {
     slug: "k-et-plus",
@@ -763,7 +738,6 @@ export const projects: Project[] = [
       "Shooting photo produit et animations motion design pour expliquer le fonctionnement du dispositif Fizimed, avec traduction en plusieurs langues.",
     deliverables: ["Photos produit", "Animations motion design"],
     accent: "#57c2e7",
-    images: ["/images/projects/fizimed.jpg", "/images/projects/fizimed-2.jpg"],
   },
   {
     slug: "skillcamp",
@@ -793,7 +767,6 @@ export const projects: Project[] = [
       "Aftermovie pour une soirée événementielle organisée par l'Hôtel Hannong, sur le thème de la plage.",
     deliverables: ["Aftermovie"],
     accent: "#3a6b9a",
-    image: "/images/projects/hotel-hannong.jpg",
   },
   {
     slug: "mercedes",
@@ -806,7 +779,6 @@ export const projects: Project[] = [
       "Captation vidéo pour un job dating organisé par Mercedes-Benz V&N, à destination des réseaux sociaux de l'entreprise.",
     deliverables: ["Vidéo événementielle"],
     accent: "#4a4a8a",
-    image: "/images/projects/mercedes.jpg",
   },
   {
     slug: "entendre",
@@ -819,7 +791,6 @@ export const projects: Project[] = [
       "Captation vidéo et reportage photo pour Entendre, dans le cadre de leur campagne de communication 2025.",
     deliverables: ["Vidéo", "Reportage photo"],
     accent: "#57c2e7",
-    image: "/images/projects/entendre.jpg",
   },
   {
     slug: "hanssen",
@@ -832,7 +803,6 @@ export const projects: Project[] = [
       "Animation 3D réalisée pour présenter un balcon sur-mesure conçu par la Métallerie Hanssen.",
     deliverables: ["Animation 3D"],
     accent: "#7a7a7a",
-    image: "/images/projects/hanssen.jpg",
   },
   {
     slug: "demathieu-bard",
@@ -845,7 +815,6 @@ export const projects: Project[] = [
       "Vidéo corporate pour Demathieu Bard Construction, présentant le projet de réhabilitation du Quartier des Pins : conception, réalisation et résidentialisation d'un secteur en site occupé.",
     deliverables: ["Vidéo corporate"],
     accent: "#c9622f",
-    image: "/images/projects/demathieu-bard.jpg",
   },
 ];
 
