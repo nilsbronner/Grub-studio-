@@ -119,7 +119,10 @@ export function VideoTile({
           key={project.vimeoId}
           src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
           className={cx(
-            "pointer-events-none absolute inset-0 h-full w-full transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.04]",
+            // Oversize + center so the embed always crops to cover the tile
+            // instead of letterboxing when a source isn't 16:9 (Vimeo's
+            // background mode doesn't crop on its own).
+            "pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-full min-w-[177.78vh] -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.04]",
             embedLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{ backgroundColor: "var(--background)" }}

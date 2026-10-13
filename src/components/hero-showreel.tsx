@@ -22,7 +22,13 @@ export function HeroShowreel({
         ref={iframeRef}
         src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
         className={cx(
-          "pointer-events-none absolute inset-0 h-full w-full transition-opacity duration-700 ease-out",
+          // Vimeo's own "background" mode just letterboxes the iframe box when
+          // the container's aspect ratio doesn't match the source (e.g. the
+          // portrait 4:5 hero on mobile vs a 16:9 showreel) — it never crops.
+          // Oversizing the iframe against both the width and height axes and
+          // centering it crops it to always cover the container, so there's
+          // never a visible band whatever the breakpoint.
+          "pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-full min-w-[177.78vh] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ease-out",
           loaded ? "opacity-100" : "opacity-0"
         )}
         allow="autoplay; fullscreen"
