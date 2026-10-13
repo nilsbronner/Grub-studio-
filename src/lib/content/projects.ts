@@ -1064,8 +1064,32 @@ export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }
 
+// Display order for the home carousel / Services page — set by the client,
+// independent of where each project sits in the array above.
+const caseStudyOrder = [
+  "galeries-lafayette-histoire",
+  "sofitel-strasbourg",
+  "cft",
+  "squarea",
+  "s-automobile",
+  "sas3b",
+  "atelier-hammaecher-sipion",
+  "once-upon-a-dime",
+  "hollys-diner",
+  "myfood",
+  "strasbourg-esport-days",
+  "instant-vert",
+  "alsace-habitat",
+  "herbapac",
+  "maison-rouge",
+];
+
 export function getCaseStudies(): Project[] {
-  return projects.filter((p) => p.caseStudy);
+  return projects
+    .filter((p) => p.caseStudy)
+    .sort(
+      (a, b) => caseStudyOrder.indexOf(a.slug) - caseStudyOrder.indexOf(b.slug)
+    );
 }
 
 export function getFeaturedProjects(): Project[] {
