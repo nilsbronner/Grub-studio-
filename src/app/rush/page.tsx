@@ -13,12 +13,20 @@ import { getProjectBySlug } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = pageMetadata({
-  path: "/rush",
-  title: "Rush — Reportage événementiel",
-  description:
-    "Un reportage photo et/ou vidéo pour votre événement, de 500 € HT (demi-journée) à 2 900 € HT (journée complète, photo + vidéo).",
-});
+export const metadata: Metadata = {
+  ...pageMetadata({
+    path: "/rush",
+    title: "Rush — Reportage événementiel à Strasbourg",
+    description:
+      "Un reportage photo et/ou vidéo pour votre événement à Strasbourg, en Alsace et au-delà, de 500 € HT (demi-journée) à 2 900 € HT (journée complète, photo + vidéo).",
+  }),
+  keywords: [
+    "reportage photo événementiel Strasbourg",
+    "reportage vidéo événement Alsace",
+    "photographe événementiel entreprise",
+    "captation vidéo événement professionnel",
+  ],
+};
 
 // Real photos from past event/reportage shoots — proof of the photography
 // side of the studio (brief Oct 9, photo <-> vidéo). SED, Alsace Habitat,
@@ -30,6 +38,10 @@ const reportagePreviewSlugs = [
   "sofitel-strasbourg",
   "maison-rouge",
   "galeries-lafayette-histoire",
+  "vinci",
+  "grand-angle",
+  "k-et-plus",
+  "skillcamp",
 ];
 
 export default async function RushPage() {

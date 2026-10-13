@@ -23,7 +23,15 @@ export const metadata: Metadata = {
     template: "%s — Grub Studio",
   },
   description:
-    "Grub Studio, studio de production audiovisuelle basé à Strasbourg : spot pub, motion design, contenu réseaux, photo B2B.",
+    "Grub Studio, studio de production audiovisuelle basé à Strasbourg : spot pub, motion design, contenu réseaux, photo B2B, en Alsace et au-delà.",
+  keywords: [
+    "production vidéo Strasbourg",
+    "agence de production audiovisuelle Alsace",
+    "photographe vidéaste Strasbourg",
+    "campagne publicitaire Alsace",
+    "motion design Strasbourg",
+    "production de contenu Grand Est",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

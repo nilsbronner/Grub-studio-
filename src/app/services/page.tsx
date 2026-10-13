@@ -8,12 +8,22 @@ import { ServiceCaseGrid } from "@/components/service-case-grid";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = pageMetadata({
-  path: "/services",
-  title: "Vidéo & photo pour entreprises à Strasbourg — Services",
-  description:
-    "Vidéo et photo pour les marques : spot pub, Ads, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
-});
+export const metadata: Metadata = {
+  ...pageMetadata({
+    path: "/services",
+    title: "Vidéo & photo pour entreprises à Strasbourg — Services",
+    description:
+      "Vidéo et photo pour les marques en Alsace et au-delà : spot pub, Ads, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
+  }),
+  keywords: [
+    "agence vidéo Strasbourg",
+    "production de contenu Alsace",
+    "spot publicitaire Strasbourg",
+    "campagne Ads Alsace",
+    "motion design entreprise",
+    "photo entreprise Strasbourg",
+  ],
+};
 
 export default async function ServicesPage() {
   const caseProjects = serviceCases
