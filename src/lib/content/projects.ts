@@ -778,13 +778,18 @@ export const projects: Project[] = [
       "reportage photo Vosges",
       "photographe événementiel Strasbourg",
     ],
-    title: "Reportage photo — transhumance à Mittlach",
+    title: "Reportage photo — pool presse multi-sites",
     hook:
-      "Vaches vosgiennes, fermes-auberges et traditions marcaires, en pleine montagne.",
+      "Parc du Petit Prince, Musée de l'Étoffe, Euro 15 Colmar : la destination Alsace, site par site.",
     categories: ["photo-evenementiel"],
     context:
-      "Reportage photo pour l'agence de développement touristique, à l'occasion de la transhumance à Mittlach : troupeaux de vaches vosgiennes, costumes traditionnels marcaires et ambiance de ferme-auberge dans les Vosges.",
-    deliverables: ["Reportage photo"],
+      "Reportage photo pour l'agence de développement touristique, sur plusieurs sites et événements de la destination Alsace : le Parc du Petit Prince, le Musée de l'Étoffe, l'Euro 15 à Colmar et la transhumance à Mittlach. Photos diffusées en pool presse, créditées.",
+    deliverables: ["Reportage photo", "Pool presse"],
+    images: [
+      "/images/projects/adt.jpg",
+      "/images/projects/adt-2.jpg",
+      "/images/projects/adt-3.jpg",
+    ],
     accent: "#5a7247",
   },
   {
