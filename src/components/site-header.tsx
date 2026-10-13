@@ -42,7 +42,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-b from-background/55 via-background/20 to-transparent">
+    <header className="sticky top-0 z-50 bg-transparent [filter:drop-shadow(0_1px_6px_rgb(0_0_0_/_0.8))]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <Link
           href="/"
@@ -105,7 +105,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-border px-5 py-4 text-sm font-mono uppercase tracking-[0.15em] sm:hidden">
+        <nav className="flex flex-col gap-1 border-t border-border bg-background px-5 py-4 text-sm font-mono uppercase tracking-[0.15em] sm:hidden">
           {links.map((link) => (
             <Link
               key={link.href}
