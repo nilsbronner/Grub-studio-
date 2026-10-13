@@ -913,13 +913,18 @@ export const projects: Project[] = [
       "photo produit voiture Alsace",
       "shooting concessionnaire",
     ],
-    title: "Photos produit automobile",
-    hook: "Mise en lumière des véhicules, en studio et en extérieur.",
-    categories: ["photo-produit"],
+    title: "Reportage photo — révélation d'un 911 GT3",
+    hook: "L'instant de la révélation, puis la livraison en photo.",
+    categories: ["photo-produit", "photo-evenementiel"],
     context:
-      "Shooting photo produit pour Porsche Strasbourg, pour mettre en valeur les véhicules du concessionnaire.",
-    deliverables: ["Photos produit"],
+      "Reportage photo au Centre Porsche Strasbourg, de la révélation d'une 911 GT3 sous sa housse jusqu'à la remise des clés en présence du client et de l'équipe.",
+    deliverables: ["Reportage photo"],
     accent: "#1a1a1a",
+    images: [
+      "/images/projects/porsche-strasbourg.jpg",
+      "/images/projects/porsche-strasbourg-2.jpg",
+      "/images/projects/porsche-strasbourg-3.jpg",
+    ],
   },
   {
     slug: "k-et-plus",
