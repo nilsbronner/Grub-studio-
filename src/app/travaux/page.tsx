@@ -7,12 +7,21 @@ import { projects } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = pageMetadata({
-  path: "/travaux",
-  title: "Nos réalisations",
-  description:
-    "Spots pub, campagnes Ads, contenu réseaux, motion design et photo B2B — les productions Grub Studio.",
-});
+export const metadata: Metadata = {
+  ...pageMetadata({
+    path: "/travaux",
+    title: "Nos réalisations",
+    description:
+      "Spots pub, campagnes Ads, contenu réseaux, motion design et photo B2B à Strasbourg, en Alsace et au-delà — les productions Grub Studio.",
+  }),
+  keywords: [
+    "agence de production vidéo Strasbourg",
+    "production de contenu Alsace",
+    "photographe vidéaste Strasbourg",
+    "campagnes publicitaires Alsace",
+    "portfolio vidéo et photo entreprise",
+  ],
+};
 
 export default async function TravauxPage() {
   const projectsWithPosters = await withVimeoPosters(projects);

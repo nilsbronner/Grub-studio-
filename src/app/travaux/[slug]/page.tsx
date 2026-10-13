@@ -25,7 +25,7 @@ export async function generateMetadata({
   return {
     ...pageMetadata({
       path: `/travaux/${project.slug}`,
-      title: project.client,
+      title: `${project.client} — ${project.title}`,
       description: project.hook,
     }),
     keywords: project.keywords,
