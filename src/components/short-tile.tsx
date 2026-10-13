@@ -60,7 +60,7 @@ export function ShortTile({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [inView, setInView] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
-  const embedLoaded = useVimeoPlaying(iframeRef, inView);
+  const { playing: embedLoaded } = useVimeoPlaying(iframeRef, inView);
 
   useEffect(() => {
     const el = ref.current;

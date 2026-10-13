@@ -85,7 +85,7 @@ export function VideoTile({
 
   const showEmbed =
     (trigger === "view" ? inView : hovered) && Boolean(project.vimeoId);
-  const embedLoaded = useVimeoPlaying(iframeRef, showEmbed);
+  const { playing: embedLoaded } = useVimeoPlaying(iframeRef, showEmbed);
 
   const tileClassName = cx(
     "group relative block aspect-video cursor-pointer overflow-hidden bg-cover bg-center",

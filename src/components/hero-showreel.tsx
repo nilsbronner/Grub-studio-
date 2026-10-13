@@ -13,7 +13,7 @@ export function HeroShowreel({
   catchphrase: string;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const loaded = useVimeoPlaying(iframeRef, true);
+  const { playing: loaded, blocked, retry } = useVimeoPlaying(iframeRef, true);
 
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden border-b border-border sm:aspect-video">
@@ -35,6 +35,24 @@ export function HeroShowreel({
         title="Showreel Grub Studio"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
+
+      {blocked && (
+        <button
+          type="button"
+          onClick={retry}
+          aria-label="Lancer la vidéo"
+          className="group absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="ml-1 h-7 w-7"
+            aria-hidden
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </button>
+      )}
 
       <div className="relative flex h-full flex-col justify-end px-5 pb-10 sm:px-8 sm:pb-14">
         <div className="mx-auto w-full max-w-7xl">
