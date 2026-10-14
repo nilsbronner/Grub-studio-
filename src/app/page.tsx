@@ -13,6 +13,8 @@ import { pageMetadata } from "@/lib/metadata";
 import { siteUrl } from "@/lib/site";
 import { contact } from "@/lib/content/contact";
 import { withVimeoPosters } from "@/lib/vimeo";
+import { cx } from "@/lib/cx";
+import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
@@ -169,7 +171,11 @@ export default async function Home() {
           </h2>
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+            className={cx(
+              "group flex shrink-0 items-center gap-3 border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300",
+              PAGE_ACCENT_CLASSES.pink.solid,
+              PAGE_ACCENT_CLASSES.pink.hover
+            )}
           >
             Discutons de votre projet
             <span className="transition-transform duration-300 group-hover:translate-x-1">

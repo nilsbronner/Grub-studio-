@@ -7,6 +7,8 @@ import { Reveal } from "@/components/reveal";
 import { ServiceCaseGrid } from "@/components/service-case-grid";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { pageMetadata } from "@/lib/metadata";
+import { cx } from "@/lib/cx";
+import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -72,7 +74,11 @@ export default async function ServicesPage() {
         </h2>
         <Link
           href="/contact"
-          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+          className={cx(
+            "group flex shrink-0 items-center gap-3 border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300",
+            PAGE_ACCENT_CLASSES.purple.solid,
+            PAGE_ACCENT_CLASSES.purple.hover
+          )}
         >
           Discutons de votre projet
           <span className="transition-transform duration-300 group-hover:translate-x-1">

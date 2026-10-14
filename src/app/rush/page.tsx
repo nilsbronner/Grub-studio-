@@ -12,6 +12,8 @@ import {
 import { getProjectBySlug } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
+import { cx } from "@/lib/cx";
+import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 export const metadata: Metadata = {
   ...pageMetadata({
@@ -115,7 +117,11 @@ export default async function RushPage() {
           </Link>
           <Link
             href="/contact"
-            className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+            className={cx(
+              "group flex shrink-0 items-center gap-3 border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300",
+              PAGE_ACCENT_CLASSES.cyan.solid,
+              PAGE_ACCENT_CLASSES.cyan.hover
+            )}
           >
             Discutons de votre projet
             <span className="transition-transform duration-300 group-hover:translate-x-1">

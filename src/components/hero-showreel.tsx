@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { cx } from "@/lib/cx";
 import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
+import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 export function HeroShowreel({
   vimeoId,
@@ -62,7 +63,11 @@ export function HeroShowreel({
           <div className="mt-6 flex items-center gap-6">
             <Link
               href="/travaux"
-              className="border border-accent bg-accent px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-purple hover:bg-accent-purple"
+              className={cx(
+                "border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5",
+                PAGE_ACCENT_CLASSES.pink.solid,
+                PAGE_ACCENT_CLASSES.pink.hover
+              )}
             >
               Voir nos réalisations
             </Link>
