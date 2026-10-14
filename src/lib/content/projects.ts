@@ -893,7 +893,6 @@ export const projects: Project[] = [
     accent: "#d9a441",
     logo: "/images/logos/nutchel.png",
     logoOnDark: true,
-    image: "/images/projects/nutchel.jpg",
   },
   {
     slug: "iae-alsace",
