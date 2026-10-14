@@ -15,15 +15,22 @@ export function useDragScroll(ref: RefObject<HTMLDivElement | null>) {
     moved.current = false;
     startX.current = e.clientX;
     startScroll.current = el.scrollLeft;
-    el.setPointerCapture(e.pointerId);
+    // Pointer capture is deferred to the first real move (below), not taken
+    // here: on iOS Safari, capturing the pointer immediately on a row that's
+    // still auto-scrolling makes the browser treat a plain tap as a scroll
+    // gesture and swallow the click — so a tap on a link never registers
+    // unless the row happened to already be paused by a hover first.
   }
 
   function onPointerMove(e: React.PointerEvent) {
     const el = ref.current;
     if (!el || !dragging.current) return;
     const dx = e.clientX - startX.current;
-    if (Math.abs(dx) > 4) moved.current = true;
-    el.scrollLeft = startScroll.current - dx;
+    if (Math.abs(dx) > 4) {
+      if (!moved.current) el.setPointerCapture(e.pointerId);
+      moved.current = true;
+    }
+    if (moved.current) el.scrollLeft = startScroll.current - dx;
   }
 
   function endDrag() {

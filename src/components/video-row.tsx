@@ -74,7 +74,7 @@ export function VideoRow({
       onMouseEnter={() => (paused.current = true)}
       onMouseLeave={() => (paused.current = false)}
       {...handlers}
-      className="no-scrollbar flex cursor-grab gap-4 overflow-x-auto px-5 pb-2 active:cursor-grabbing sm:px-8"
+      className="no-scrollbar flex cursor-grab gap-4 overflow-x-auto px-5 pb-2 [touch-action:pan-x] active:cursor-grabbing sm:px-8"
     >
       {loop.map((project, i) => (
         <VideoTile
