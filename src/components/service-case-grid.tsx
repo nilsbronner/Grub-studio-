@@ -56,8 +56,14 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
               <p className="mt-3 flex-1 text-sm leading-relaxed text-foreground/70">
                 {item.description}
               </p>
-              <p className="mt-4 text-xs font-mono uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-accent">
-                Voir le cas →
+              <p
+                style={{ color }}
+                className="mt-4 flex items-center gap-1 text-xs font-mono uppercase tracking-[0.15em] transition-transform duration-300"
+              >
+                Voir le cas
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </p>
             </div>
           </Link>

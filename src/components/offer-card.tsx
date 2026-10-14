@@ -92,7 +92,8 @@ export function OfferList({ offers }: { offers: Offer[] }) {
 
             <Link
               href={offer.ctaHref ?? "/contact"}
-              className="group mt-6 flex items-center justify-center gap-2 border border-border py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+              style={{ borderColor: color, color }}
+              className="group mt-6 flex items-center justify-center gap-2 border py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5"
             >
               {offer.ctaLabel ?? "Réserver mon tournage"}
               <span className="transition-transform duration-300 group-hover:translate-x-1">
