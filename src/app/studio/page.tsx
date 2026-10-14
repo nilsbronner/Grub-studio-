@@ -15,6 +15,8 @@ import { MethodTimeline } from "@/components/method-timeline";
 import { EyebrowPill } from "@/components/eyebrow-pill";
 import { LogoMark } from "@/components/logo-mark";
 import { pageMetadata } from "@/lib/metadata";
+import { cx } from "@/lib/cx";
+import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
   kickoff: <Sparkle className="h-4 w-4" strokeWidth={1.75} />,
@@ -122,7 +124,11 @@ export default function StudioPage() {
         </h2>
         <Link
           href="/contact"
-          className="group flex shrink-0 items-center gap-3 border border-border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent"
+          className={cx(
+            "group flex shrink-0 items-center gap-3 border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300",
+            PAGE_ACCENT_CLASSES.cyan.solid,
+            PAGE_ACCENT_CLASSES.cyan.hover
+          )}
         >
           Discutons de votre projet
           <span className="transition-transform duration-300 group-hover:translate-x-1">
