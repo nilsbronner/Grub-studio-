@@ -62,7 +62,7 @@ export function HeroShowreel({
           <div className="mt-6 flex items-center gap-6">
             <Link
               href="/travaux"
-              className="border border-border bg-background/60 px-4 py-2 text-sm font-mono uppercase tracking-[0.15em] backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent"
+              className="border border-accent bg-accent px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-purple hover:bg-accent-purple"
             >
               Voir nos réalisations
             </Link>
