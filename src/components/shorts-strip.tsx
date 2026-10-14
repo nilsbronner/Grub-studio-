@@ -47,7 +47,7 @@ export function ShortsStrip({ shorts }: { shorts: Short[] }) {
     <div
       ref={ref}
       {...handlers}
-      className="no-scrollbar flex cursor-grab gap-4 overflow-x-auto pb-2 active:cursor-grabbing"
+      className="no-scrollbar flex cursor-grab gap-4 overflow-x-auto pb-2 [touch-action:pan-x] active:cursor-grabbing"
     >
       {loop.map((short, i) => (
         <ShortTile
