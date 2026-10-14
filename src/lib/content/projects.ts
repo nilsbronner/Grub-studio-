@@ -39,6 +39,8 @@ export type Project = {
   accent: string;
   /** Client logo file (transparent background) — shown in the carousel's logo band once supplied. Falls back to the client name as a text wordmark when absent. */
   logo?: string;
+  /** Set when `logo` is a white/light mark meant for a dark background — the carousel swaps its pill to dark instead of white so the logo stays visible. */
+  logoOnDark?: boolean;
   featuredHome?: boolean;
   /** One of the 14 flagship client case studies — shown in the home carousel and linked from /services. */
   caseStudy?: boolean;
@@ -100,6 +102,7 @@ export const projects: Project[] = [
       "Formats institutionnels",
     ],
     accent: "#2f6b5e",
+    logo: "/images/logos/squarea.png",
     vimeoId: "1098155108",
     featuredHome: true,
     caseStudy: true,
@@ -128,6 +131,7 @@ export const projects: Project[] = [
       "Photos food & carte",
     ],
     accent: "#b8933a",
+    logo: "/images/logos/hollys-diner.svg",
     image: "/images/projects/hollys-diner.jpg",
     vimeoId: "1214544969",
     featuredHome: true,
@@ -154,6 +158,8 @@ export const projects: Project[] = [
       "Base de contenus réutilisable",
     ],
     accent: "#3a5f8f",
+    logo: "/images/logos/myfood.png",
+    logoOnDark: true,
     image: "/images/projects/myfood.jpg",
     vimeoId: "1214545694",
     featuredHome: true,
@@ -181,6 +187,7 @@ export const projects: Project[] = [
       "Visuels Twitch / decks / sponsors",
     ],
     accent: "#e0483f",
+    logo: "/images/logos/strasbourg-esport-days.png",
     image: "/images/projects/strasbourg-esport-days.jpg",
     images: [
       "/images/projects/strasbourg-esport-days.jpg",
@@ -259,6 +266,8 @@ export const projects: Project[] = [
       "Aftermovie réalisé pour capter l'ambiance et les temps forts de l'événement Bizz & Buzz.",
     deliverables: ["Aftermovie"],
     accent: "#9a4d6b",
+    logo: "/images/logos/bizz-and-buzz.png",
+    logoOnDark: true,
     vimeoId: "1214544938",
     featuredHome: true,
   },
@@ -415,6 +424,7 @@ export const projects: Project[] = [
       "Plans produit studio",
     ],
     accent: "#2f9a5a",
+    logo: "/images/logos/instant-vert.png",
     vimeoId: "1214545033",
     featuredHome: true,
     caseStudy: true,
@@ -440,6 +450,7 @@ export const projects: Project[] = [
       "Photo & vidéo événementielle",
     ],
     accent: "#9a5a2f",
+    logo: "/images/logos/sas3b.png",
     vimeoId: "1214544952",
     featuredHome: true,
     caseStudy: true,
@@ -458,6 +469,8 @@ export const projects: Project[] = [
     context: "Vidéo réalisée pour présenter l'activité de Vimersio.",
     deliverables: ["Vidéo"],
     accent: "#5a2f9a",
+    logo: "/images/logos/vimersio.png",
+    logoOnDark: true,
     vimeoId: "1173948800",
     featuredHome: true,
   },
@@ -623,6 +636,7 @@ export const projects: Project[] = [
       "Photo & vidéo",
     ],
     accent: "#4a7a5c",
+    logo: "/images/logos/alsace-habitat.png",
     image: "/images/projects/alsace-habitat.jpg",
     images: [
       "/images/projects/alsace-habitat.jpg",
@@ -653,6 +667,7 @@ export const projects: Project[] = [
       "Showreel produits",
     ],
     accent: "#b8793a",
+    logo: "/images/logos/atelier-hammaecher-sipion.png",
     image: "/images/projects/atelier-hammaecher-sipion.jpg",
     images: [
       "/images/projects/atelier-hammaecher-sipion.jpg",
@@ -678,6 +693,7 @@ export const projects: Project[] = [
       "Vidéo avec motion design intégré dans les locaux, en tracking, pour montrer toute la chaîne de production : du thé brut jusqu'au sachet prêt à livrer ou à mettre en rayon.",
     deliverables: ["Vidéo avec motion design", "Tournage en tracking"],
     accent: "#2f9a7a",
+    logo: "/images/logos/herbapac.svg",
     featuredHome: true,
     caseStudy: true,
   },
@@ -697,6 +713,7 @@ export const projects: Project[] = [
       "Nouvelle vidéo promotionnelle pour présenter le système et la façon de vendre du Comptoir Français du Thé, avec leurs différents types de produits.",
     deliverables: ["Vidéo promotionnelle"],
     accent: "#8a6b3a",
+    logo: "/images/logos/cft.svg",
     featuredHome: true,
     caseStudy: true,
   },
@@ -717,6 +734,8 @@ export const projects: Project[] = [
       "Reportage photo et vidéo événementiel, puis une vidéo tour operateur pensée pour deux publics — particuliers et professionnels — afin de promouvoir l'hôtel à l'international.",
     deliverables: ["Reportage événementiel", "Vidéo tour operateur"],
     accent: "#7a3a4a",
+    logo: "/images/logos/maison-rouge.svg",
+    logoOnDark: true,
     image: "/images/projects/maison-rouge.jpg",
     images: [
       "/images/projects/maison-rouge.jpg",
@@ -766,6 +785,7 @@ export const projects: Project[] = [
       "Déclinaison radio",
     ],
     accent: "#4a4a8a",
+    logo: "/images/logos/s-automobile.png",
     featuredHome: true,
     caseStudy: true,
   },
@@ -791,6 +811,7 @@ export const projects: Project[] = [
       "/images/projects/adt-3.jpg",
     ],
     accent: "#5a7247",
+    logo: "/images/logos/adt.png",
   },
   {
     slug: "128-db",
@@ -847,6 +868,7 @@ export const projects: Project[] = [
       "Reportage photo pour Vinci Group à l'occasion d'un repas d'entreprise réunissant les équipes.",
     deliverables: ["Reportage photo"],
     accent: "#c9622f",
+    logo: "/images/logos/vinci.svg",
     images: [
       "/images/projects/vinci.jpg",
       "/images/projects/vinci-2.jpg",
@@ -869,6 +891,8 @@ export const projects: Project[] = [
       "Shooting photo produit pour Nutchel, mettant en scène le bain nordique dans son cadre d'utilisation.",
     deliverables: ["Photos produit"],
     accent: "#d9a441",
+    logo: "/images/logos/nutchel.png",
+    logoOnDark: true,
     image: "/images/projects/nutchel.jpg",
   },
   {
@@ -925,6 +949,7 @@ export const projects: Project[] = [
       "Reportage photo au Centre Porsche Strasbourg, de la révélation d'une 911 GT3 sous sa housse jusqu'à la remise des clés en présence du client et de l'équipe.",
     deliverables: ["Reportage photo"],
     accent: "#1a1a1a",
+    logo: "/images/logos/porsche-strasbourg.png",
     images: [
       "/images/projects/porsche-strasbourg.jpg",
       "/images/projects/porsche-strasbourg-2.jpg",
@@ -947,6 +972,7 @@ export const projects: Project[] = [
       "Reportage photo et vidéo (aftermovie) à l'occasion de l'inauguration des nouveaux locaux de K&+.",
     deliverables: ["Aftermovie", "Reportage photo"],
     accent: "#5035a9",
+    logo: "/images/logos/k-et-plus.png",
     images: [
       "/images/projects/k-et-plus.jpg",
       "/images/projects/k-et-plus-2.jpg",
@@ -969,6 +995,7 @@ export const projects: Project[] = [
       "Shooting photo produit et animations motion design pour expliquer le fonctionnement du dispositif Fizimed, avec traduction en plusieurs langues.",
     deliverables: ["Photos produit", "Animations motion design"],
     accent: "#57c2e7",
+    logo: "/images/logos/fizimed.svg",
   },
   {
     slug: "skillcamp",
@@ -1006,6 +1033,7 @@ export const projects: Project[] = [
       "Aftermovie pour une soirée événementielle organisée par l'Hôtel Hannong, sur le thème de la plage.",
     deliverables: ["Aftermovie"],
     accent: "#3a6b9a",
+    logo: "/images/logos/hotel-hannong.svg",
   },
   {
     slug: "entendre",
@@ -1023,6 +1051,8 @@ export const projects: Project[] = [
       "Captation vidéo et reportage photo pour Entendre, dans le cadre de leur campagne de communication 2025.",
     deliverables: ["Vidéo", "Reportage photo"],
     accent: "#57c2e7",
+    logo: "/images/logos/entendre.png",
+    logoOnDark: true,
   },
   {
     slug: "hanssen",
@@ -1040,6 +1070,7 @@ export const projects: Project[] = [
       "Animation 3D réalisée pour présenter un balcon sur-mesure conçu par la Métallerie Hanssen.",
     deliverables: ["Animation 3D"],
     accent: "#7a7a7a",
+    logo: "/images/logos/hanssen.png",
   },
   {
     slug: "demathieu-bard",
@@ -1057,6 +1088,7 @@ export const projects: Project[] = [
       "Vidéo corporate pour Demathieu Bard Construction, présentant le projet de réhabilitation du Quartier des Pins : conception, réalisation et résidentialisation d'un secteur en site occupé.",
     deliverables: ["Vidéo corporate"],
     accent: "#c9622f",
+    logo: "/images/logos/demathieu-bard.png",
   },
 ];
 
