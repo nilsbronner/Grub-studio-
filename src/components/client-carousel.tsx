@@ -33,7 +33,13 @@ export function ClientCarousel({ projects }: { projects: Project[] }) {
 
             <div className="absolute inset-x-0 bottom-0 p-4">
               {project.logo && (
-                <div className="mb-2 inline-flex h-10 items-center rounded-full bg-white px-3">
+                <div
+                  className={
+                    project.logoOnDark
+                      ? "mb-2 inline-flex h-10 items-center rounded-full bg-black/80 px-3"
+                      : "mb-2 inline-flex h-10 items-center rounded-full bg-white px-3"
+                  }
+                >
                   <div className="relative h-6 w-9">
                     <Image
                       src={project.logo}
