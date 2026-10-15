@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ServiceCase } from "@/lib/content/service-cases";
-import type { Project } from "@/lib/content/projects";
+import { coverImage, type Project } from "@/lib/content/projects";
 import { serviceColor } from "@/lib/service-colors";
+import { cx } from "@/lib/cx";
 
 export type ResolvedServiceCase = ServiceCase & { project: Project };
 
@@ -12,6 +13,7 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
       {cases.map((item) => {
         const project = item.project;
         const color = serviceColor(item.service);
+        const image = coverImage(project);
         return (
           <Link
             key={item.caseSlug}
@@ -21,21 +23,51 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
             <div
               className="relative aspect-video bg-cover bg-center"
               style={
-                project.image
+                image
                   ? undefined
                   : {
                       backgroundImage: `linear-gradient(160deg, ${project.accent} 0%, #0b0b0a 85%)`,
                     }
               }
             >
-              {project.image && (
-                <Image
-                  src={project.image}
-                  alt=""
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                />
+              {image && (
+                <>
+                  <Image
+                    src={image}
+                    alt=""
+                    fill
+                    aria-hidden
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="scale-110 object-cover opacity-70 blur-2xl"
+                  />
+                  <Image
+                    src={image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                  />
+                </>
+              )}
+              {!image && project.logo && (
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <div
+                    className={cx(
+                      "flex h-12 items-center rounded-full px-4",
+                      project.logoOnDark ? "bg-black/80" : "bg-white"
+                    )}
+                  >
+                    <div className="relative h-7 w-16">
+                      <Image
+                        src={project.logo}
+                        alt=""
+                        fill
+                        sizes="64px"
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                </div>
               )}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <p className="absolute bottom-3 left-4 text-xs font-mono uppercase tracking-[0.15em] text-white/70">

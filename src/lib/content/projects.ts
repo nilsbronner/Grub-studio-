@@ -693,6 +693,7 @@ export const projects: Project[] = [
       "Vidéo avec motion design intégré dans les locaux, en tracking, pour montrer toute la chaîne de production : du thé brut jusqu'au sachet prêt à livrer ou à mettre en rayon.",
     deliverables: ["Vidéo avec motion design", "Tournage en tracking"],
     accent: "#2f9a7a",
+    image: "/images/projects/herbapac.jpg",
     logo: "/images/logos/herbapac.svg",
     featuredHome: true,
     caseStudy: true,
@@ -1101,6 +1102,13 @@ export const projects: Project[] = [
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+/** Thumbnail/poster image for a project: its own `image`, or the first shot of its `images` gallery when only that was set. */
+export function coverImage(
+  project: Pick<Project, "image" | "images">
+): string | undefined {
+  return project.image ?? project.images?.[0];
 }
 
 // Display order for the home carousel / Services page — set by the client,
