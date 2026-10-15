@@ -3,38 +3,41 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { cx } from "@/lib/cx";
-import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
+import { useVideoPlaying } from "@/lib/use-video-playing";
 import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 export function HeroShowreel({
-  vimeoId,
+  webmSrc,
+  mp4Src,
   catchphrase,
 }: {
-  vimeoId: string;
+  /** Self-hosted WebM/VP9 rendition (e.g. `/videos/showreel.webm`) — listed first for browsers that support it. */
+  webmSrc: string;
+  /** Self-hosted MP4/H.264 rendition — universal fallback (notably Safari, which has no WebM support). */
+  mp4Src: string;
   catchphrase: string;
 }) {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const { playing: loaded, blocked, retry } = useVimeoPlaying(iframeRef, true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const { playing: loaded, blocked, retry } = useVideoPlaying(videoRef, true);
 
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden border-b border-border sm:aspect-video">
       <div className="absolute inset-0 bg-[#0b0b0a]" />
-      <iframe
-        ref={iframeRef}
-        src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
+      <video
+        ref={videoRef}
         className={cx(
-          // Vimeo's own "background" mode just letterboxes the iframe box when
-          // the container's aspect ratio doesn't match the source (e.g. the
-          // portrait 4:5 hero on mobile vs a 16:9 showreel) — it never crops.
-          // Oversizing the iframe against both the width and height axes and
-          // centering it crops it to always cover the container, so there's
-          // never a visible band whatever the breakpoint.
-          "pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-full min-w-[177.78vh] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ease-out",
+          "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
           loaded ? "opacity-100" : "opacity-0"
         )}
-        allow="autoplay; fullscreen"
-        title="Showreel Grub Studio"
-      />
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-label="Showreel Grub Studio"
+      >
+        <source src={webmSrc} type="video/webm" />
+        <source src={mp4Src} type="video/mp4" />
+      </video>
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
 
       {blocked && (
