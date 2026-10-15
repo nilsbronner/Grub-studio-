@@ -64,9 +64,9 @@ export default async function ProjectPage({
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        {!project.vimeoId && project.images && project.images.length > 1 ? (
+        {!project.vimeoId && (project.images?.length || project.image) ? (
           <ProjectGallery
-            images={project.images}
+            images={project.images ?? (project.image ? [project.image] : [])}
             alt={project.client}
             className="aspect-video w-full"
           />
