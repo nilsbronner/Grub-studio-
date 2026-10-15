@@ -61,7 +61,8 @@ export default async function Home() {
       />
 
       <HeroShowreel
-        vimeoId="1214532172"
+        webmSrc="/videos/showreel.webm"
+        mp4Src="/videos/showreel.mp4"
         catchphrase="GRUB. Le créateur de contenu de vos marques préférées."
       />
 
