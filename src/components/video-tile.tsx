@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { cx } from "@/lib/cx";
-import type { Project } from "@/lib/content/projects";
+import { coverImage, type Project } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
 import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
 import { VideoLightbox } from "@/components/video-lightbox";
@@ -87,11 +87,13 @@ export function VideoTile({
     (trigger === "view" ? inView : hovered) && Boolean(project.vimeoId);
   const { playing: embedLoaded } = useVimeoPlaying(iframeRef, showEmbed);
 
+  const image = coverImage(project);
+
   const tileClassName = cx(
     "group relative block aspect-video cursor-pointer overflow-hidden bg-cover bg-center",
     className
   );
-  const tileStyle = project.image
+  const tileStyle = image
     ? undefined
     : {
         backgroundImage: `linear-gradient(160deg, ${project.accent} 0%, #0b0b0a 85%)`,
@@ -99,18 +101,53 @@ export function VideoTile({
 
   const content = (
     <>
-      {project.image && (
-        <Image
-          src={project.image}
-          alt=""
-          fill
-          priority={priority}
-          sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 85vw"
-          className={cx(
-            "object-cover transition-opacity duration-500 ease-out",
-            embedLoaded && "opacity-0"
-          )}
-        />
+      {image && (
+        <>
+          {/* Blurred, scaled copy fills the frame so the real photo below never has to crop (and potentially cut off a face) to match the 16:9 tile. */}
+          <Image
+            src={image}
+            alt=""
+            fill
+            aria-hidden
+            sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 85vw"
+            className={cx(
+              "scale-110 object-cover opacity-70 blur-2xl transition-opacity duration-500 ease-out",
+              embedLoaded && "opacity-0"
+            )}
+          />
+          <Image
+            src={image}
+            alt=""
+            fill
+            priority={priority}
+            sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 85vw"
+            className={cx(
+              "object-contain transition-opacity duration-500 ease-out",
+              embedLoaded && "opacity-0"
+            )}
+          />
+        </>
+      )}
+
+      {!image && project.logo && (
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div
+            className={cx(
+              "flex h-12 items-center rounded-full px-4",
+              project.logoOnDark ? "bg-black/80" : "bg-white"
+            )}
+          >
+            <div className="relative h-7 w-16">
+              <Image
+                src={project.logo}
+                alt=""
+                fill
+                sizes="64px"
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
       )}
 
       {showEmbed && project.vimeoId && (

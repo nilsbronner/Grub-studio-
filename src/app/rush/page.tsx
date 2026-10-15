@@ -9,7 +9,7 @@ import {
   eventOffers,
   eventOfferNote,
 } from "@/lib/content/event-offer";
-import { getProjectBySlug } from "@/lib/content/projects";
+import { coverImage, getProjectBySlug } from "@/lib/content/projects";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { pageMetadata } from "@/lib/metadata";
 import { cx } from "@/lib/cx";
@@ -53,7 +53,7 @@ export default async function RushPage() {
         .map((slug) => getProjectBySlug(slug))
         .filter((p): p is NonNullable<typeof p> => Boolean(p))
     )
-  ).filter((p) => Boolean(p.image));
+  ).filter((p) => Boolean(coverImage(p)));
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
@@ -80,11 +80,19 @@ export default async function RushPage() {
                 className="group relative aspect-[4/5] overflow-hidden"
               >
                 <Image
-                  src={project.image!}
+                  src={coverImage(project)!}
+                  alt=""
+                  fill
+                  aria-hidden
+                  sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
+                  className="scale-110 object-cover opacity-70 blur-2xl"
+                />
+                <Image
+                  src={coverImage(project)!}
                   alt={`Reportage photo — ${project.client}`}
                   fill
                   sizes="(min-width: 1024px) 16vw, (min-width: 640px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                  className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 <p className="absolute bottom-3 left-3 text-xs font-mono uppercase tracking-[0.15em] text-white/80">
