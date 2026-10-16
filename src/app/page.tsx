@@ -63,7 +63,7 @@ export default async function Home() {
       <HeroShowreel
         webmSrc="/videos/showreel.webm"
         mp4Src="/videos/showreel.mp4"
-        catchphrase="GRUB. Le créateur de contenu de vos marques préférées."
+        catchphrase="Grub Studio, le créateur de contenu de vos marques préférées."
       />
 
       <Reveal className="border-t border-border">
