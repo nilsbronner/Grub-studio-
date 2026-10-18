@@ -1,0 +1,90 @@
+name: Publier les cas clients prêts (Médias)
+
+on:
+  schedule:
+    # 07:50 Europe/Paris (heure d'hiver, UTC+1) — ajuster de 1h en heure d'été si besoin.
+    - cron: '50 6 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Récupère les fiches prêtes et ajoute les entrées
+        id: build
+        env:
+          MEDIAS_INGEST_TOKEN: ${{ secrets.MEDIAS_INGEST_TOKEN }}
+        run: node scripts/publish-ready-medias.mjs
+
+      - name: Vérifie s'il y a quelque chose à publier
+        id: changes
+        run: |
+          if [ -n "$(git status --porcelain src/lib/content/projects.ts)" ]; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ouvre la Pull Request
+        if: steps.changes.outputs.has_changes == 'true'
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "grub-medias-bot"
+          git config user.email "actions@users.noreply.github.com"
+          branch="medias/auto-$(date +%Y%m%d-%H%M%S)"
+          git checkout -b "$branch"
+          git add src/lib/content/projects.ts
+          git commit -m "Ajoute $(jq -r '[.[].slug] | join(", ")' processed-medias.json) depuis Médias"
+          git push origin "$branch"
+          slugs=$(jq -r '[.[].slug] | join(", ")' processed-medias.json)
+          pr_url=$(gh pr create \
+            --title "Nouveaux cas clients : $slugs" \
+            --body "$(cat <<EOF
+          Ajouté automatiquement depuis le module Médias de Grub Gestion (fiches validées, SEO relu).
+
+          ## À compléter avant de merger
+          - [ ] Secteur (\`sector\`) pour chaque entrée
+          - [ ] Catégories (\`categories\`)
+          - [ ] Couleur d'accent (\`accent\`) — violet Grub Motion mis par défaut
+          - [ ] Logo, image(s)
+          - [ ] Stats, témoignage client si pertinent
+          - [ ] Décider si l'entrée doit avoir \`caseStudy: true\` + être ajoutée à \`caseStudyOrder\`
+
+          Fiches sources : $slugs
+
+          Jamais de merge automatique — à relire avant de publier.
+          EOF
+          )" \
+            --base main)
+          echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
+
+      - name: Marque les fiches comme publiées côté Médias
+        if: steps.changes.outputs.has_changes == 'true'
+        env:
+          MEDIAS_INGEST_TOKEN: ${{ secrets.MEDIAS_INGEST_TOKEN }}
+          PR_URL: ${{ steps.pr.outputs.pr_url }}
+        run: |
+          jq -c '.[]' processed-medias.json | while read -r row; do
+            id=$(echo "$row" | jq -r '.id')
+            pipeline=$(echo "$row" | jq -c '.pipeline + {site: true}')
+            curl -sf -X POST "https://nvuregnrdspayomugvct.supabase.co/functions/v1/medias-upsert" \
+              -H "Authorization: Bearer $MEDIAS_INGEST_TOKEN" \
+              -H "apikey: sb_publishable_Af63pSSZejzV-Fm4h3pluQ_hb_XVsKZ" \
+              -H "Content-Type: application/json" \
+              -d "{\"patch\":{\"id\":\"$id\",\"pipeline\":$pipeline,\"site_pr_url\":\"$PR_URL\"}}"
+          done
