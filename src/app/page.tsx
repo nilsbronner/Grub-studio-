@@ -31,6 +31,8 @@ export default async function Home() {
     <>
       <HeroShowreel
         vimeoId="1236550368"
+        vimeoIdMobile="1236997460"
+        vimeoHashMobile="90c566b331"
         heading="Agence de production vidéo & photo à Strasbourg"
         catchphrase="Grub Studio, le créateur de contenu de vos marques préférées."
       />
