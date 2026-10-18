@@ -118,7 +118,7 @@ export function ShortTile({
       {inView && (
         <iframe
           ref={iframeRef}
-          src={`https://player.vimeo.com/video/${short.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
+          src={`https://player.vimeo.com/video/${short.vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0${short.vimeoHash ? `&h=${short.vimeoHash}` : ""}`}
           className={cx(
             "pointer-events-none absolute inset-0 h-full w-full transition-opacity duration-700 ease-out",
             embedLoaded ? "opacity-100" : "opacity-0"
@@ -161,6 +161,7 @@ export function ShortTile({
 
       <VideoLightbox
         vimeoId={short.vimeoId}
+        vimeoHash={short.vimeoHash}
         title={short.title}
         open={lightboxOpen}
         onClose={() => setLightboxOpen(false)}

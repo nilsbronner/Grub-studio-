@@ -6,12 +6,14 @@ import { cx } from "@/lib/cx";
 
 export function VideoLightbox({
   vimeoId,
+  vimeoHash,
   title,
   open,
   onClose,
   vertical = false,
 }: {
   vimeoId: string;
+  vimeoHash?: string;
   title: string;
   open: boolean;
   onClose: () => void;
@@ -56,7 +58,7 @@ export function VideoLightbox({
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
-              src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&controls=1`}
+              src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&controls=1${vimeoHash ? `&h=${vimeoHash}` : ""}`}
               className="h-full w-full"
               allow="autoplay; fullscreen; picture-in-picture"
               title={title}

@@ -5,16 +5,22 @@ type OEmbedResponse = {
 // Runs server-side during the static build, where outbound network access is
 // unrestricted — resolves a real poster frame so tiles never render blank
 // while the player boots, instead of the generic accent-gradient fallback.
-async function fetchVimeoThumbnail(vimeoId: string): Promise<string | null> {
+async function fetchVimeoThumbnail(
+  vimeoId: string,
+  vimeoHash?: string
+): Promise<string | null> {
   try {
     // Without a `width`, Vimeo's oEmbed defaults to a small ~295px-wide
     // thumbnail — fine as a tiny preview, blurry once stretched across a
     // full-width responsive `aspect-video` tile. Ask for a size that still
     // looks sharp at typical hero/card widths.
+    // Unlisted videos require the private link hash in the URL, or oEmbed
+    // refuses to resolve them.
+    const videoUrl = vimeoHash
+      ? `https://vimeo.com/${vimeoId}/${vimeoHash}`
+      : `https://vimeo.com/${vimeoId}`;
     const res = await fetch(
-      `https://vimeo.com/api/oembed.json?width=1600&url=${encodeURIComponent(
-        `https://vimeo.com/${vimeoId}`
-      )}`,
+      `https://vimeo.com/api/oembed.json?width=1600&url=${encodeURIComponent(videoUrl)}`,
       { next: { revalidate: 86400 }, signal: AbortSignal.timeout(6000) }
     );
     if (!res.ok) return null;
@@ -26,11 +32,15 @@ async function fetchVimeoThumbnail(vimeoId: string): Promise<string | null> {
 }
 
 export async function getVimeoThumbnails(
-  vimeoIds: string[]
+  videos: { vimeoId: string; vimeoHash?: string }[]
 ): Promise<Record<string, string>> {
-  const unique = Array.from(new Set(vimeoIds));
+  const unique = Array.from(
+    new Map(videos.map((v) => [v.vimeoId, v.vimeoHash])).entries()
+  );
   const entries = await Promise.all(
-    unique.map(async (id) => [id, await fetchVimeoThumbnail(id)] as const)
+    unique.map(
+      async ([id, hash]) => [id, await fetchVimeoThumbnail(id, hash)] as const
+    )
   );
   return Object.fromEntries(
     entries.filter((entry): entry is [string, string] => entry[1] !== null)
@@ -78,15 +88,15 @@ export async function getVimeoMeta(vimeoId: string): Promise<VimeoMeta | null> {
 }
 
 /** Fills in `image` from the real Vimeo thumbnail wherever a project doesn't already have a poster. */
-export async function withVimeoPosters<T extends { vimeoId?: string; image?: string }>(
-  items: T[]
-): Promise<T[]> {
-  const ids = items
+export async function withVimeoPosters<
+  T extends { vimeoId?: string; vimeoHash?: string; image?: string }
+>(items: T[]): Promise<T[]> {
+  const videos = items
     .filter((item) => !item.image && item.vimeoId)
-    .map((item) => item.vimeoId as string);
-  if (ids.length === 0) return items;
+    .map((item) => ({ vimeoId: item.vimeoId as string, vimeoHash: item.vimeoHash }));
+  if (videos.length === 0) return items;
 
-  const thumbnails = await getVimeoThumbnails(ids);
+  const thumbnails = await getVimeoThumbnails(videos);
   return items.map((item) =>
     !item.image && item.vimeoId && thumbnails[item.vimeoId]
       ? { ...item, image: thumbnails[item.vimeoId] }
