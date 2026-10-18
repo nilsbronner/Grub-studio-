@@ -42,7 +42,7 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
                   />
                   <Image
                     src={image}
-                    alt=""
+                    alt={`${project.client} — ${project.title}`}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-contain transition-transform duration-700 ease-out group-hover:scale-[1.05]"
@@ -60,7 +60,7 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
                     <div className="relative h-7 w-16">
                       <Image
                         src={project.logo}
-                        alt=""
+                        alt={`Logo ${project.client}`}
                         fill
                         sizes="64px"
                         className="object-contain"

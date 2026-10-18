@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FloatingContactCta } from "@/components/floating-contact-cta";
 import { siteUrl } from "@/lib/site";
+import { businessJsonLd, jsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,19 +20,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Grub Studio — Production audiovisuelle, Strasbourg",
+    default: "Agence de production vidéo & photo à Strasbourg | Grub Studio",
     template: "%s — Grub Studio",
   },
   description:
-    "Grub Studio, studio de production audiovisuelle basé à Strasbourg : spot pub, motion design, contenu réseaux, photo B2B, en Alsace et au-delà.",
-  keywords: [
-    "production vidéo Strasbourg",
-    "agence de production audiovisuelle Alsace",
-    "photographe vidéaste Strasbourg",
-    "campagne publicitaire Alsace",
-    "motion design Strasbourg",
-    "production de contenu Grand Est",
-  ],
+    "Grub Studio, agence de production vidéo et photo à Strasbourg : spots pub, vidéos Ads et réseaux, reportages, interviews, motion design et photo d'entreprise.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
@@ -39,6 +32,7 @@ export const metadata: Metadata = {
     siteName: "Grub Studio",
     url: "/",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({
@@ -58,6 +52,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
       </head>
       <body className="flex min-h-full flex-col antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(businessJsonLd) }}
+        />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

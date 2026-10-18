@@ -7,7 +7,9 @@ import { Reveal } from "@/components/reveal";
 import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
-import { withVimeoPosters } from "@/lib/vimeo";
+import { getVimeoMeta, withVimeoPosters } from "@/lib/vimeo";
+import { breadcrumbJsonLd, clipDescription, jsonLd } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
 import { cx } from "@/lib/cx";
 import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
@@ -27,11 +29,20 @@ export async function generateMetadata({
   return {
     ...pageMetadata({
       path: `/travaux/${project.slug}`,
-      title: `${project.client} — ${project.title}`,
-      description: project.hook,
+      title: caseTitle(project.client, project.categories),
+      description: clipDescription(
+        `${project.hook} ${project.title} pour ${project.client} (${project.sector}), par Grub Studio, production vidéo et photo à Strasbourg.`
+      ),
     }),
     keywords: project.keywords,
   };
+}
+
+/** "Client : Spot pub & Interview" — short, keyword-led, under ~60 chars with the " — Grub Studio" suffix. */
+function caseTitle(client: string, categorySlugs: string[]): string {
+  const labels = categorySlugs.slice(0, 2).map((c) => categoryLabel(c));
+  const title = labels.length ? `${client} : ${labels.join(" & ")}` : client;
+  return title.length > 46 ? `${client} : ${labels[0]}` : title;
 }
 
 export default async function ProjectPage({
@@ -43,9 +54,49 @@ export default async function ProjectPage({
   const rawProject = getProjectBySlug(slug);
   if (!rawProject) notFound();
   const [project] = await withVimeoPosters([rawProject]);
+  const video = project.vimeoId ? await getVimeoMeta(project.vimeoId) : null;
+  const pageUrl = `${siteUrl}/travaux/${project.slug}`;
+  const structuredData: object[] = [
+    breadcrumbJsonLd([
+      { name: "Accueil", path: "/" },
+      { name: "Réalisations", path: "/travaux" },
+      { name: project.client, path: `/travaux/${project.slug}` },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "CreativeWork",
+      name: `${project.client} — ${project.title}`,
+      headline: project.title,
+      description: project.hook,
+      url: pageUrl,
+      genre: project.categories.map((c) => categoryLabel(c)),
+      about: { "@type": "Organization", name: project.client },
+      creator: { "@id": `${siteUrl}/#business` },
+      ...(project.image ? { image: project.image.startsWith("http") ? project.image : `${siteUrl}${project.image}` } : {}),
+    },
+  ];
+  // Google only shows video rich results when name, thumbnail and upload date are all known.
+  if (project.vimeoId && video?.thumbnailUrl && video.uploadDate) {
+    structuredData.push({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: `${project.client} — ${project.title}`,
+      description: project.hook,
+      thumbnailUrl: video.thumbnailUrl,
+      uploadDate: video.uploadDate,
+      ...(video.duration ? { duration: `PT${Math.round(video.duration)}S` } : {}),
+      embedUrl: `https://player.vimeo.com/video/${project.vimeoId}`,
+      contentUrl: `https://vimeo.com/${project.vimeoId}`,
+      publisher: { "@id": `${siteUrl}/#business` },
+    });
+  }
 
   return (
     <article className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }}
+      />
       <Reveal>
         <div className="flex flex-wrap items-center gap-3">
           <p className="text-xs font-mono uppercase tracking-[0.2em] text-muted">
@@ -67,7 +118,7 @@ export default async function ProjectPage({
         {!project.vimeoId && (project.images?.length || project.image) ? (
           <ProjectGallery
             images={project.images ?? (project.image ? [project.image] : [])}
-            alt={project.client}
+            alt={`${project.client} — ${project.title}, photo Grub Studio`}
             className="aspect-video w-full"
           />
         ) : (

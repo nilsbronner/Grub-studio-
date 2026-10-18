@@ -37,6 +37,46 @@ export async function getVimeoThumbnails(
   );
 }
 
+export type VimeoMeta = {
+  title?: string;
+  description?: string;
+  thumbnailUrl?: string;
+  uploadDate?: string;
+  duration?: number;
+};
+
+/** Video metadata for `VideoObject` structured data — resolved at build time, null when Vimeo doesn't answer. */
+export async function getVimeoMeta(vimeoId: string): Promise<VimeoMeta | null> {
+  try {
+    const res = await fetch(
+      `https://vimeo.com/api/oembed.json?width=1280&url=${encodeURIComponent(
+        `https://vimeo.com/${vimeoId}`
+      )}`,
+      { next: { revalidate: 86400 }, signal: AbortSignal.timeout(6000) }
+    );
+    if (!res.ok) return null;
+    const data: {
+      title?: string;
+      description?: string;
+      thumbnail_url?: string;
+      upload_date?: string;
+      duration?: number;
+    } = await res.json();
+    return {
+      title: data.title,
+      description: data.description,
+      thumbnailUrl: data.thumbnail_url,
+      // oEmbed returns "YYYY-MM-DD HH:MM:SS" — schema.org wants ISO 8601.
+      uploadDate: data.upload_date
+        ? `${data.upload_date.replace(" ", "T")}+00:00`
+        : undefined,
+      duration: data.duration,
+    };
+  } catch {
+    return null;
+  }
+}
+
 /** Fills in `image` from the real Vimeo thumbnail wherever a project doesn't already have a poster. */
 export async function withVimeoPosters<T extends { vimeoId?: string; image?: string }>(
   items: T[]
