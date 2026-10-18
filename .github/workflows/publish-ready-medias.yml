@@ -69,8 +69,7 @@ jobs:
 
           Jamais de merge automatique — à relire avant de publier.
           EOF
-          )" \
-            --base main)
+          )")
           echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
 
       - name: Marque les fiches comme publiées côté Médias
