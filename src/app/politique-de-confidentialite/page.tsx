@@ -76,10 +76,31 @@ export default function PolitiqueDeConfidentialitePage() {
           <p className="mt-3">
             Les données sont adressées directement à LE GRUB et ne sont ni
             vendues, ni cédées, ni utilisées à des fins commerciales autres
-            que le traitement de votre demande. Elles transitent par un
-            sous-traitant technique d&rsquo;envoi d&rsquo;email (Resend)
-            uniquement pour l&rsquo;acheminement du message.
+            que le traitement de votre demande. Elles transitent par les
+            sous-traitants techniques suivants, uniquement pour les besoins
+            du fonctionnement du site :
           </p>
+          <ul className="mt-3 list-disc space-y-1.5 pl-5">
+            <li>
+              <strong>Vercel</strong> : hébergement du site et exécution des
+              traitements serveur (formulaires, assistant de conversation).
+            </li>
+            <li>
+              <strong>Resend</strong> : acheminement des emails de
+              notification et d&rsquo;accusé de réception.
+            </li>
+            <li>
+              <strong>Anthropic</strong> : traite le contenu des échanges
+              avec l&rsquo;assistant de conversation du site pour générer
+              ses réponses.
+            </li>
+            <li>
+              <strong>Brevo</strong> : uniquement si vous donnez votre
+              consentement explicite au recontact via l&rsquo;assistant,
+              votre contact est ajouté à notre liste de prospects pour le
+              suivi commercial.
+            </li>
+          </ul>
         </section>
 
         <section>
