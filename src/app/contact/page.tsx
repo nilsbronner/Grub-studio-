@@ -27,7 +27,7 @@ export default function ContactPage() {
           Réponse sous 24 h ouvrées. Devis gratuit.
         </p>
         <a
-          href="https://calendly.com/nils-bronner/reunion-de-30-minutes-clone?month=2026-09"
+          href="https://calendly.com/grub-studio/parlons-de-votre-projet?month=2026-09"
           target="_blank"
           rel="noopener noreferrer"
           className={cx(
