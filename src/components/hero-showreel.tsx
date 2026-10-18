@@ -1,21 +1,59 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { cx } from "@/lib/cx";
 import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
 import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
+// Tailwind's `sm` breakpoint (640px) — below it the hero switches from the
+// horizontal showreel (cropped to cover) to the dedicated vertical cut.
+const MOBILE_QUERY = "(max-width: 639px)";
+
+function subscribeToViewport(callback: () => void) {
+  const mql = window.matchMedia(MOBILE_QUERY);
+  mql.addEventListener("change", callback);
+  return () => mql.removeEventListener("change", callback);
+}
+
+function getIsMobileSnapshot() {
+  return window.matchMedia(MOBILE_QUERY).matches;
+}
+
+// Server/first paint assume desktop — useSyncExternalStore reconciles
+// against the real viewport synchronously on hydration, no extra render.
+function getIsMobileServerSnapshot() {
+  return false;
+}
+
+function useIsMobileViewport() {
+  return useSyncExternalStore(
+    subscribeToViewport,
+    getIsMobileSnapshot,
+    getIsMobileServerSnapshot
+  );
+}
+
 export function HeroShowreel({
   vimeoId,
+  vimeoIdMobile,
+  vimeoHashMobile,
   heading,
   catchphrase,
 }: {
   vimeoId: string;
+  /** Dedicated vertical (9:16) cut shown below the `sm` breakpoint instead of cropping the horizontal video. */
+  vimeoIdMobile?: string;
+  vimeoHashMobile?: string;
   /** The page's H1 — a short, keyword-bearing line set above the catchphrase. */
   heading?: string;
   catchphrase: string;
 }) {
+  const isMobile = useIsMobileViewport();
+  const vertical = isMobile && Boolean(vimeoIdMobile);
+  const activeId = vertical ? (vimeoIdMobile as string) : vimeoId;
+  const activeHash = vertical ? vimeoHashMobile : undefined;
+
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { playing: loaded, blocked, retry } = useVimeoPlaying(iframeRef, true);
 
@@ -23,16 +61,20 @@ export function HeroShowreel({
     <div className="relative aspect-[4/5] w-full overflow-hidden border-b border-border sm:aspect-video">
       <div className="absolute inset-0 bg-[#0b0b0a]" />
       <iframe
+        key={activeId}
         ref={iframeRef}
-        src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&controls=0`}
+        src={`https://player.vimeo.com/video/${activeId}?background=1&autoplay=1&loop=1&muted=1&controls=0${activeHash ? `&h=${activeHash}` : ""}`}
         className={cx(
           // Vimeo's own "background" mode just letterboxes the iframe box when
-          // the container's aspect ratio doesn't match the source (e.g. the
-          // portrait 4:5 hero on mobile vs a 16:9 showreel) — it never crops.
-          // Oversizing the iframe against both the width and height axes and
-          // centering it crops it to always cover the container, so there's
-          // never a visible band whatever the breakpoint.
-          "pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-full min-w-[177.78vh] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ease-out",
+          // the container's aspect ratio doesn't match the source — it never
+          // crops. Oversizing the iframe against both axes and centering it
+          // crops it to always cover the container, so there's never a
+          // visible band. The vw/vh constants are the source video's own
+          // aspect ratio (16:9 horizontal, or 9:16 for the vertical cut).
+          "pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ease-out",
+          vertical
+            ? "h-[177.78vw] min-h-full w-full min-w-[56.25vh]"
+            : "h-[56.25vw] min-h-full w-full min-w-[177.78vh]",
           loaded ? "opacity-100" : "opacity-0"
         )}
         allow="autoplay; fullscreen"
