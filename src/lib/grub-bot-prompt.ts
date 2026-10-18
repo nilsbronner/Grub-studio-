@@ -1,7 +1,7 @@
 // Connaissances et règles du bot du site GRUB Studio.
 // Tout ce que le bot sait vient d'ici : mettre à jour ce fichier quand une offre ou un process change.
 
-export const CALENDLY_URL = "https://calendly.com/nils-bronner/reunion-de-30-minutes-clone";
+export const CALENDLY_URL = "https://calendly.com/grub-studio/parlons-de-votre-projet";
 export const CONTACT_URL = "https://studio.le-grub.com/contact";
 export const PRIVACY_URL = "https://studio.le-grub.com/politique-de-confidentialite";
 
