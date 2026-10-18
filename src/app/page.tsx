@@ -10,43 +10,17 @@ import { homeHighlights } from "@/lib/content/services";
 import { serviceColor } from "@/lib/service-colors";
 import { shorts } from "@/lib/content/shorts";
 import { pageMetadata } from "@/lib/metadata";
-import { siteUrl } from "@/lib/site";
-import { contact } from "@/lib/content/contact";
 import { withVimeoPosters } from "@/lib/vimeo";
 import { cx } from "@/lib/cx";
 import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
-export const metadata: Metadata = pageMetadata({
-  path: "/",
-  title: "Agence de production vidéo à Strasbourg",
-  description:
-    "Spots pub, vidéos réseaux, films de marque et photo d'entreprise à Strasbourg. Un tournage, des contenus pour tous vos canaux. +200 marques accompagnées.",
-});
-
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Grub Studio",
-  parentOrganization: {
-    "@type": "Organization",
-    name: "LE GRUB SAS",
-  },
-  url: siteUrl,
-  telephone: contact.phoneHref.replace("tel:", ""),
-  email: contact.emailPro,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "91 route des Romains",
-    postalCode: "67200",
-    addressLocality: "Strasbourg",
-    addressCountry: "FR",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 48.5777,
-    longitude: 7.7097,
-  },
-  sameAs: ["https://linktr.ee/nils.bronner"],
+export const metadata: Metadata = {
+  ...pageMetadata({
+    path: "/",
+    description:
+      "Agence de production vidéo et photo à Strasbourg : spots pub, vidéos Ads et réseaux, reportages, interviews, films de marque. +200 marques accompagnées.",
+  }),
+  title: { absolute: "Agence de production vidéo & photo à Strasbourg | Grub Studio" },
 };
 
 export default async function Home() {
@@ -55,13 +29,9 @@ export default async function Home() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-      />
-
       <HeroShowreel
         vimeoId="1236550368"
+        heading="Agence de production vidéo & photo à Strasbourg"
         catchphrase="Grub Studio, le créateur de contenu de vos marques préférées."
       />
 

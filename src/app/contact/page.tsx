@@ -10,7 +10,7 @@ import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
-  title: "Contact",
+  title: "Contact — devis vidéo & photo à Strasbourg",
   description:
     "Nils Bronner, cofondateur & directeur général. 91 route des Romains, 67200 Strasbourg. Réponse sous 24 h ouvrées.",
 });

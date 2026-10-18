@@ -117,7 +117,7 @@ export function VideoTile({
           />
           <Image
             src={image}
-            alt=""
+            alt={`${project.client} — ${project.title}`}
             fill
             priority={priority}
             sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 85vw"
@@ -140,7 +140,7 @@ export function VideoTile({
             <div className="relative h-7 w-16">
               <Image
                 src={project.logo}
-                alt=""
+                alt={`Logo ${project.client}`}
                 fill
                 sizes="64px"
                 className="object-contain"

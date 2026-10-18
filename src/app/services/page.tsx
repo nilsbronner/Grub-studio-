@@ -13,7 +13,7 @@ import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 export const metadata: Metadata = {
   ...pageMetadata({
     path: "/services",
-    title: "Vidéo & photo pour entreprises à Strasbourg — Services",
+    title: "Services vidéo & photo pour entreprises à Strasbourg",
     description:
       "Vidéo et photo pour les marques en Alsace et au-delà : spot pub, Ads, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
   }),

@@ -105,7 +105,7 @@ export function ShortTile({
       {short.image && (
         <Image
           src={short.image}
-          alt=""
+          alt={short.title}
           fill
           sizes="220px"
           className={cx(

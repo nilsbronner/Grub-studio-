@@ -12,7 +12,7 @@ import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 export const metadata: Metadata = {
   ...pageMetadata({
     path: "/travaux",
-    title: "Nos réalisations",
+    title: "Réalisations vidéo & photo à Strasbourg",
     description:
       "Spots pub, campagnes Ads, contenu réseaux, motion design et photo B2B à Strasbourg, en Alsace et au-delà — les productions Grub Studio.",
   }),

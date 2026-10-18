@@ -27,7 +27,7 @@ const methodIcons: Partial<Record<MethodStepIcon, ReactNode>> = {
 
 export const metadata: Metadata = pageMetadata({
   path: "/studio",
-  title: "Notre savoir-faire",
+  title: "Savoir-faire : notre équipe de production à Strasbourg",
   description:
     "L'équipe Grub Studio : Nils Bronner et une équipe interne resserrée, renforcée par un réseau de freelances et studios partenaires.",
 });

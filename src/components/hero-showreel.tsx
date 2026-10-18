@@ -8,9 +8,12 @@ import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
 export function HeroShowreel({
   vimeoId,
+  heading,
   catchphrase,
 }: {
   vimeoId: string;
+  /** The page's H1 — a short, keyword-bearing line set above the catchphrase. */
+  heading?: string;
   catchphrase: string;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -57,6 +60,11 @@ export function HeroShowreel({
 
       <div className="relative flex h-full flex-col justify-end px-5 pb-10 sm:px-8 sm:pb-14">
         <div className="mx-auto w-full max-w-7xl">
+          {heading && (
+            <h1 className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-foreground/70 sm:text-sm">
+              {heading}
+            </h1>
+          )}
           <p className="max-w-2xl text-2xl font-medium leading-tight tracking-tight sm:text-4xl">
             {catchphrase}
           </p>
