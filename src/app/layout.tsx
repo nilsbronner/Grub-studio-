@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -60,6 +61,14 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <SiteFooter />
         <GrubChat />
+        {/* Metricool: mesure d'audience du site (voir politique de confidentialité). */}
+        <Script
+          id="metricool-tracker"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"92c8f46780a4a052f1972695f7e1ec06"})});`,
+          }}
+        />
       </body>
     </html>
   );

@@ -18,7 +18,7 @@ export default function PolitiqueDeConfidentialitePage() {
           Politique de confidentialité
         </h1>
         <p className="mt-4 text-sm text-muted">
-          Dernière mise à jour : septembre 2026
+          Dernière mise à jour : octobre 2026
         </p>
       </Reveal>
 
@@ -49,9 +49,22 @@ export default function PolitiqueDeConfidentialitePage() {
             uniquement les informations que vous saisissez vous-même : nom,
             email, téléphone et société (facultatifs selon le formulaire),
             et le contenu de votre message ou de votre demande d&rsquo;audit.
-            Aucune donnée n&rsquo;est collectée à votre insu, et le site
-            n&rsquo;utilise aucun cookie de suivi ou de mesure
-            d&rsquo;audience.
+            Le site utilise également un outil de mesure d&rsquo;audience
+            (voir ci-dessous).
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
+            Mesure d&rsquo;audience
+          </h2>
+          <p className="mt-3">
+            Le site utilise Metricool pour mesurer sa fréquentation (pages
+            vues, provenance du trafic) à des fins statistiques. Cet outil
+            dépose un cookie de mesure d&rsquo;audience sur votre appareil.
+            Aucune de ces données n&rsquo;est utilisée pour vous identifier
+            personnellement ni croisée avec les informations transmises via
+            nos formulaires.
           </p>
         </section>
 
@@ -99,6 +112,10 @@ export default function PolitiqueDeConfidentialitePage() {
               consentement explicite au recontact via l&rsquo;assistant,
               votre contact est ajouté à notre liste de prospects pour le
               suivi commercial.
+            </li>
+            <li>
+              <strong>Metricool</strong> : mesure la fréquentation du site
+              (voir « Mesure d&rsquo;audience » ci-dessus).
             </li>
           </ul>
         </section>
