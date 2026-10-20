@@ -3,11 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { VideoTile } from "@/components/video-tile";
 import { ProjectGallery } from "@/components/project-gallery";
+import { ProjectVideoGallery } from "@/components/project-video-gallery";
 import { Reveal } from "@/components/reveal";
 import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
-import { getVimeoMeta, withVimeoPosters } from "@/lib/vimeo";
+import { getVimeoMeta, getVimeoThumbnails, withVimeoPosters } from "@/lib/vimeo";
 import { breadcrumbJsonLd, clipDescription, jsonLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 import { pageMetadata } from "@/lib/metadata";
@@ -55,6 +56,16 @@ export default async function ProjectPage({
   if (!rawProject) notFound();
   const [project] = await withVimeoPosters([rawProject]);
   const video = project.vimeoId ? await getVimeoMeta(project.vimeoId) : null;
+  const galleryThumbnails = project.videos
+    ? await getVimeoThumbnails(project.videos)
+    : {};
+  const galleryVideos = project.videos?.map((v) => ({
+    ...v,
+    image: galleryThumbnails[v.vimeoId],
+  }));
+  const galleryMeta = project.videos
+    ? await Promise.all(project.videos.map((v) => getVimeoMeta(v.vimeoId)))
+    : [];
   const pageUrl = `${siteUrl}/travaux/${project.slug}`;
   const structuredData: object[] = [
     breadcrumbJsonLd([
@@ -90,6 +101,22 @@ export default async function ProjectPage({
       publisher: { "@id": `${siteUrl}/#business` },
     });
   }
+  project.videos?.forEach((v, i) => {
+    const meta = galleryMeta[i];
+    if (!meta?.thumbnailUrl || !meta.uploadDate) return;
+    structuredData.push({
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: `${project.client} — ${v.title}`,
+      description: project.hook,
+      thumbnailUrl: meta.thumbnailUrl,
+      uploadDate: meta.uploadDate,
+      ...(meta.duration ? { duration: `PT${Math.round(meta.duration)}S` } : {}),
+      embedUrl: `https://player.vimeo.com/video/${v.vimeoId}`,
+      contentUrl: `https://vimeo.com/${v.vimeoId}`,
+      publisher: { "@id": `${siteUrl}/#business` },
+    });
+  });
 
   return (
     <article className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
@@ -115,7 +142,9 @@ export default async function ProjectPage({
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
-        {!project.vimeoId && (project.images?.length || project.image) ? (
+        {galleryVideos?.length ? (
+          <ProjectVideoGallery videos={galleryVideos} />
+        ) : !project.vimeoId && (project.images?.length || project.image) ? (
           <ProjectGallery
             images={project.images ?? (project.image ? [project.image] : [])}
             alt={`${project.client} — ${project.title}, photo Grub Studio`}
