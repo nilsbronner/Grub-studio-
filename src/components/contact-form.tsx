@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { contact } from "@/lib/content/contact";
+import { trackPixel } from "@/lib/meta-pixel";
 
 const projectTypes = [
   "Spot publicitaire",
@@ -18,14 +19,24 @@ const projectTypes = [
 
 type Status = "idle" | "sending" | "sent" | "unavailable" | "error";
 
-export function ContactForm() {
+export function ContactForm({
+  defaultProjectType = "",
+  source,
+  messagePlaceholder,
+}: {
+  /** Pre-selects the project type (offer landing pages). */
+  defaultProjectType?: string;
+  /** Where the lead came from, e.g. "Page offre Ads" — added to the message and sent to the Meta pixel. */
+  source?: string;
+  messagePlaceholder?: string;
+} = {}) {
   const [status, setStatus] = useState<Status>("idle");
   const [values, setValues] = useState({
     name: "",
     email: "",
     phone: "",
     company: "",
-    projectType: "",
+    projectType: defaultProjectType,
     message: "",
     consent: false,
   });
@@ -53,7 +64,11 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: JSON.stringify(
+          source
+            ? { ...values, message: `[${source}]\n\n${values.message}` }
+            : values
+        ),
       });
       if (res.status === 503) {
         setStatus("unavailable");
@@ -64,6 +79,10 @@ export function ContactForm() {
         return;
       }
       setStatus("sent");
+      trackPixel("Lead", {
+        content_name: source ?? "Contact",
+        content_category: values.projectType || undefined,
+      });
     } catch {
       setStatus("error");
     }
@@ -142,6 +161,7 @@ export function ContactForm() {
         <textarea
           required
           rows={5}
+          placeholder={messagePlaceholder}
           value={values.message}
           onChange={(e) => setValues((v) => ({ ...v, message: e.target.value }))}
           className="w-full resize-none border-b border-border bg-transparent py-2 text-sm outline-none transition-colors focus:border-accent"

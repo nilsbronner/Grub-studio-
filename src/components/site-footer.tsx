@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { contact } from "@/lib/content/contact";
+import { CookieSettingsLink } from "@/components/meta-pixel";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
@@ -55,6 +56,7 @@ export function SiteFooter() {
             Confidentialité
           </Link>
           <span aria-hidden>·</span>
+          <CookieSettingsLink className="hover:text-accent" />
           <span>© {year} LE GRUB SAS</span>
         </div>
       </div>
