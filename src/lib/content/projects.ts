@@ -1015,24 +1015,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "fizimed",
-    client: "Fizimed",
-    sector: "Dispositifs médicaux",
-    keywords: [
-      "photo produit médical Strasbourg",
-      "motion design dispositif médical Alsace",
-      "vidéo explicative produit",
-    ],
-    title: "Shoot produit et motion design",
-    hook: "Mise en scène produit et animations pour expliquer le dispositif.",
-    categories: ["photo-produit", "motion-design"],
-    context:
-      "Shooting photo produit et animations motion design pour expliquer le fonctionnement du dispositif Fizimed, avec traduction en plusieurs langues.",
-    deliverables: ["Photos produit", "Animations motion design"],
-    accent: "#57c2e7",
-    logo: "/images/logos/fizimed.svg",
-  },
-  {
     slug: "skillcamp",
     client: "Skillcamp",
     sector: "Formation",
@@ -1070,25 +1052,6 @@ export const projects: Project[] = [
     accent: "#3a6b9a",
     vimeoId: "1237601767",
     logo: "/images/logos/hotel-hannong.svg",
-  },
-  {
-    slug: "entendre",
-    client: "Entendre",
-    sector: "Audioprothèse",
-    keywords: [
-      "captation vidéo campagne Strasbourg",
-      "reportage photo santé Alsace",
-      "production vidéo audioprothèse",
-    ],
-    title: "Captation vidéo et campagne photo",
-    hook: "Captation de contenus et visuels pour la campagne 2025.",
-    categories: ["reportage", "photo-evenementiel"],
-    context:
-      "Captation vidéo et reportage photo pour Entendre, dans le cadre de leur campagne de communication 2025.",
-    deliverables: ["Vidéo", "Reportage photo"],
-    accent: "#57c2e7",
-    logo: "/images/logos/entendre.png",
-    logoOnDark: true,
   },
   {
     slug: "hanssen",
