@@ -35,6 +35,8 @@ export type Project = {
   image?: string;
   /** Multiple real photos for a photo-only project (no vimeoId) — shown as a carousel on the project page instead of a single static image with a dead play button. */
   images?: string[];
+  /** Several distinct clips for a project with more than one deliverable video (e.g. a process broken into stages) — shown as a grid of playable tiles instead of a single hero video. */
+  videos?: { vimeoId: string; vimeoHash?: string; title: string }[];
   /** Accent used for the placeholder tile gradient when no image/footage is set. */
   accent: string;
   /** Client logo file (transparent background) — shown in the carousel's logo band once supplied. Falls back to the client name as a text wordmark when absent. */
@@ -695,6 +697,11 @@ export const projects: Project[] = [
     accent: "#2f9a7a",
     image: "/images/projects/herbapac.jpg",
     logo: "/images/logos/herbapac.svg",
+    videos: [
+      { vimeoId: "1237541262", title: "Vidéo 1" },
+      { vimeoId: "1237541260", title: "Conditionnement — boîtes (motion)" },
+      { vimeoId: "1237541263", title: "Conditionnement — sachets" },
+    ],
     featuredHome: true,
     caseStudy: true,
   },
