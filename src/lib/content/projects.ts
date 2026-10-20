@@ -769,6 +769,7 @@ export const projects: Project[] = [
       "Reportage photo et vidéo, avec de nouvelles photos produites pour le site de l'hôtel.",
     deliverables: ["Reportage photo", "Reportage vidéo"],
     accent: "#3a6b9a",
+    vimeoId: "1237543769",
     image: "/images/projects/sofitel-strasbourg.jpg",
     images: [
       "/images/projects/sofitel-strasbourg.jpg",
