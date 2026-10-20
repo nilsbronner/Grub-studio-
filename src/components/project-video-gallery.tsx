@@ -56,7 +56,7 @@ function VideoCard({ video }: { video: GalleryVideo }) {
           setLightboxOpen(true);
         }
       }}
-      className="group relative aspect-video cursor-pointer select-none overflow-hidden rounded-lg border border-border bg-[#141412]"
+      className="group relative aspect-video cursor-pointer select-none overflow-hidden rounded-lg border border-border bg-[#141412] [container-type:size]"
     >
       {video.image && (
         <Image
@@ -79,7 +79,10 @@ function VideoCard({ video }: { video: GalleryVideo }) {
           className={cx(
             // Oversize + center so the embed always crops to cover the tile
             // instead of letterboxing when a source isn't exactly 16:9.
-            "pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-full min-w-[177.78vh] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ease-out",
+            // cqw/cqh (via [container-type:size] above) track this tile's
+            // own box — vw/vh track the viewport instead, which oversizes
+            // (and crops) wrongly on anything smaller than full-bleed.
+            "pointer-events-none absolute left-1/2 top-1/2 h-[56.25cqw] min-h-full w-full min-w-[177.78cqh] -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 ease-out",
             loaded ? "opacity-100" : "opacity-0"
           )}
           style={{ backgroundColor: "var(--background)" }}

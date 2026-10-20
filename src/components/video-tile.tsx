@@ -90,7 +90,7 @@ export function VideoTile({
   const image = coverImage(project);
 
   const tileClassName = cx(
-    "group relative block aspect-video cursor-pointer overflow-hidden bg-cover bg-center",
+    "group relative block aspect-video cursor-pointer overflow-hidden bg-cover bg-center [container-type:size]",
     className
   );
   const tileStyle = image
@@ -158,8 +158,14 @@ export function VideoTile({
           className={cx(
             // Oversize + center so the embed always crops to cover the tile
             // instead of letterboxing when a source isn't 16:9 (Vimeo's
-            // background mode doesn't crop on its own).
-            "pointer-events-none absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-full min-w-[177.78vh] -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.04]",
+            // background mode doesn't crop on its own). Sized in container
+            // query units (cqw/cqh, via [container-type:size] on the tile)
+            // rather than vw/vh — those track the *viewport*, not this
+            // tile's own box, so on anything smaller than full-bleed (a
+            // catalog tile, a project hero inside a narrow article) the
+            // iframe was wildly oversized and both Vimeo's own cover-fit
+            // and our overflow-hidden clip cropped into the frame.
+            "pointer-events-none absolute left-1/2 top-1/2 h-[56.25cqw] min-h-full w-full min-w-[177.78cqh] -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.04]",
             embedLoaded ? "opacity-100" : "opacity-0"
           )}
           style={{ backgroundColor: "var(--background)" }}
