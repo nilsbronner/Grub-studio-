@@ -675,6 +675,8 @@ export const projects: Project[] = [
       "/images/projects/atelier-hammaecher-sipion.jpg",
       "/images/projects/atelier-hammaecher-sipion-2.jpg",
       "/images/projects/atelier-hammaecher-sipion-3.jpg",
+      "/images/projects/atelier-hammaecher-sipion-4.jpg",
+      "/images/projects/atelier-hammaecher-sipion-5.jpg",
     ],
     featuredHome: true,
     caseStudy: true,
