@@ -696,8 +696,8 @@ export const projects: Project[] = [
       "Vidéo avec motion design intégré dans les locaux, en tracking, pour montrer toute la chaîne de production : du thé brut jusqu'au sachet prêt à livrer ou à mettre en rayon.",
     deliverables: ["Vidéo avec motion design", "Tournage en tracking"],
     accent: "#2f9a7a",
-    image: "/images/projects/herbapac.jpg",
     logo: "/images/logos/herbapac.svg",
+    vimeoId: "1237541262",
     videos: [
       { vimeoId: "1237541262", title: "Vidéo 1" },
       { vimeoId: "1237541260", title: "Conditionnement — boîtes (motion)" },
@@ -791,6 +791,7 @@ export const projects: Project[] = [
     ],
     accent: "#4a4a8a",
     logo: "/images/logos/s-automobile.png",
+    vimeoId: "1237577307",
     videos: [
       { vimeoId: "1237577307", title: "Spot 1" },
       { vimeoId: "1237577316", title: "Spot 2" },
