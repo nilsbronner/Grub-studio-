@@ -746,12 +746,7 @@ export const projects: Project[] = [
     accent: "#7a3a4a",
     logo: "/images/logos/maison-rouge.svg",
     logoOnDark: true,
-    image: "/images/projects/maison-rouge.jpg",
-    images: [
-      "/images/projects/maison-rouge.jpg",
-      "/images/projects/maison-rouge-2.jpg",
-      "/images/projects/maison-rouge-3.jpg",
-    ],
+    vimeoId: "1237616253",
     featuredHome: true,
     caseStudy: true,
   },
