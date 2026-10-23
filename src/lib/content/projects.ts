@@ -50,6 +50,12 @@ export type Project = {
   keywords?: string[];
   /** Indicative price shown on the project page. Omit for Grub Studio showreels. */
   price?: string;
+  /** ISO date (YYYY-MM-DD) this project's content was last meaningfully changed — drives sitemap.xml lastmod. Falls back to a fixed default when absent rather than the build date. */
+  updatedAt?: string;
+  /** Extra fiche fields (beyond client/sector/deliverables, already shown elsewhere) for the info box on SEO-enriched case pages. */
+  fiche?: { duree?: string; lieu?: string };
+  /** Additional narrative paragraphs after `context`, for SEO-enriched case pages — kept separate so the short `context` summary used elsewhere (cards, metadata) stays short. */
+  story?: string[];
 };
 
 export const projects: Project[] = [
@@ -75,12 +81,21 @@ export const projects: Project[] = [
       "Interviews marque employeur",
       "Backstage & aftermovie",
     ],
+    story: [
+      "Le tournage s'est étalé sur plusieurs jours, avec une équipe complète mobilisée sur place : direction artistique, régie, casting de comédiens, décoration sur mesure. Plutôt que de démonter le décor à la fin du tournage, Once Upon a Dime a choisi de le conserver — il continue de vivre dans les locaux, comme une trace durable du film plutôt qu'un artifice ponctuel.",
+      "Le spot principal a ensuite été décliné en une dizaine de formats courts, pensés chacun pour sa diffusion : motion design pour les réseaux, interviews marque employeur pour le recrutement, backstage et aftermovie pour prolonger l'histoire du tournage lui-même. Plusieurs mois après sa diffusion, ces contenus continuent d'être utilisés dans les campagnes de recrutement et les présentations commerciales du cabinet.",
+    ],
+    fiche: {
+      duree: "Plusieurs jours de tournage, déclinaisons sur l'année suivante",
+      lieu: "Strasbourg",
+    },
     accent: "#c9622f",
     image: "/images/projects/once-upon-a-dime.jpg",
     logo: "/images/logos/once-upon-a-dime.svg",
     vimeoId: "1173949481",
     featuredHome: true,
     caseStudy: true,
+    updatedAt: "2026-10-23",
   },
   {
     slug: "squarea",
@@ -103,11 +118,20 @@ export const projects: Project[] = [
       "Créas Ads",
       "Formats institutionnels",
     ],
+    story: [
+      "La collaboration a commencé par un besoin ponctuel — des photos produit pour le lancement — et s'est transformée en accompagnement continu : chaque nouvelle référence, chaque mise à jour produit, chaque tutoriel d'utilisation est l'occasion d'un nouveau tournage photo ou vidéo, pensé pour rester cohérent avec l'ensemble déjà construit.",
+      "Les campagnes Meta Ads qui s'appuient sur ces contenus sont testées et ajustées en continu, avec des cycles de production courts pour suivre le rythme réel des performances publicitaires plutôt que celui d'une grosse campagne annuelle. Plusieurs années de collaboration ont permis de construire une bibliothèque de contenus que l'équipe Squarea continue de décliner elle-même.",
+    ],
+    fiche: {
+      duree: "Accompagnement continu depuis 2019",
+      lieu: "Strasbourg",
+    },
     accent: "#2f6b5e",
     logo: "/images/logos/squarea.png",
     vimeoId: "1098155108",
     featuredHome: true,
     caseStudy: true,
+    updatedAt: "2026-10-23",
   },
   {
     slug: "hollys-diner",
@@ -132,12 +156,21 @@ export const projects: Project[] = [
       "Campagnes Ads (Meta, TikTok)",
       "Photos food & carte",
     ],
+    story: [
+      "Avant même l'ouverture, une stratégie de communication a été mise en place pour créer l'attente : teasers, contenu de coulisses, premières campagnes Ads. Le jour J, l'équipe a couvert la soirée inaugurale et les soirées RP qui ont suivi, puis un reportage complet sur deux jours pour capter le restaurant en pleine activité, service après service.",
+      "Les contenus produits ont ensuite alimenté des campagnes Meta et TikTok Ads gérées en lien avec la community manager du restaurant, avec un rythme de publication pensé pour durer bien après le lancement : vidéos institutionnelles, marque employeur, et un stock de photos food et carte réutilisé à chaque mise à jour du menu.",
+    ],
+    fiche: {
+      duree: "Stratégie de lancement + reportage de 2 jours",
+      lieu: "Strasbourg",
+    },
     accent: "#b8933a",
     logo: "/images/logos/hollys-diner.svg",
     image: "/images/projects/hollys-diner.jpg",
     vimeoId: "1214544969",
     featuredHome: true,
     caseStudy: true,
+    updatedAt: "2026-10-23",
   },
   {
     slug: "myfood",
@@ -159,6 +192,14 @@ export const projects: Project[] = [
       "Vidéos crowdfunding",
       "Base de contenus réutilisable",
     ],
+    story: [
+      "Chaque année depuis plus de trois ans, l'équipe se déplace en France et en Allemagne pour tourner au minimum huit interviews clients — des témoignages mi-longs sur l'usage réel du produit, ses résultats, les anecdotes qui le rendent concret pour un public qui ne l'a jamais vu fonctionner.",
+      "Ces interviews ont aussi servi de socle à deux campagnes de crowdfunding, avec des montages dédiés pensés pour convertir plutôt que pour informer. L'équipe MyFood réutilise ensuite les rushs à l'infini : capsules pour les réseaux, publicités courtes, tutoriels — une bibliothèque de contenus qui continue de grandir à chaque campagne de tournage.",
+    ],
+    fiche: {
+      duree: "8 interviews par an depuis plus de 3 ans",
+      lieu: "France & Allemagne",
+    },
     accent: "#3a5f8f",
     logo: "/images/logos/myfood.png",
     logoOnDark: true,
@@ -166,6 +207,7 @@ export const projects: Project[] = [
     vimeoId: "1214545694",
     featuredHome: true,
     caseStudy: true,
+    updatedAt: "2026-10-23",
   },
   {
     slug: "strasbourg-esport-days",
@@ -312,10 +354,19 @@ export const projects: Project[] = [
       "Films institutionnels",
       "Film des 100 ans",
     ],
+    story: [
+      "Cinq années d'accompagnement ont construit une relation de confiance : une dizaine de reportages événementiels par an, souvent avec peu de préparation en amont, pour capter l'actualité du magasin au rythme où elle se produit — ouvertures de corners, animations, temps forts commerciaux.",
+      "Ce suivi régulier a ouvert la voie à des projets plus ambitieux, jusqu'au film des 100 ans du magasin : un format long, construit autour de témoignages d'équipes et de clients fidèles, avec des dispositifs de tournage installés sur place pendant plusieurs jours pour capter l'ampleur de l'événement.",
+    ],
+    fiche: {
+      duree: "5 ans d'accompagnement, jusqu'au film des 100 ans",
+      lieu: "Strasbourg",
+    },
     accent: "#8f2f5a",
     vimeoId: "1173948552",
     featuredHome: true,
     caseStudy: true,
+    updatedAt: "2026-10-23",
   },
   {
     slug: "skillcamp-interview",
@@ -765,10 +816,19 @@ export const projects: Project[] = [
     context:
       "Reportage photo et vidéo, avec de nouvelles photos produites pour le site de l'hôtel.",
     deliverables: ["Reportage photo", "Reportage vidéo"],
+    story: [
+      "Le reportage photo a permis de renouveler entièrement la banque d'images du site de l'hôtel — chambres, espaces communs, restaurant — avec un traitement cohérent d'une pièce à l'autre, pensé pour un usage aussi bien sur le site que sur les plateformes de réservation.",
+      "Le volet vidéo complète ce reportage par une immersion dans l'expérience de l'établissement, pensée pour donner envie plutôt que pour simplement documenter les lieux — un format que l'hôtel peut utiliser aussi bien pour sa communication propre que pour ses partenaires professionnels.",
+    ],
+    fiche: {
+      duree: "Reportage photo et vidéo",
+      lieu: "Strasbourg",
+    },
     accent: "#3a6b9a",
     vimeoId: "1237543769",
     featuredHome: true,
     caseStudy: true,
+    updatedAt: "2026-10-23",
   },
   {
     slug: "s-automobile",
@@ -878,6 +938,15 @@ export const projects: Project[] = [
     context:
       "Reportage photo pour Vinci Group à l'occasion d'un repas d'entreprise réunissant les équipes.",
     deliverables: ["Reportage photo"],
+    story: [
+      "Le reportage a suivi le déroulé du repas d'entreprise sans mise en scène ajoutée : arrivées, échanges informels, discours, moments de convivialité entre les équipes Vinci Group — l'objectif étant de documenter l'ambiance réelle de l'événement plutôt que de la reconstituer.",
+      "Les photos livrées servent aujourd'hui de support de communication interne, pour garder une trace de ce temps fort et donner envie aux équipes de se retrouver lors des prochains événements du groupe.",
+    ],
+    fiche: {
+      duree: "Une journée",
+      lieu: "Strasbourg",
+    },
+    updatedAt: "2026-10-23",
     accent: "#c9622f",
     logo: "/images/logos/vinci.svg",
     images: [
@@ -970,6 +1039,15 @@ export const projects: Project[] = [
     context:
       "Reportage photo au Centre Porsche Strasbourg, de la révélation d'une 911 GT3 sous sa housse jusqu'à la remise des clés en présence du client et de l'équipe.",
     deliverables: ["Reportage photo"],
+    story: [
+      "Le reportage a capté l'instant précis de la révélation — la housse qui se soulève, les premières réactions — puis la remise des clés, avec le client et l'équipe du Centre Porsche Strasbourg réunis autour du véhicule.",
+      "Les photos livrées ont été pensées pour un double usage : communication du concessionnaire sur ses réseaux, et souvenir personnalisé remis au client pour marquer la livraison de sa 911 GT3.",
+    ],
+    fiche: {
+      duree: "Une demi-journée",
+      lieu: "Strasbourg",
+    },
+    updatedAt: "2026-10-23",
     accent: "#1a1a1a",
     logo: "/images/logos/porsche-strasbourg.png",
     images: [

@@ -4,12 +4,19 @@ import { EyebrowPill } from "@/components/eyebrow-pill";
 import { ConseilForm } from "@/components/conseil-form";
 import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = pageMetadata({
-  path: "/conseil",
-  title: "Grub Conseil",
-  description:
-    "Un audit gratuit sur le sujet de votre choix : quelques questions, une réponse personnalisée de Nils avec des recommandations concrètes. Gratuit, sans engagement.",
-});
+export const metadata: Metadata = {
+  ...pageMetadata({
+    path: "/conseil",
+    title: "Grub Conseil",
+    description:
+      "Un audit gratuit sur le sujet de votre choix : quelques questions, une réponse personnalisée de Nils avec des recommandations concrètes. Gratuit, sans engagement.",
+  }),
+  // Page encore en réflexion (son rôle sur le site n'est pas tranché) —
+  // indexable plus tard si elle est conservée telle quelle, suivie pour
+  // garder le lien depuis la nav/footer, mais pas en indexation ni dans le
+  // sitemap d'ici là.
+  robots: { index: false, follow: true },
+};
 
 const steps = [
   {

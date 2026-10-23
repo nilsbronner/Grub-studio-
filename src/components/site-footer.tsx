@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { contact } from "@/lib/content/contact";
+import { productionPages } from "@/lib/content/production";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-12 sm:flex-row sm:items-end sm:justify-between sm:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-8 sm:px-8">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
             {contact.coordinates.latitude} / {contact.coordinates.longitude}
@@ -14,34 +15,63 @@ export function SiteFooter() {
           <p className="mt-1 text-sm text-muted">
             {contact.coordinates.city}
           </p>
+
+          <div className="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-sm">
+            <a href={contact.phoneHref} className="hover:text-accent">
+              {contact.phone}
+            </a>
+            <a
+              href={`mailto:${contact.emailPro}`}
+              className="hover:text-accent"
+            >
+              {contact.emailPro}
+            </a>
+            <Link href="/contact" className="hover:text-accent">
+              Contact
+            </Link>
+            <Link href="/rush" className="hover:text-accent">
+              Rush
+            </Link>
+            <a
+              href="https://le-grub.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent"
+            >
+              Grub Cowork
+            </a>
+            <a
+              href="https://www.instagram.com/grub_studio_cie/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent"
+            >
+              Instagram
+            </a>
+            <a
+              href="https://www.linkedin.com/company/le-grub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
 
-        <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm">
-          <a href={contact.phoneHref} className="hover:text-accent">
-            {contact.phone}
-          </a>
-          <a href={`mailto:${contact.emailPro}`} className="hover:text-accent">
-            {contact.emailPro}
-          </a>
-          <Link href="/contact" className="hover:text-accent">
-            Contact
-          </Link>
-          <a
-            href="https://le-grub.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent"
-          >
-            Grub Cowork
-          </a>
-          <a
-            href="https://linktr.ee/nils.bronner"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-accent"
-          >
-            Réseaux
-          </a>
+        <div className="flex flex-col gap-2 text-sm sm:items-end">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted sm:text-right">
+            Production
+          </p>
+          {productionPages.map((page) => (
+            <Link
+              key={page.slug}
+              href={`/production/${page.slug}`}
+              className="text-muted hover:text-accent sm:text-right"
+            >
+              {page.navLabel}
+            </Link>
+          ))}
         </div>
       </div>
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { ServiceCase } from "@/lib/content/service-cases";
 import { coverImage, type Project } from "@/lib/content/projects";
+import { productionPagesForCategories } from "@/lib/content/production";
 import { serviceColor } from "@/lib/service-colors";
 import { cx } from "@/lib/cx";
 
@@ -14,11 +15,14 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
         const project = item.project;
         const color = serviceColor(item.service);
         const image = coverImage(project);
+        const [relatedProduction] = productionPagesForCategories(
+          project.categories
+        );
         return (
+          <div key={item.caseSlug} className="flex flex-col">
           <Link
-            key={item.caseSlug}
             href={`/travaux/${project.slug}`}
-            className="group flex flex-col overflow-hidden border border-border transition-colors duration-300 hover:border-accent/60"
+            className="group flex flex-1 flex-col overflow-hidden border border-border transition-colors duration-300 hover:border-accent/60"
           >
             <div
               className="relative aspect-video bg-cover bg-center"
@@ -99,6 +103,16 @@ export function ServiceCaseGrid({ cases }: { cases: ResolvedServiceCase[] }) {
               </p>
             </div>
           </Link>
+          {relatedProduction && (
+            <Link
+              href={`/production/${relatedProduction.slug}`}
+              className="mt-2 inline-flex items-center gap-1 text-xs font-mono uppercase tracking-[0.1em] text-muted hover:text-accent"
+            >
+              Voir le service {relatedProduction.h1}
+              <span aria-hidden>→</span>
+            </Link>
+          )}
+          </div>
         );
       })}
     </div>
