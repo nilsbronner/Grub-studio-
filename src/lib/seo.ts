@@ -3,9 +3,10 @@ import { contact } from "@/lib/content/contact";
 
 /** Public profiles used as `sameAs` — helps Google tie the site, the Business Profile and the socials to one entity. */
 export const sameAs = [
-  "https://www.instagram.com/le_grub_coworking/",
+  "https://www.instagram.com/grub_studio_cie/",
   "https://www.linkedin.com/company/le-grub",
   "https://www.youtube.com/@legrub3693",
+  "https://vimeo.com/user220761433",
   "https://www.le-grub.com/",
 ];
 
@@ -65,6 +66,21 @@ export const businessJsonLd = {
   founder: { "@type": "Person", name: contact.name },
   sameAs,
 };
+
+export function faqJsonLd(items: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
 
 export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
   return {

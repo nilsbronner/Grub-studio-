@@ -8,6 +8,7 @@ import { Reveal } from "@/components/reveal";
 import { StatStrip } from "@/components/stat-strip";
 import { getProjectBySlug, projects } from "@/lib/content/projects";
 import { categoryLabel } from "@/lib/content/categories";
+import { productionPagesForCategories } from "@/lib/content/production";
 import { getVimeoMeta, getVimeoThumbnails, withVimeoPosters } from "@/lib/vimeo";
 import { breadcrumbJsonLd, clipDescription, jsonLd } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
@@ -66,6 +67,9 @@ export default async function ProjectPage({
   const galleryMeta = project.videos
     ? await Promise.all(project.videos.map((v) => getVimeoMeta(v.vimeoId)))
     : [];
+  const relatedProductionPages = productionPagesForCategories(
+    project.categories
+  );
   const pageUrl = `${siteUrl}/travaux/${project.slug}`;
   const structuredData: object[] = [
     breadcrumbJsonLd([
@@ -139,6 +143,45 @@ export default async function ProjectPage({
           {project.client}
         </h1>
         <p className="mt-3 max-w-2xl text-muted">{project.hook}</p>
+
+        {project.fiche && (
+          <dl className="mt-6 flex flex-wrap gap-x-8 gap-y-3 border-y border-border py-5 text-sm">
+            <div>
+              <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                Client
+              </dt>
+              <dd className="mt-1">{project.client}</dd>
+            </div>
+            <div>
+              <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                Secteur
+              </dt>
+              <dd className="mt-1">{project.sector}</dd>
+            </div>
+            <div>
+              <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                Livrables
+              </dt>
+              <dd className="mt-1">{project.deliverables.join(", ")}</dd>
+            </div>
+            {project.fiche.duree && (
+              <div>
+                <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                  Durée
+                </dt>
+                <dd className="mt-1">{project.fiche.duree}</dd>
+              </div>
+            )}
+            {project.fiche.lieu && (
+              <div>
+                <dt className="font-mono text-xs uppercase tracking-[0.1em] text-muted">
+                  Lieu
+                </dt>
+                <dd className="mt-1">{project.fiche.lieu}</dd>
+              </div>
+            )}
+          </dl>
+        )}
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10">
@@ -175,6 +218,11 @@ export default async function ProjectPage({
             Ce qu&rsquo;on a fait
           </h2>
           <p className="mt-3 leading-relaxed">{project.context}</p>
+          {project.story?.map((paragraph, i) => (
+            <p key={i} className="mt-3 leading-relaxed">
+              {paragraph}
+            </p>
+          ))}
 
           <h2 className="mt-10 text-sm font-mono uppercase tracking-[0.15em] text-muted">
             Livrables
@@ -234,6 +282,27 @@ export default async function ProjectPage({
           <p className="mt-3 text-sm text-muted">
             — {project.testimonial.author}
           </p>
+        </Reveal>
+      )}
+
+      {relatedProductionPages.length > 0 && (
+        <Reveal delay={0.1} className="mt-10 border-t border-border pt-10">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
+            Ce service
+          </h2>
+          <ul className="mt-4 flex flex-wrap gap-3">
+            {relatedProductionPages.map((page) => (
+              <li key={page.slug}>
+                <Link
+                  href={`/production/${page.slug}`}
+                  className="inline-flex items-center gap-2 border border-border px-4 py-2 text-sm transition-colors duration-300 hover:border-accent/60"
+                >
+                  {page.h1}
+                  <span aria-hidden>→</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </Reveal>
       )}
 

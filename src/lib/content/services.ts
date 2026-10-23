@@ -87,24 +87,30 @@ export const photoServices: Service[] = [
 export type Highlight = {
   title: string;
   description: string;
+  /** Matching slug in production.ts — the highlight links there. */
+  productionSlug: string;
 };
 
 export const homeHighlights: Highlight[] = [
   {
     title: "Films de marque",
     description: "Une histoire, une équipe, un film qui la raconte vraiment.",
+    productionSlug: "spot-publicitaire",
   },
   {
     title: "Contenu réseaux",
     description: "Du vertical rythmé, pensé pour le scroll — pas pour la télé.",
+    productionSlug: "spot-publicitaire",
   },
   {
     title: "Événementiel",
     description: "L'énergie de vos temps forts, prête à être partagée.",
+    productionSlug: "reportage-evenementiel",
   },
   {
     title: "Photo d'entreprise",
     description: "Vos équipes et vos coulisses, en images qui inspirent confiance.",
+    productionSlug: "photo-entreprise",
   },
 ];
 
