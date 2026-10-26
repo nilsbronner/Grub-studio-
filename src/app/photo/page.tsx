@@ -107,89 +107,99 @@ export default function PhotoPage() {
         dangerouslySetInnerHTML={{ __html: jsonLd(structuredData) }}
       />
 
-      {/* Hero */}
-      <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
-        <Reveal>
-          <div className="grid gap-10 sm:grid-cols-[1fr_auto] sm:items-center">
-            <div>
-              <EyebrowPill>Photographie</EyebrowPill>
-              <h1 className="mt-4 max-w-2xl text-2xl font-medium tracking-tight sm:text-4xl">
-                Nils Bronner, photographe du Grub Studio
-              </h1>
-              <p className="mt-4 max-w-xl leading-relaxed text-foreground/70">
-                Studio, reportage, chez vous ou en packshot produit — un seul
-                photographe, un seul interlocuteur, pour des images qui
-                servent vraiment votre marque. Catalogue personnel depuis
-                2017, au service du Grub Studio.
-              </p>
-              <a
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cx(
-                  "mt-6 inline-flex items-center gap-3 border px-5 py-3 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5",
-                  PAGE_ACCENT_CLASSES.pink.solid,
-                  PAGE_ACCENT_CLASSES.pink.hover
-                )}
-              >
-                Réserver un créneau
-                <span aria-hidden>→</span>
-              </a>
-            </div>
-            <div className="relative mx-auto aspect-[4/5] w-48 overflow-hidden rounded-xl border border-border sm:w-56">
-              <Image
-                src="/images/team/nils-bronner-profile.jpg"
-                alt="Nils Bronner, photographe"
-                fill
-                priority
-                sizes="224px"
-                className="object-cover"
-              />
-            </div>
+      {/* Hero — full-bleed portrait, bold type over a dark gradient, same
+          "oversized photo + overlay" language as the video hero on / */}
+      <div className="relative flex min-h-[85vh] w-full items-end overflow-hidden border-b border-border sm:min-h-[90vh]">
+        <Image
+          src="/images/team/nils-bronner.jpg"
+          alt="Nils Bronner, photographe du Grub Studio"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/55 to-background/10" />
+        <Reveal className="relative w-full px-5 pb-12 sm:px-8 sm:pb-16">
+          <div className="mx-auto max-w-7xl">
+            <EyebrowPill>Photographie</EyebrowPill>
+            <h1 className="mt-4 max-w-3xl text-4xl font-medium leading-[0.95] tracking-tight sm:text-7xl">
+              Nils Bronner,
+              <br />
+              photographe.
+            </h1>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+              Studio, reportage, chez vous ou en packshot produit — un seul
+              photographe, un seul interlocuteur, pour des images qui
+              servent vraiment votre marque.
+            </p>
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cx(
+                "mt-7 inline-flex items-center gap-3 border px-6 py-4 text-sm font-mono uppercase tracking-[0.15em] transition-all duration-300 hover:-translate-y-0.5",
+                PAGE_ACCENT_CLASSES.pink.solid,
+                PAGE_ACCENT_CLASSES.pink.hover
+              )}
+            >
+              Réserver un créneau
+              <span aria-hidden>→</span>
+            </a>
           </div>
         </Reveal>
       </div>
 
-      {/* 4 rubriques */}
+      {/* 4 rubriques — one dominant image per section (the second photo as a
+          small offset accent card) instead of two same-size thumbnails, so
+          each format reads as a bold editorial spread rather than a grid. */}
       {rubriques.map((r, i) => (
         <Reveal key={r.slug} className="border-t border-border">
           <div
             id={r.slug}
-            className="mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-2 lg:items-center lg:gap-14"
+            className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-2 lg:items-center lg:gap-16"
           >
             <div
-              className={cx(
-                "grid grid-cols-2 gap-3",
-                i % 2 === 1 && "lg:order-2"
-              )}
+              className={cx("relative", i % 2 === 1 && "lg:order-2")}
             >
-              {r.images.map((src) => (
-                <div
-                  key={src}
-                  className="relative aspect-[3/4] overflow-hidden border border-border"
-                >
-                  <Image
-                    src={src}
-                    alt={r.alt}
-                    fill
-                    sizes="(min-width: 1024px) 24vw, 45vw"
-                    className="object-cover"
-                  />
-                </div>
-              ))}
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <Image
+                  src={r.images[0]}
+                  alt={r.alt}
+                  fill
+                  sizes="(min-width: 1024px) 44vw, 90vw"
+                  className="object-cover"
+                />
+              </div>
+              <div
+                className={cx(
+                  "absolute -bottom-8 h-28 w-28 overflow-hidden border-4 border-background shadow-xl sm:h-40 sm:w-40",
+                  i % 2 === 1 ? "-left-6 sm:-left-10" : "-right-6 sm:-right-10"
+                )}
+              >
+                <Image
+                  src={r.images[1]}
+                  alt={r.alt}
+                  fill
+                  sizes="160px"
+                  className="object-cover"
+                />
+              </div>
             </div>
-            <div>
-              <h2 className="text-xl font-medium tracking-tight sm:text-2xl">
+            <div className="mt-6 lg:mt-0">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
                 {r.title}
               </h2>
-              <p className="mt-4 max-w-xl leading-relaxed text-foreground/70">
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-foreground/70">
                 {r.description}
               </p>
               <a
                 href={`${CALENDLY_URL}?utm_content=${r.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 text-sm font-mono uppercase tracking-[0.15em] text-accent hover:text-foreground"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-mono uppercase tracking-[0.15em] text-accent hover:text-foreground"
               >
                 Réserver pour ce format
                 <span aria-hidden>→</span>
@@ -201,18 +211,29 @@ export default function PhotoPage() {
 
       {/* Expert */}
       <Reveal className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
-          <SectionKicker kicker="L'expert" as="h2">
-            Un seul photographe, un catalogue qui couvre tous les formats
-          </SectionKicker>
-          <p className="mt-6 max-w-2xl leading-relaxed text-foreground/70">
-            Photographe depuis 2017, Nils a construit un catalogue qui va du
-            portrait studio au reportage d&rsquo;entreprise, en passant par
-            le produit et l&rsquo;architecture. Il pilote aussi la partie
-            vidéo du Grub Studio — ce qui veut dire un seul interlocuteur
-            pour l&rsquo;ensemble de votre image de marque, photo et vidéo
-            confondues, du brief à la livraison.
-          </p>
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-16">
+          <div className="relative mx-auto aspect-[4/5] w-56 overflow-hidden sm:w-64">
+            <Image
+              src="/images/team/nils-bronner-profile.jpg"
+              alt="Nils Bronner, photographe du Grub Studio"
+              fill
+              sizes="256px"
+              className="object-cover"
+            />
+          </div>
+          <div>
+            <SectionKicker kicker="L'expert" as="h2">
+              Un seul photographe, un catalogue qui couvre tous les formats
+            </SectionKicker>
+            <p className="mt-6 max-w-2xl leading-relaxed text-foreground/70">
+              Photographe depuis 2017, Nils a construit un catalogue qui va
+              du portrait studio au reportage d&rsquo;entreprise, en passant
+              par le produit et l&rsquo;architecture. Il pilote aussi la
+              partie vidéo du Grub Studio — ce qui veut dire un seul
+              interlocuteur pour l&rsquo;ensemble de votre image de marque,
+              photo et vidéo confondues, du brief à la livraison.
+            </p>
+          </div>
         </div>
       </Reveal>
 
