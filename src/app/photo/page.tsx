@@ -32,7 +32,10 @@ type Rubrique = {
   slug: string;
   title: string;
   description: string;
-  images: [string, string];
+  /** At least 2 images, each from a distinct shoot/subject — never two
+      frames of the same scene, so the section reads as a real sample of
+      the format rather than one moment cropped twice. */
+  images: string[];
   alt: string;
 };
 
@@ -42,7 +45,11 @@ const rubriques: Rubrique[] = [
     title: "Photo studio",
     description:
       "Portraits d'équipe, visuels de marque, images pour vos réseaux : au studio du Grub, lumière et décor sont maîtrisés du premier au dernier cliché. Même rendu, même cohérence, quel que soit le nombre de personnes photographiées — et quel que soit le jour où elles passent devant l'objectif.",
-    images: ["/images/projects/skillcamp.jpg", "/images/projects/skillcamp-2.jpg"],
+    images: [
+      "/images/projects/skillcamp.jpg",
+      "/images/photo/photo-studio-2.jpg",
+      "/images/photo/photo-studio-3.jpg",
+    ],
     alt: "Portrait studio réalisé par Nils Bronner, Grub Studio",
   },
   {
@@ -170,20 +177,39 @@ export default function PhotoPage() {
                   className="object-cover"
                 />
               </div>
-              <div
-                className={cx(
-                  "absolute -bottom-8 h-28 w-28 overflow-hidden border-4 border-background shadow-xl sm:h-40 sm:w-40",
-                  i % 2 === 1 ? "-left-6 sm:-left-10" : "-right-6 sm:-right-10"
-                )}
-              >
-                <Image
-                  src={r.images[1]}
-                  alt={r.alt}
-                  fill
-                  sizes="160px"
-                  className="object-cover"
-                />
-              </div>
+              {/* Accent card(s): the other shoots in this format, offset
+                  corner-to-corner when there are two so neither covers the
+                  other. */}
+              {r.images.slice(1).map((src, j, accents) => (
+                <div
+                  key={src}
+                  className={cx(
+                    "absolute h-28 w-28 overflow-hidden border-4 border-background shadow-xl sm:h-40 sm:w-40",
+                    accents.length > 1
+                      ? j === 0
+                        ? i % 2 === 1
+                          ? "-top-6 -left-6 sm:-left-10 sm:-top-10"
+                          : "-top-6 -right-6 sm:-right-10 sm:-top-10"
+                        : i % 2 === 1
+                          ? "-bottom-8 -right-6 sm:-right-10"
+                          : "-bottom-8 -left-6 sm:-left-10"
+                      : cx(
+                          "-bottom-8",
+                          i % 2 === 1
+                            ? "-left-6 sm:-left-10"
+                            : "-right-6 sm:-right-10"
+                        )
+                  )}
+                >
+                  <Image
+                    src={src}
+                    alt={r.alt}
+                    fill
+                    sizes="160px"
+                    className="object-cover"
+                  />
+                </div>
+              ))}
             </div>
             <div className="mt-6 lg:mt-0">
               <span className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
