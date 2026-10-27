@@ -66,15 +66,16 @@ export default function PolitiqueDeConfidentialitePage() {
             personnellement ni croisée avec les informations transmises via
             nos formulaires.
           </p>
-          <p className="mt-3">
-            Le site utilise également le pixel Meta (Facebook) pour mesurer
-            l&rsquo;efficacité de nos campagnes publicitaires sur les
-            plateformes Meta (Facebook, Instagram) et vous présenter des
-            publicités pertinentes sur ces plateformes. Cet outil dépose un
-            cookie publicitaire sur votre appareil et transmet des données de
-            navigation à Meta Platforms, Inc. Vous pouvez gérer vos
-            préférences publicitaires directement dans les paramètres de
-            votre compte Meta.
+          <p className="mt-3" id="cookies">
+            Avec votre accord, le site utilise également le pixel Meta
+            (Facebook, Instagram) pour mesurer l&rsquo;efficacité de nos
+            campagnes publicitaires et vous présenter nos annonces sur ces
+            plateformes. Ce cookie publicitaire n&rsquo;est jamais déposé
+            avant votre accord, donné via le bandeau affiché lors de votre
+            première visite ; refuser n&rsquo;empêche pas d&rsquo;utiliser le
+            site. Vous pouvez changer d&rsquo;avis à tout moment grâce au lien
+            « Cookies » en bas de page. Le contenu de vos messages n&rsquo;est
+            jamais transmis à Meta.
           </p>
         </section>
 
@@ -128,7 +129,8 @@ export default function PolitiqueDeConfidentialitePage() {
               (voir « Mesure d&rsquo;audience et publicité » ci-dessus).
             </li>
             <li>
-              <strong>Meta Platforms, Inc.</strong> : mesure l&rsquo;efficacité
+              <strong>Meta Platforms, Inc.</strong> : uniquement si vous
+              acceptez les cookies publicitaires, mesure l&rsquo;efficacité
               de nos campagnes publicitaires et personnalise les publicités
               présentées sur Facebook et Instagram (voir « Mesure
               d&rsquo;audience et publicité » ci-dessus).

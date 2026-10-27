@@ -11,6 +11,8 @@ export function getPageAccentKey(pathname: string): PageAccentKey {
   if (pathname.startsWith("/services")) return "purple";
   if (pathname.startsWith("/conseil")) return "yellow";
   if (pathname.startsWith("/rush")) return "cyan";
+  if (pathname.startsWith("/ads")) return "purple";
+  if (pathname.startsWith("/evenementiel")) return "cyan";
   if (pathname.startsWith("/studio")) return "cyan";
   if (pathname.startsWith("/travaux")) return "pink";
   // Home, /contact, legal pages.
