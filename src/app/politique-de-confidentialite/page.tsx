@@ -56,7 +56,7 @@ export default function PolitiqueDeConfidentialitePage() {
 
         <section>
           <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
-            Mesure d&rsquo;audience
+            Mesure d&rsquo;audience et publicité
           </h2>
           <p className="mt-3">
             Le site utilise Metricool pour mesurer sa fréquentation (pages
@@ -65,6 +65,16 @@ export default function PolitiqueDeConfidentialitePage() {
             Aucune de ces données n&rsquo;est utilisée pour vous identifier
             personnellement ni croisée avec les informations transmises via
             nos formulaires.
+          </p>
+          <p className="mt-3">
+            Le site utilise également le pixel Meta (Facebook) pour mesurer
+            l&rsquo;efficacité de nos campagnes publicitaires sur les
+            plateformes Meta (Facebook, Instagram) et vous présenter des
+            publicités pertinentes sur ces plateformes. Cet outil dépose un
+            cookie publicitaire sur votre appareil et transmet des données de
+            navigation à Meta Platforms, Inc. Vous pouvez gérer vos
+            préférences publicitaires directement dans les paramètres de
+            votre compte Meta.
           </p>
         </section>
 
@@ -115,7 +125,13 @@ export default function PolitiqueDeConfidentialitePage() {
             </li>
             <li>
               <strong>Metricool</strong> : mesure la fréquentation du site
-              (voir « Mesure d&rsquo;audience » ci-dessus).
+              (voir « Mesure d&rsquo;audience et publicité » ci-dessus).
+            </li>
+            <li>
+              <strong>Meta Platforms, Inc.</strong> : mesure l&rsquo;efficacité
+              de nos campagnes publicitaires et personnalise les publicités
+              présentées sur Facebook et Instagram (voir « Mesure
+              d&rsquo;audience et publicité » ci-dessus).
             </li>
           </ul>
         </section>
