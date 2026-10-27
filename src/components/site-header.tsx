@@ -12,7 +12,7 @@ import { AnimatedHighlight } from "@/components/animated-highlight";
 const CONSEIL_NAV_ENABLED = true;
 
 const links = [
-  { href: "/services", label: "Services" },
+  { href: "/production", label: "Production" },
   ...(CONSEIL_NAV_ENABLED ? [{ href: "/conseil", label: "Conseil" }] : []),
   { href: "/rush", label: "Rush" },
   { href: "/contact", label: "Contact" },

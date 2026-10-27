@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { coverImage, type Project } from "@/lib/content/projects";
 import { useDragScroll } from "@/lib/use-drag-scroll";
+import { useMounted } from "@/lib/use-mounted";
 import { cx } from "@/lib/cx";
 
 function LogoCard({ project }: { project: Project }) {
@@ -79,9 +80,19 @@ function LogoRow({
   const setWidth = useRef(0);
   const { dragging, handlers } = useDragScroll(scrollerRef);
 
-  const loop = [...projects, ...projects];
+  // The seamless loop needs a second, duplicate copy of the row in the DOM
+  // to scroll into — but server-rendering that duplicate means every client
+  // logo (and its link to /travaux/<slug>) appears twice in the HTML a
+  // crawler sees. Rendering just the one real copy until the component has
+  // mounted, then adding the clone marked `inert` (out of the a11y tree and
+  // tab order, same effect as "aria-hidden after hydration"), keeps SSR
+  // markup to one copy of each link while the loop still works for visitors.
+  const mounted = useMounted();
+
+  const loop = mounted ? [...projects, ...projects] : projects;
 
   useEffect(() => {
+    if (!mounted) return;
     const el = scrollerRef.current;
     if (!el) return;
 
@@ -117,7 +128,7 @@ function LogoRow({
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", measure);
     };
-  }, [projects, dragging, reverse, speed]);
+  }, [projects, dragging, reverse, speed, mounted]);
 
   return (
     <div
@@ -127,9 +138,15 @@ function LogoRow({
       {...handlers}
       className="no-scrollbar -mx-5 flex cursor-grab gap-4 overflow-x-auto px-5 pb-1 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)] [touch-action:pan-x] active:cursor-grabbing sm:-mx-8 sm:px-8"
     >
-      {loop.map((project, i) => (
-        <LogoCard key={`${project.slug}-${i}`} project={project} />
-      ))}
+      {loop.map((project, i) =>
+        i < projects.length ? (
+          <LogoCard key={`${project.slug}-${i}`} project={project} />
+        ) : (
+          <div key={`${project.slug}-${i}`} inert className="contents">
+            <LogoCard project={project} />
+          </div>
+        )
+      )}
     </div>
   );
 }

@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useRef, useSyncExternalStore } from "react";
 import { cx } from "@/lib/cx";
+import { useMounted } from "@/lib/use-mounted";
 import { useVimeoPlaying } from "@/lib/use-vimeo-playing";
 import { PAGE_ACCENT_CLASSES } from "@/lib/page-accent";
 
@@ -40,6 +42,8 @@ export function HeroShowreel({
   vimeoHashMobile,
   heading,
   catchphrase,
+  posterUrl,
+  posterUrlMobile,
 }: {
   vimeoId: string;
   /** Dedicated vertical (9:16) cut shown below the `sm` breakpoint instead of cropping the horizontal video. */
@@ -48,6 +52,9 @@ export function HeroShowreel({
   /** The page's H1 — a short, keyword-bearing line set above the catchphrase. */
   heading?: string;
   catchphrase: string;
+  /** Real Vimeo poster frames, resolved server-side — rendered eagerly (unlike the iframe) so the LCP candidate is a fast local-ish image instead of depending on the video player booting. */
+  posterUrl?: string;
+  posterUrlMobile?: string;
 }) {
   const isMobile = useIsMobileViewport();
   const vertical = isMobile && Boolean(vimeoIdMobile);
@@ -64,8 +71,7 @@ export function HeroShowreel({
   // synchronously on the first client render, via useSyncExternalStore
   // above) happens before any video request ever goes out, so mobile only
   // ever fetches its own dedicated vertical cut.
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const mounted = useMounted();
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { playing: loaded, blocked, retry } = useVimeoPlaying(iframeRef, mounted);
@@ -73,6 +79,43 @@ export function HeroShowreel({
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden border-b border-border sm:aspect-video">
       <div className="absolute inset-0 bg-[#0b0b0a]" />
+
+      {/* Server-rendered posters (not gated behind `mounted`, unlike the
+          iframe) so there's a real, fast-loading image for the LCP metric
+          to measure instead of an empty colored box. Both are present in
+          the HTML and only one is shown per viewport via CSS — the browser
+          may fetch both, but a poster image is tiny next to a video
+          stream, so that's a fair trade for not needing server-side device
+          detection. */}
+      {posterUrlMobile && (
+        <Image
+          src={posterUrlMobile}
+          alt=""
+          fill
+          priority
+          aria-hidden
+          sizes="100vw"
+          className={cx(
+            "object-cover sm:hidden",
+            loaded && mounted && "opacity-0 transition-opacity duration-700"
+          )}
+        />
+      )}
+      {posterUrl && (
+        <Image
+          src={posterUrl}
+          alt=""
+          fill
+          priority
+          aria-hidden
+          sizes="100vw"
+          className={cx(
+            "hidden object-cover sm:block",
+            loaded && mounted && "opacity-0 transition-opacity duration-700"
+          )}
+        />
+      )}
+
       {mounted && (
         <iframe
           key={activeId}

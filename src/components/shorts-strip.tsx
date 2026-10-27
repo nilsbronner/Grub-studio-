@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ShortTile } from "@/components/short-tile";
 import { useDragScroll } from "@/lib/use-drag-scroll";
+import { useMounted } from "@/lib/use-mounted";
 import type { Short } from "@/lib/content/shorts";
 
 export function ShortsStrip({ shorts }: { shorts: Short[] }) {
@@ -11,9 +12,17 @@ export function ShortsStrip({ shorts }: { shorts: Short[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const setWidth = useRef(0);
 
-  const loop = [...shorts, ...shorts, ...shorts];
+  // Same reasoning as the client logo marquee: the bidirectional loop needs
+  // two extra, duplicate copies to scroll into, but server-rendering all
+  // three means every short (and its lightbox trigger) appears 3x in the
+  // HTML a crawler sees. Keep SSR to the one real copy; add the two clones,
+  // marked `inert`, only once mounted on the client.
+  const mounted = useMounted();
+
+  const loop = mounted ? [...shorts, ...shorts, ...shorts] : shorts;
 
   useEffect(() => {
+    if (!mounted) return;
     const el = ref.current;
     if (!el) return;
 
@@ -41,7 +50,7 @@ export function ShortsStrip({ shorts }: { shorts: Short[] }) {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", measure);
     };
-  }, [dragging]);
+  }, [dragging, mounted]);
 
   return (
     <div
@@ -49,18 +58,27 @@ export function ShortsStrip({ shorts }: { shorts: Short[] }) {
       {...handlers}
       className="no-scrollbar flex cursor-grab gap-4 overflow-x-auto pb-2 [touch-action:pan-x] active:cursor-grabbing"
     >
-      {loop.map((short, i) => (
-        <ShortTile
-          key={`${short.slug}-${i}`}
-          short={short}
-          isActive={activeIndex === i}
-          dimmed={activeIndex !== null && activeIndex !== i}
-          onActivate={() =>
-            setActiveIndex((current) => (current === i ? null : i))
-          }
-          className="w-[46vw] shrink-0 select-none sm:w-[220px]"
-        />
-      ))}
+      {loop.map((short, i) => {
+        const tile = (
+          <ShortTile
+            key={`${short.slug}-${i}`}
+            short={short}
+            isActive={activeIndex === i}
+            dimmed={activeIndex !== null && activeIndex !== i}
+            onActivate={() =>
+              setActiveIndex((current) => (current === i ? null : i))
+            }
+            className="w-[46vw] shrink-0 select-none sm:w-[220px]"
+          />
+        );
+        return i < shorts.length ? (
+          tile
+        ) : (
+          <div key={`${short.slug}-${i}`} inert className="contents">
+            {tile}
+          </div>
+        );
+      })}
     </div>
   );
 }

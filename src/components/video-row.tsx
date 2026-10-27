@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useMounted } from "@/lib/use-mounted";
 import { VideoTile } from "@/components/video-tile";
 import { useDragScroll } from "@/lib/use-drag-scroll";
 import type { Project } from "@/lib/content/projects";
@@ -27,9 +28,16 @@ export function VideoRow({
   const setWidth = useRef(0);
   const { dragging, handlers } = useDragScroll(scrollerRef);
 
-  const loop = [...projects, ...projects];
+  // Same reasoning as the home page marquees: the duplicate copy that makes
+  // the loop seamless shouldn't double every project link (49 of them, on
+  // /travaux's default view) in the HTML a crawler sees. SSR renders the
+  // one real copy; the clone, marked `inert`, is added only once mounted.
+  const mounted = useMounted();
+
+  const loop = mounted ? [...projects, ...projects] : projects;
 
   useEffect(() => {
+    if (!mounted) return;
     const el = scrollerRef.current;
     if (!el) return;
 
@@ -66,7 +74,7 @@ export function VideoRow({
       window.removeEventListener("resize", measure);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projects, dragging, reverse, speed]);
+  }, [projects, dragging, reverse, speed, mounted]);
 
   return (
     <div
@@ -76,14 +84,23 @@ export function VideoRow({
       {...handlers}
       className="no-scrollbar flex cursor-grab gap-4 overflow-x-auto px-5 pb-2 [touch-action:pan-x] active:cursor-grabbing sm:px-8"
     >
-      {loop.map((project, i) => (
-        <VideoTile
-          key={`${project.slug}-${i}`}
-          project={project}
-          priority={priorityFirst && i < 2}
-          className={cx("shrink-0 select-none", tileClassName)}
-        />
-      ))}
+      {loop.map((project, i) => {
+        const tile = (
+          <VideoTile
+            key={`${project.slug}-${i}`}
+            project={project}
+            priority={priorityFirst && i < 2}
+            className={cx("shrink-0 select-none", tileClassName)}
+          />
+        );
+        return i < projects.length ? (
+          tile
+        ) : (
+          <div key={`${project.slug}-${i}`} inert className="contents">
+            {tile}
+          </div>
+        );
+      })}
     </div>
   );
 }
