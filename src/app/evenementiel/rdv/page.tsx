@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { pageMetadata } from "@/lib/metadata";
-import { getVimeoThumbnails } from "@/lib/vimeo";
 import { contact } from "@/lib/content/contact";
 import {
   HeroVideo,
@@ -29,43 +28,58 @@ export const metadata: Metadata = {
 };
 
 const HERO_VIMEO = "1237950778";
+// The hero and the first film tile are the same video — a flagship event
+// photo stands in for both since Vimeo's own auto-picked thumbnail isn't
+// usable (see FILMS below for why every poster here is a real photo or an
+// extracted frame rather than Vimeo's default).
+const HERO_POSTER = "/images/projects/porsche-strasbourg-3.jpg";
 
+// Vimeo auto-picks a thumbnail per video and it's frequently wrong (a solid
+// black frame, a title card, the very first frame before action starts).
+// Every poster below is either a real event photo or a frame pulled by hand
+// a few seconds into the edit — never the Vimeo default.
 const FILMS = [
   {
     vimeoId: "1237950778",
     title: "Showreel événementiel",
     subtitle: "Grub Studio",
     duration: "0:26",
+    poster: HERO_POSTER,
   },
   {
     vimeoId: "1237543769",
     title: "Aftermovie Rendez-Vous Porsche",
     subtitle: "Sofitel Strasbourg",
     duration: "1:00",
+    poster: "/images/projects/porsche-strasbourg.jpg",
   },
   {
     vimeoId: "1214544938",
     title: "Aftermovie festival",
     subtitle: "CCI Bizz & Buzz",
     duration: "1:04",
+    poster: "/images/projects/bizz-and-buzz.jpg",
   },
   {
     vimeoId: "1214544952",
     title: "Aftermovie de soirée",
     subtitle: "SAS 3B",
     duration: "2:13",
+    poster: "/images/projects/sas3b.jpg",
   },
   {
     vimeoId: "1237601767",
     title: "Aftermovie plage éphémère",
     subtitle: "Hôtel de la Maison Rouge · Hôtel Hannong",
     duration: "1:21",
+    poster: "/images/projects/hotel-hannong.jpg",
   },
   {
     vimeoId: "1237616253",
     title: "Spot soirées & événements",
     subtitle: "Hôtel de la Maison Rouge",
     duration: "2:41",
+    poster: "/images/projects/maison-rouge.jpg",
   },
 ] as const;
 
@@ -76,6 +90,7 @@ const PROOFS = [
     statLabel: "impressions pour la campagne teasing",
     client: "Strasbourg Esport Days",
     cta: "Voir le teaser",
+    poster: "/images/projects/strasbourg-esport-days-7.jpg",
   },
   {
     vimeoId: "1214544969",
@@ -83,6 +98,7 @@ const PROOFS = [
     statLabel: "vues et plus de 600 avis en un week-end",
     client: "Holly's Diner",
     cta: "Voir l'aftermovie",
+    poster: "/images/projects/hollys-diner-2.jpg",
   },
 ] as const;
 
@@ -102,35 +118,37 @@ const REFS = [
   "Skillcamp",
 ];
 
+// Every image on this page is used exactly once — none of these repeat
+// elsewhere (hero, "le constat", cycle, proofs, films or "fin").
 const TERRAIN_IMAGES = [
-  { src: "/images/projects/porsche-strasbourg.jpg", alt: "Lancement Porsche Strasbourg, invités autour du véhicule", caption: "Lancement · Porsche Strasbourg" },
-  { src: "/images/projects/vinci.jpg", alt: "Repas d'entreprise, client Vinci Group", caption: "Vinci Group" },
-  { src: "/images/projects/strasbourg-esport-days.jpg", alt: "Ambiance sur le salon Strasbourg Esport Days", caption: "Salon · Esport Days" },
-  { src: "/images/projects/vinci-2.jpg", alt: "Moment partagé lors d'un événement Vinci Group" },
-  { src: "/images/projects/porsche-strasbourg-2.jpg", alt: "Détail du lancement Porsche Strasbourg" },
-  { src: "/images/projects/skillcamp.jpg", alt: "Portrait d'un intervenant Skillcamp", caption: "Portrait · Skillcamp" },
-  { src: "/images/projects/hollys-diner.jpg", alt: "Soirée d'inauguration Holly's Diner", caption: "Inauguration · Holly's Diner" },
-  { src: "/images/projects/strasbourg-esport-days-2.jpg", alt: "Joueurs en compétition sur le salon Esport Days" },
-  { src: "/images/projects/porsche-strasbourg-3.jpg", alt: "Présentation produit lors du lancement Porsche Strasbourg" },
+  { src: "/images/projects/k-et-plus.jpg", alt: "Prise de parole en extérieur lors de l'inauguration des locaux K&+", caption: "Inauguration · K&+" },
+  { src: "/images/projects/alsace-habitat-2.jpg", alt: "Service de champagne pendant un cocktail" },
+  { src: "/images/projects/strasbourg-esport-days-3.jpg", alt: "Deux joueurs devant leurs écrans sur le salon Strasbourg Esport Days" },
+  { src: "/images/projects/vinci-3.jpg", alt: "Invités se dirigeant vers la fan zone d'un événement Vinci Group" },
+  { src: "/images/projects/k-et-plus-2.jpg", alt: "Prise de parole au micro lors de l'inauguration des locaux K&+" },
+  { src: "/images/projects/alsace-habitat.jpg", alt: "Visite de site en groupe pour Alsace Habitat", caption: "Alsace Habitat" },
+  { src: "/images/projects/strasbourg-esport-days-4.jpg", alt: "Joueur en réalité virtuelle sur le salon Esport Days" },
+  { src: "/images/projects/skillcamp.jpg", alt: "Portrait d'un intervenant Skillcamp" },
+  { src: "/images/projects/grand-angle.jpg", alt: "Portrait corporate pour Grand Angle" },
 ];
 
 const CYCLE = [
   {
-    image: "/images/projects/porsche-strasbourg.jpg",
+    image: "/images/projects/porsche-strasbourg-2.jpg",
     accent: "var(--accent-purple)",
     step: "Avant",
     title: "Le teaser",
     text: "Une vidéo courte qui annonce l'événement et donne envie de venir.",
   },
   {
-    image: "/images/projects/vinci.jpg",
+    image: "/images/projects/vinci-2.jpg",
     accent: "var(--accent)",
     step: "Pendant",
     title: "Le reportage",
     text: "Photo, vidéo et interviews, avec des contenus prêts à publier dès le lendemain.",
   },
   {
-    image: "/images/projects/hollys-diner.jpg",
+    image: "/images/projects/strasbourg-esport-days-5.jpg",
     accent: "var(--accent-cyan)",
     step: "Après",
     title: "L'aftermovie",
@@ -209,18 +227,7 @@ const FAQ = [
   },
 ];
 
-export default async function EvenementielRdvPage() {
-  const vimeoIds = Array.from(
-    new Set([
-      HERO_VIMEO,
-      ...FILMS.map((f) => f.vimeoId),
-      ...PROOFS.map((p) => p.vimeoId),
-    ])
-  );
-  const thumbnails = await getVimeoThumbnails(
-    vimeoIds.map((vimeoId) => ({ vimeoId }))
-  );
-
+export default function EvenementielRdvPage() {
   return (
     <div id="top" className="bg-background pb-24 lg:pb-0">
       <RdvHeader />
@@ -231,7 +238,7 @@ export default async function EvenementielRdvPage() {
           <div className="flex flex-col gap-3">
             <HeroVideo
               vimeoId={HERO_VIMEO}
-              poster={thumbnails[HERO_VIMEO]}
+              poster={HERO_POSTER}
               title="Showreel événementiel — Grub Studio"
               duration="26 s"
             />
@@ -419,7 +426,7 @@ export default async function EvenementielRdvPage() {
               <ProofCard
                 key={p.vimeoId}
                 vimeoId={p.vimeoId}
-                poster={thumbnails[p.vimeoId]}
+                poster={p.poster}
                 stat={p.stat}
                 statLabel={p.statLabel}
                 client={p.client}
@@ -449,7 +456,7 @@ export default async function EvenementielRdvPage() {
             <FilmTile
               key={f.vimeoId}
               vimeoId={f.vimeoId}
-              poster={thumbnails[f.vimeoId]}
+              poster={f.poster}
               title={f.title}
               subtitle={f.subtitle}
               duration={f.duration}
@@ -608,8 +615,8 @@ export default async function EvenementielRdvPage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-border">
             <Image
-              src="/images/projects/porsche-strasbourg-3.jpg"
-              alt="Lancement Porsche Strasbourg"
+              src="/images/projects/hollys-diner.jpg"
+              alt="Soirée d'inauguration Holly's Diner"
               fill
               sizes="(min-width: 1024px) 45vw, 100vw"
               className="object-cover"
