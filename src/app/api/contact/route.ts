@@ -174,9 +174,13 @@ async function sendNotificationEmail(payload: ContactPayload) {
       subject: `Nouveau contact site — ${payload.name}`,
       text: `Nom : ${payload.name}\n${buildDescription(payload)}`,
     }),
-  });
+  }).catch(() => null);
 
-  return { attempted: true as const, ok: res.ok };
+  if (!res || !res.ok) {
+    const detail = res ? `${res.status} ${await res.text().catch(() => "")}` : "network";
+    console.error(`[contact] Resend email failed (from ${from}): ${detail}`);
+  }
+  return { attempted: true as const, ok: !!res && res.ok };
 }
 
 export async function POST(request: Request) {
@@ -192,9 +196,9 @@ export async function POST(request: Request) {
   }
 
   const [project, email, brevo] = await Promise.all([
-    createGrubProject(data),
-    sendNotificationEmail(data),
-    addToBrevo(data),
+    createGrubProject(data).catch(() => ({ attempted: true as const, ok: false })),
+    sendNotificationEmail(data).catch(() => ({ attempted: true as const, ok: false })),
+    addToBrevo(data).catch(() => ({ attempted: true as const, ok: false })),
   ]);
 
   // No destination is configured yet — tell the client to fall back to a
@@ -203,10 +207,16 @@ export async function POST(request: Request) {
     return NextResponse.json({ configured: false }, { status: 503 });
   }
 
-  const ok =
-    (project.attempted ? project.ok : true) &&
-    (email.attempted ? email.ok : true) &&
-    (brevo.attempted ? brevo.ok : true);
+  // A lead is saved as soon as ONE destination accepted it (e.g. the project was
+  // created in Grub Gestion even if the notification email failed). Failing the
+  // whole request in that case showed the visitor an error for a lead we had
+  // actually received, and skipped the Meta "Lead" conversion.
+  const results = { project, email, brevo };
+  const failed = Object.entries(results)
+    .filter(([, r]) => r.attempted && !r.ok)
+    .map(([k]) => k);
+  if (failed.length) console.error(`[contact] destinations failed: ${failed.join(", ")}`);
+  const ok = Object.values(results).some((r) => r.attempted && r.ok);
   if (!ok) {
     return NextResponse.json({ configured: true, ok: false }, { status: 502 });
   }
