@@ -116,6 +116,41 @@ async function createGrubProject(payload: ContactPayload) {
   return { attempted: true as const, ok: true };
 }
 
+// Add the lead to Brevo so ad-campaign landing pages (/ads, /evenementiel,
+// /evenementiel/rdv) feed the same CRM as the chat bot. Configure via:
+//   BREVO_API_KEY           facultatif : active l'envoi
+//   BREVO_CONTACT_LIST_ID   facultatif : liste Brevo dédiée aux leads du formulaire
+async function addToBrevo(payload: ContactPayload) {
+  const key = process.env.BREVO_API_KEY;
+  if (!key) return { attempted: false as const };
+
+  const listId = Number(process.env.BREVO_CONTACT_LIST_ID);
+  const [prenom, ...rest] = payload.name.trim().split(/\s+/);
+  const res = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    headers: {
+      "api-key": key,
+      "content-type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify({
+      email: payload.email,
+      updateEnabled: true,
+      listIds: Number.isFinite(listId) && listId > 0 ? [listId] : undefined,
+      attributes: {
+        PRENOM: prenom || "",
+        NOM: rest.join(" "),
+        SMS: payload.phone || "",
+        ENTREPRISE: payload.company || "",
+        PROJET: payload.projectType || "",
+      },
+    }),
+  }).catch(() => null);
+
+  // Brevo returns 204 when the contact already existed and was updated.
+  return { attempted: true as const, ok: res ? res.ok || res.status === 204 : false };
+}
+
 // Email the completed form to Nils. Configure via env vars:
 //   RESEND_API_KEY, CONTACT_NOTIFY_EMAIL (defaults to nils.bronner@gmail.com),
 //   CONTACT_FROM_EMAIL (a verified sender on the Resend account/domain).
@@ -156,20 +191,22 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "invalid_payload" }, { status: 400 });
   }
 
-  const [project, email] = await Promise.all([
+  const [project, email, brevo] = await Promise.all([
     createGrubProject(data),
     sendNotificationEmail(data),
+    addToBrevo(data),
   ]);
 
-  // Neither destination is configured yet — tell the client to fall back
-  // to a mailto link rather than silently dropping the lead.
-  if (!project.attempted && !email.attempted) {
+  // No destination is configured yet — tell the client to fall back to a
+  // mailto link rather than silently dropping the lead.
+  if (!project.attempted && !email.attempted && !brevo.attempted) {
     return NextResponse.json({ configured: false }, { status: 503 });
   }
 
   const ok =
     (project.attempted ? project.ok : true) &&
-    (email.attempted ? email.ok : true);
+    (email.attempted ? email.ok : true) &&
+    (brevo.attempted ? brevo.ok : true);
   if (!ok) {
     return NextResponse.json({ configured: true, ok: false }, { status: 502 });
   }

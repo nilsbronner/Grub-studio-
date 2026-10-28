@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { GrubChat } from "@/components/grub-chat";
+import { SiteChrome } from "@/components/site-chrome";
 import { MetaPixel } from "@/components/meta-pixel";
 import { siteUrl } from "@/lib/site";
 import { businessJsonLd, jsonLd } from "@/lib/seo";
@@ -58,10 +56,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLd(businessJsonLd) }}
         />
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
-        <GrubChat />
+        <SiteChrome>{children}</SiteChrome>
         {/* Metricool: mesure d'audience du site (voir politique de confidentialité). */}
         <Script
           id="metricool-tracker"
