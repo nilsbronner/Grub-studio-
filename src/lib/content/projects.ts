@@ -352,24 +352,6 @@ export const projects: Project[] = [
     featuredHome: true,
   },
   {
-    slug: "luigi-pericle",
-    client: "Luigi Pericle",
-    sector: "Documentaire",
-    keywords: [
-      "film documentaire Strasbourg",
-      "production documentaire Alsace",
-      "sous-titrage vidéo",
-    ],
-    title: "Luigi Pericle",
-    hook: "Un film documentaire sous-titré.",
-    categories: ["reportage"],
-    context:
-      "Production d'un film documentaire, sous-titré pour une diffusion internationale.",
-    deliverables: ["Film documentaire"],
-    accent: "#9a7a2f",
-    vimeoId: "1173948883",
-  },
-  {
     slug: "once-upon-a-dime-aftermovie",
     client: "Once Upon a Dime",
     sector: "Aftermovie",
