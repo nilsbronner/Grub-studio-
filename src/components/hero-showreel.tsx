@@ -79,7 +79,18 @@ export function HeroShowreel({
 
   return (
     <div
-      className="relative aspect-[4/5] w-full overflow-hidden border-b border-border sm:aspect-video"
+      // Below `sm`, the showreel should fill the rest of the screen under
+      // the header, not the whole viewport: `sticky` still reserves its
+      // own box in normal flow (only its *position* changes on scroll),
+      // so a plain `h-dvh` hero would add a second screen's height below
+      // that reserved band instead of sharing one. 3.75rem is that band's
+      // real height — site-header.tsx's `py-4` (2rem) plus its `text-lg`
+      // logo line-height (1.75rem) — not an arbitrary number; update it
+      // alongside the header's own vertical sizing.
+      // `dvh`, not `100vh`, so mobile Safari's address bar showing/hiding
+      // doesn't leave a gap or cause overflow. Desktop keeps its original
+      // aspect-ratio-driven height.
+      className="relative h-[calc(100dvh-3.75rem)] w-full overflow-hidden border-b border-border sm:aspect-video sm:h-auto"
       onClick={reveal}
     >
       <div className="absolute inset-0 bg-[#0b0b0a]" />
@@ -134,7 +145,11 @@ export function HeroShowreel({
         <button
           type="button"
           onClick={reveal}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-pulse text-xs font-mono uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-foreground sm:bottom-14"
+          // bottom-28 on mobile clears GrubChat's floating button (`fixed
+          // bottom-6`, ~80px tall) now that the hero reaches the true
+          // screen bottom — bottom-10 used to be safely above it only
+          // because the hero was shorter than the viewport.
+          className="absolute bottom-28 left-1/2 -translate-x-1/2 animate-pulse text-xs font-mono uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-foreground sm:bottom-14"
         >
           Cliquez pour découvrir ↓
         </button>
@@ -142,7 +157,11 @@ export function HeroShowreel({
 
       <div
         className={cx(
-          "relative flex h-full flex-col justify-end px-5 pb-10 transition-opacity duration-500 ease-out sm:px-8 sm:pb-14",
+          // pb-28 on mobile, same reasoning as the hint button above: the
+          // revealed heading/CTAs are bottom-anchored too, and now that
+          // the hero reaches the true screen bottom they'd otherwise sit
+          // right behind GrubChat's floating button.
+          "relative flex h-full flex-col justify-end px-5 pb-28 transition-opacity duration-500 ease-out sm:px-8 sm:pb-14",
           revealed ? "opacity-100" : "pointer-events-none opacity-0"
         )}
       >
