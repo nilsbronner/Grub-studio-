@@ -70,8 +70,18 @@ export function HeroShowreel({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const { playing: loaded, blocked, retry } = useVimeoPlaying(iframeRef, mounted);
 
+  // The showreel starts clean — no title, no buttons, nothing between the
+  // visitor and the video. A tap/click anywhere (or the explicit hint
+  // button, for keyboard and screen-reader users) reveals the heading and
+  // CTAs over it; the video keeps playing underneath.
+  const [revealed, setRevealed] = useState(false);
+  const reveal = () => setRevealed(true);
+
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden border-b border-border sm:aspect-video">
+    <div
+      className="relative aspect-[4/5] w-full overflow-hidden border-b border-border sm:aspect-video"
+      onClick={reveal}
+    >
       <div className="absolute inset-0 bg-[#0b0b0a]" />
       {mounted && (
         <iframe
@@ -95,7 +105,12 @@ export function HeroShowreel({
           title="Showreel Grub Studio"
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
+      <div
+        className={cx(
+          "absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10 transition-opacity duration-500 ease-out",
+          revealed ? "opacity-100" : "opacity-0"
+        )}
+      />
 
       {blocked && (
         <button
@@ -115,7 +130,22 @@ export function HeroShowreel({
         </button>
       )}
 
-      <div className="relative flex h-full flex-col justify-end px-5 pb-10 sm:px-8 sm:pb-14">
+      {!revealed && (
+        <button
+          type="button"
+          onClick={reveal}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-pulse text-xs font-mono uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-foreground sm:bottom-14"
+        >
+          Cliquez pour découvrir ↓
+        </button>
+      )}
+
+      <div
+        className={cx(
+          "relative flex h-full flex-col justify-end px-5 pb-10 transition-opacity duration-500 ease-out sm:px-8 sm:pb-14",
+          revealed ? "opacity-100" : "pointer-events-none opacity-0"
+        )}
+      >
         <div className="mx-auto w-full max-w-7xl">
           {heading && (
             <h1 className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-foreground/70 sm:text-sm">
