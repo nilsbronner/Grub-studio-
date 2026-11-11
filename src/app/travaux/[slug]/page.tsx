@@ -212,6 +212,25 @@ export default async function ProjectPage({
         </div>
       </Reveal>
 
+      {/* A project with both a video and a photo gallery (e.g. an aftermovie
+          plus real event photos) shows the photos here, after the writeup —
+          the hero above only ever plays one video, so this is the only place
+          those photos surface rather than sitting unused. */}
+      {project.vimeoId && !galleryVideos?.length && project.images?.length ? (
+        <Reveal delay={0.1} className="mt-10">
+          <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
+            En images
+          </h2>
+          <div className="mt-4">
+            <ProjectGallery
+              images={project.images}
+              alt={`${project.client} — ${project.title}, photo Grub Studio`}
+              className="aspect-[16/9] w-full sm:aspect-[21/9]"
+            />
+          </div>
+        </Reveal>
+      ) : null}
+
       {project.stats && project.stats.length > 0 && (
         <Reveal delay={0.1} className="mt-10">
           <h2 className="text-sm font-mono uppercase tracking-[0.15em] text-muted">
