@@ -159,6 +159,11 @@ export const projects: Project[] = [
       "Vidéos crowdfunding",
       "Base de contenus réutilisable",
     ],
+    testimonial: {
+      quote:
+        "Super agence, on recommande les yeux fermés pour tout ce qui est vidéo, prise de son, live, motion design, réseaux sociaux. Equipe jeune et efficace.",
+      author: "Matthieu, MyFood",
+    },
     accent: "#3a5f8f",
     logo: "/images/logos/myfood.png",
     logoOnDark: true,
