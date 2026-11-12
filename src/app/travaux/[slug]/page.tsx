@@ -148,6 +148,7 @@ export default async function ProjectPage({
           <ProjectGallery
             images={project.images ?? (project.image ? [project.image] : [])}
             alt={`${project.client} — ${project.title}, photo Grub Studio`}
+            alts={project.imageAlts}
             className="aspect-video w-full"
           />
         ) : (

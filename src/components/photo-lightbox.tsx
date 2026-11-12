@@ -29,6 +29,7 @@ const SWIPE_THRESHOLD = 60;
 export function PhotoLightbox({
   images,
   alt,
+  alts,
   index,
   onIndexChange,
   open,
@@ -36,6 +37,8 @@ export function PhotoLightbox({
 }: {
   images: string[];
   alt: string;
+  /** Per-photo alt text, same order as `images` — falls back to `alt` for any index left out. */
+  alts?: string[];
   index: number;
   onIndexChange: (index: number) => void;
   open: boolean;
@@ -115,7 +118,7 @@ export function PhotoLightbox({
                 <div className="relative h-full w-full">
                   <Image
                     src={images[index]}
-                    alt={alt}
+                    alt={alts?.[index] ?? alt}
                     fill
                     sizes="100vw"
                     className="pointer-events-none select-none object-contain"

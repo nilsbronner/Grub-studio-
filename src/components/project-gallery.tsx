@@ -32,10 +32,13 @@ function ChevronIcon({ direction }: { direction: "left" | "right" }) {
 export function ProjectGallery({
   images,
   alt,
+  alts,
   className,
 }: {
   images: string[];
   alt: string;
+  /** Per-photo alt text, same order as `images` — falls back to `alt` for any index left out. */
+  alts?: string[];
   className?: string;
 }) {
   const [index, setIndex] = useState(0);
@@ -62,7 +65,7 @@ export function ProjectGallery({
         <Image
           key={current}
           src={current}
-          alt={alt}
+          alt={alts?.[index] ?? alt}
           fill
           priority={index === 0}
           sizes="(min-width: 1024px) 896px, 100vw"
@@ -110,6 +113,7 @@ export function ProjectGallery({
       <PhotoLightbox
         images={images}
         alt={alt}
+        alts={alts}
         index={index}
         onIndexChange={setIndex}
         open={lightboxOpen}
