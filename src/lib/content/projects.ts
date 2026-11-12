@@ -35,6 +35,8 @@ export type Project = {
   image?: string;
   /** Multiple real photos for a photo-only project (no vimeoId) — shown as a carousel on the project page instead of a single static image with a dead play button. */
   images?: string[];
+  /** Per-photo alt text, same order as `images` — falls back to the generic client/title alt for any index left out. */
+  imageAlts?: string[];
   /** Several distinct clips for a project with more than one deliverable video (e.g. a process broken into stages) — shown as a grid of playable tiles instead of a single hero video. */
   videos?: { vimeoId: string; vimeoHash?: string; title: string }[];
   /** Accent used for the placeholder tile gradient when no image/footage is set. */
@@ -807,6 +809,53 @@ export const projects: Project[] = [
     logo: "/images/logos/adt.png",
   },
   {
+    slug: "choiseul",
+    client: "Institut Choiseul",
+    sector: "Think tank économique",
+    keywords: [
+      "reportage photo événementiel Strasbourg",
+      "photographe table ronde",
+      "photographe conférence Alsace",
+    ],
+    title: "Reportage photo — petit-déjeuner décarbonation industrielle",
+    hook: "Un reportage éditorial pour la table ronde Choiseul Alsace, au Sofitel Strasbourg.",
+    categories: ["photo-evenementiel"],
+    stake:
+      "Produire un reportage éditorial vivant, au-delà d'une simple documentation de l'événement.",
+    context:
+      "Reportage photo du petit-déjeuner table ronde « La décarbonation de l'industrie en Alsace : levier de compétitivité et de souveraineté », organisé par l'Institut Choiseul (Club Choiseul Alsace) au Sofitel Strasbourg Grande Île. Prises de parole des intervenants, échanges avec le public, portraits et moments spontanés — une quarantaine de photos livrées en formats web et HD, le jour même.",
+    deliverables: [
+      "Reportage photo événementiel",
+      "Une quarantaine de photos web & HD",
+      "Livraison le jour même",
+    ],
+    testimonial: {
+      quote:
+        "Elles correspondent tout à fait au brief, sont élégantes et appréciées par nous tous en interne ! Je profite au nom de toute l'équipe pour vous remercier pour votre professionnalisme.",
+      author: "Giovanna Castelli, Directrice déploiement éditorial, Institut Choiseul",
+    },
+    accent: "#2f4a7a",
+    image: "/images/projects/choiseul.jpg",
+    images: [
+      "/images/projects/choiseul.jpg",
+      "/images/projects/choiseul-2.jpg",
+      "/images/projects/choiseul-3.jpg",
+      "/images/projects/choiseul-4.jpg",
+      "/images/projects/choiseul-5.jpg",
+      "/images/projects/choiseul-6.jpg",
+    ],
+    imageAlts: [
+      "Vue d'ensemble de la table ronde Choiseul Alsace sur la décarbonation de l'industrie, intervenants et public, Sofitel Strasbourg",
+      "Intervenant en pleine prise de parole pendant la table ronde sur la décarbonation industrielle",
+      "Intervenant debout, micro en main, pendant les échanges de la matinée",
+      "Participante attentive pendant les échanges avec le public",
+      "Échange convivial entre deux participants après la table ronde",
+      "Portrait d'un intervenant de la table ronde Choiseul Alsace",
+    ],
+    featuredHome: true,
+    caseStudy: true,
+  },
+  {
     slug: "128-db",
     client: "128 DB",
     sector: "Festival musical",
@@ -1090,6 +1139,7 @@ const caseStudyOrder = [
   "alsace-habitat",
   "herbapac",
   "maison-rouge",
+  "choiseul",
 ];
 
 export function getCaseStudies(): Project[] {
