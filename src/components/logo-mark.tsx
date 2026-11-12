@@ -7,7 +7,7 @@ export function LogoMark({ className }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      <rect x="40" y="8" width="76" height="44" rx="22" fill="var(--accent-purple)" />
+      <rect x="40" y="8" width="76" height="44" rx="22" fill="var(--accent-purple-lift)" />
       <rect x="40" y="68" width="177" height="44" rx="22" fill="var(--accent-pink)" />
       <rect x="0" y="128" width="176" height="44" rx="22" fill="var(--accent-yellow)" />
       <rect x="100" y="190" width="76" height="44" rx="22" fill="var(--accent-cyan)" />

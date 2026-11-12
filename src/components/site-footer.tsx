@@ -9,7 +9,7 @@ export function SiteFooter() {
     <footer className="border-t border-border">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-12 sm:flex-row sm:items-end sm:justify-between sm:px-8">
         <div>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
             {contact.coordinates.latitude} / {contact.coordinates.longitude}
           </p>
           <p className="mt-1 text-sm text-muted">

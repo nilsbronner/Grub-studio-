@@ -51,7 +51,7 @@ export default async function AdsOfferPage() {
       <div className="grid gap-10 sm:grid-cols-[1fr_300px] sm:items-center">
         <Reveal>
           <EyebrowPill>Offre Ads · Tournage + campagne</EyebrowPill>
-          <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
+          <h1 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight sm:text-5xl">
             Une pub zappée n&rsquo;est pas un client perdu.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed">
@@ -103,7 +103,7 @@ export default async function AdsOfferPage() {
               key={item}
               className="flex items-start gap-3 border border-border p-4 text-sm"
             >
-              <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent-purple" />
+              <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent-purple-lift" />
               {item}
             </li>
           ))}
@@ -226,7 +226,7 @@ function PricingGrid({ table }: { table: PricingTable }) {
                 key={name}
                 className={cx(
                   "border-b border-border px-3 pb-3 text-left font-medium",
-                  i === campaignRecommendedIndex && "text-accent-purple"
+                  i === campaignRecommendedIndex && "text-accent-purple-lift"
                 )}
               >
                 {name}

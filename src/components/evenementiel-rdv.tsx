@@ -108,7 +108,7 @@ export function FilmTile({
       </button>
       <div>
         <p className="text-sm font-medium">{title}</p>
-        <p className="text-xs font-mono uppercase tracking-[0.14em] text-muted">
+        <p className="text-xs font-mono uppercase tracking-[0.15em] text-muted">
           {subtitle}
         </p>
       </div>
@@ -140,7 +140,7 @@ export function ProofCard({
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-border">
+    <div className="flex flex-col overflow-hidden rounded-xl border border-border bg-raise">
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -165,7 +165,7 @@ export function ProofCard({
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="mt-4 flex items-center justify-between gap-2 border-t border-border pt-4 text-left text-xs font-mono uppercase tracking-[0.14em] text-muted transition-colors hover:text-foreground"
+          className="mt-4 flex items-center justify-between gap-2 border-t border-border pt-4 text-left text-xs font-mono uppercase tracking-[0.15em] text-muted transition-colors hover:text-foreground"
         >
           <span>{client}</span>
           <span>{cta} ▶</span>
@@ -298,9 +298,9 @@ export function LeadForm() {
 
   if (step === "done") {
     return (
-      <div className="relative overflow-hidden rounded-2xl border border-border p-6">
+      <div className="relative overflow-hidden rounded-2xl border border-border bg-raise p-6">
         <GradientBar />
-        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+        <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted">
           1 · Coordonnées ✓ — <span className="text-foreground">2 · Créneau</span>
         </p>
         <h3 className="mt-3 text-2xl font-medium tracking-tight">
@@ -330,7 +330,7 @@ export function LeadForm() {
   return (
     <form
       onSubmit={onSubmit}
-      className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border p-6"
+      className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border bg-raise p-6"
     >
       <GradientBar />
       <div>
@@ -386,7 +386,7 @@ export function LeadForm() {
       </Field>
 
       <div>
-        <span className="mb-2 block text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
+        <span className="mb-2 block text-[11px] font-medium uppercase tracking-[0.15em] text-muted">
           Votre événement
         </span>
         <div className="flex flex-wrap gap-2">
@@ -488,7 +488,7 @@ function GradientBar() {
       className="absolute inset-x-0 top-0 h-1"
       style={{
         background:
-          "linear-gradient(90deg, var(--accent-purple) 0 25%, var(--accent) 25% 50%, var(--accent-yellow) 50% 75%, var(--accent-cyan) 75%)",
+          "linear-gradient(90deg, var(--accent-purple-lift) 0 25%, var(--accent) 25% 50%, var(--accent-yellow) 50% 75%, var(--accent-cyan) 75%)",
       }}
     />
   );
@@ -503,7 +503,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
+      <span className="mb-1.5 block text-[11px] font-medium uppercase tracking-[0.15em] text-muted">
         {label}
       </span>
       {children}
@@ -521,7 +521,7 @@ export function RdvHeader() {
           className="flex items-center gap-2 text-[15px] font-semibold"
         >
           <span className="flex flex-col gap-0.5" aria-hidden>
-            <i className="block h-[3px] w-3.5 rounded-full bg-accent-purple" />
+            <i className="block h-[3px] w-3.5 rounded-full bg-accent-purple-lift" />
             <i className="block h-[3px] w-5 rounded-full bg-accent" />
             <i className="block h-[3px] w-4 rounded-full bg-accent-yellow" />
             <i className="ml-1 block h-[3px] w-2.5 rounded-full bg-accent-cyan" />
@@ -550,7 +550,7 @@ export function RdvHeader() {
         </nav>
         <a
           href="#appel"
-          className="hidden shrink-0 rounded-lg bg-accent-yellow px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.1em] text-background lg:block"
+          className="hidden shrink-0 rounded-lg bg-accent-yellow px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.15em] text-background lg:block"
         >
           Réserver un appel
         </a>
@@ -563,7 +563,7 @@ export function RdvHeader() {
 export function RdvFooter() {
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-6 font-mono text-[11px] uppercase tracking-[0.14em] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-6 font-mono text-[11px] uppercase tracking-[0.15em] text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8">
         <span>Grub Studio · 91 route des Romains, Strasbourg</span>
         <div className="flex flex-wrap gap-5">
           <a

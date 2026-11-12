@@ -149,7 +149,7 @@ export function HeroShowreel({
           // bottom-6`, ~80px tall) now that the hero reaches the true
           // screen bottom — bottom-10 used to be safely above it only
           // because the hero was shorter than the viewport.
-          className="absolute bottom-28 left-1/2 -translate-x-1/2 animate-pulse text-xs font-mono uppercase tracking-[0.2em] text-foreground/80 transition-colors hover:text-foreground sm:bottom-14"
+          className="absolute bottom-28 left-1/2 -translate-x-1/2 animate-pulse text-xs font-mono uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:text-foreground sm:bottom-14"
         >
           Cliquez pour découvrir ↓
         </button>
@@ -167,7 +167,7 @@ export function HeroShowreel({
       >
         <div className="mx-auto w-full max-w-7xl">
           {heading && (
-            <h1 className="mb-3 text-xs font-mono uppercase tracking-[0.2em] text-foreground/70 sm:text-sm">
+            <h1 className="mb-3 text-xs font-mono uppercase tracking-[0.15em] text-foreground/70 sm:text-sm">
               {heading}
             </h1>
           )}

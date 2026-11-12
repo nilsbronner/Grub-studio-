@@ -56,7 +56,7 @@ function VideoCard({ video }: { video: GalleryVideo }) {
           setLightboxOpen(true);
         }
       }}
-      className="group relative aspect-video cursor-pointer select-none overflow-hidden rounded-lg border border-border bg-[#141412] [container-type:size]"
+      className="group relative aspect-video cursor-pointer select-none overflow-hidden rounded-lg border border-border bg-raise [container-type:size]"
     >
       {video.image && (
         <Image

@@ -59,7 +59,7 @@ export default async function RushPage() {
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
         <EyebrowPill>{eventOfferIntro.eyebrow}</EyebrowPill>
-        <h1 className="mt-4 max-w-2xl text-2xl font-medium tracking-tight sm:text-4xl">
+        <h1 className="mt-4 max-w-2xl text-2xl font-bold tracking-tight sm:text-4xl">
           {eventOfferIntro.hook}
         </h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">

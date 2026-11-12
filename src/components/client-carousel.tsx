@@ -56,7 +56,7 @@ function LogoCard({ project }: { project: Project }) {
         <p className="text-[13px] font-semibold leading-tight text-white">
           {project.client}
         </p>
-        <p className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.1em] text-white/60">
+        <p className="mt-0.5 font-mono text-[9px] uppercase tracking-[0.15em] text-white/60">
           {project.sector}
         </p>
       </div>

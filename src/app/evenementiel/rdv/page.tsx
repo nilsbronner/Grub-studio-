@@ -117,7 +117,7 @@ const TERRAIN_IMAGES = [
 const CYCLE = [
   {
     image: "/images/projects/porsche-strasbourg.jpg",
-    accent: "var(--accent-purple)",
+    accent: "var(--accent-purple-lift)",
     step: "Avant",
     title: "Le teaser",
     text: "Une vidéo courte qui annonce l'événement et donne envie de venir.",
@@ -236,17 +236,17 @@ export default async function EvenementielRdvPage() {
               duration="26 s"
             />
             <div className="grid grid-cols-3 gap-3">
-              <Stat accent="var(--accent-purple)" value="+200" label="entreprises accompagnées" sub="Strasbourg & Grand Est" />
+              <Stat accent="var(--accent-purple-lift)" value="+200" label="entreprises accompagnées" sub="Strasbourg & Grand Est" />
               <Stat accent="var(--accent)" value="J+1" label="des images prêtes à partager" sub="Dès le lendemain" />
               <Stat accent="var(--accent-cyan)" value="20 min" label="pour cadrer votre événement" sub="Appel gratuit" />
             </div>
           </div>
 
           <div id="appel" className="flex flex-col gap-5">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
               Reportage événementiel · Strasbourg & Grand Est
             </p>
-            <h1 className="text-4xl font-medium leading-[1.02] tracking-tight sm:text-5xl">
+            <h1 className="text-4xl font-bold leading-[1.02] tracking-tight sm:text-5xl">
               Une soirée.
               <br />
               Un an de contenus.
@@ -279,7 +279,7 @@ export default async function EvenementielRdvPage() {
       {/* Refs marquee (static, wrapped) */}
       <div className="border-y border-border">
         <div className="mx-auto max-w-6xl px-5 py-6 sm:px-8">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          <p className="mb-3 font-mono text-xs uppercase tracking-[0.15em] text-muted">
             Ils nous confient leurs événements
           </p>
           <div className="flex flex-wrap gap-x-8 gap-y-2">
@@ -305,7 +305,7 @@ export default async function EvenementielRdvPage() {
             />
           </div>
           <div className="flex flex-col gap-4">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
               Le constat
             </p>
             <h2 className="text-3xl font-medium tracking-tight sm:text-4xl">
@@ -328,7 +328,7 @@ export default async function EvenementielRdvPage() {
       <section id="terrain" className="border-y border-border bg-background">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
           <Reveal className="max-w-xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
               Ce qu&rsquo;on capte sur le terrain
             </p>
             <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
@@ -356,7 +356,7 @@ export default async function EvenementielRdvPage() {
                   className="object-cover"
                 />
                 {img.caption && (
-                  <span className="absolute bottom-2.5 left-2.5 rounded-md bg-background/90 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-foreground">
+                  <span className="absolute bottom-2.5 left-2.5 rounded-md bg-background/90 px-2 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-foreground">
                     {img.caption}
                   </span>
                 )}
@@ -369,7 +369,7 @@ export default async function EvenementielRdvPage() {
       {/* Cycle */}
       <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
         <Reveal className="max-w-xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
             Avant, pendant, après
           </p>
           <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
@@ -378,7 +378,7 @@ export default async function EvenementielRdvPage() {
         </Reveal>
         <Reveal delay={0.1} className="mt-8 grid gap-4 sm:grid-cols-3">
           {CYCLE.map((c) => (
-            <article key={c.title} className="overflow-hidden rounded-xl border border-border">
+            <article key={c.title} className="overflow-hidden rounded-xl border border-border bg-raise">
               <div className="relative aspect-[3/2]">
                 <Image
                   src={c.image}
@@ -392,7 +392,7 @@ export default async function EvenementielRdvPage() {
                 className="border-t-[3px] p-5"
                 style={{ borderTopColor: c.accent }}
               >
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
                   {c.step}
                 </p>
                 <h3 className="mt-1.5 text-xl font-medium">{c.title}</h3>
@@ -407,7 +407,7 @@ export default async function EvenementielRdvPage() {
       <section id="resultats" className="border-y border-border">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
           <Reveal className="max-w-xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
               Les résultats
             </p>
             <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
@@ -433,7 +433,7 @@ export default async function EvenementielRdvPage() {
       {/* Films */}
       <section id="films" className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
         <Reveal className="max-w-xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
             Nos films d&rsquo;événements
           </p>
           <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
@@ -472,7 +472,7 @@ export default async function EvenementielRdvPage() {
       <section id="tarifs" className="border-y border-border bg-background">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
           <Reveal className="max-w-xl">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
               Tarifs
             </p>
             <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
@@ -484,7 +484,7 @@ export default async function EvenementielRdvPage() {
               <div
                 key={o.name}
                 className={
-                  "relative flex flex-col gap-3.5 rounded-xl border p-6" +
+                  "relative flex flex-col gap-3.5 rounded-xl border bg-raise p-6" +
                   (o.cta === "solid" ? " border-accent-yellow" : " border-border")
                 }
               >
@@ -547,7 +547,7 @@ export default async function EvenementielRdvPage() {
       {/* FAQ */}
       <section id="faq" className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
         <Reveal className="max-w-xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+          <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
             Questions fréquentes
           </p>
           <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
@@ -570,7 +570,7 @@ export default async function EvenementielRdvPage() {
       <section className="border-t border-border">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-2 lg:items-center">
           <div className="flex flex-col gap-5">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
               Prochaine étape
             </p>
             <h2 className="text-3xl font-medium tracking-tight sm:text-4xl">
@@ -637,14 +637,14 @@ function Stat({
 }) {
   return (
     <div
-      className="rounded-xl border border-border border-t-[3px] p-3.5"
+      className="rounded-xl border border-border bg-raise border-t-[3px] p-3.5"
       style={{ borderTopColor: accent }}
     >
       <p className="text-[26px] font-semibold leading-none tracking-tight tabular-nums sm:text-[30px]">
         {value}
       </p>
       <p className="mt-1.5 text-[13px] leading-snug text-muted">{label}</p>
-      <p className="mt-2 hidden font-mono text-[10px] uppercase tracking-[0.14em] text-muted/70 sm:block">
+      <p className="mt-2 hidden font-mono text-[10px] uppercase tracking-[0.15em] text-muted/70 sm:block">
         {sub}
       </p>
     </div>
