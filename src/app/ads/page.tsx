@@ -103,7 +103,7 @@ export default async function AdsOfferPage() {
               key={item}
               className="flex items-start gap-3 border border-border p-4 text-sm"
             >
-              <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent-purple" />
+              <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent-purple-lift" />
               {item}
             </li>
           ))}
@@ -226,7 +226,7 @@ function PricingGrid({ table }: { table: PricingTable }) {
                 key={name}
                 className={cx(
                   "border-b border-border px-3 pb-3 text-left font-medium",
-                  i === campaignRecommendedIndex && "text-accent-purple"
+                  i === campaignRecommendedIndex && "text-accent-purple-lift"
                 )}
               >
                 {name}

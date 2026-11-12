@@ -117,7 +117,7 @@ const TERRAIN_IMAGES = [
 const CYCLE = [
   {
     image: "/images/projects/porsche-strasbourg.jpg",
-    accent: "var(--accent-purple)",
+    accent: "var(--accent-purple-lift)",
     step: "Avant",
     title: "Le teaser",
     text: "Une vidéo courte qui annonce l'événement et donne envie de venir.",
@@ -236,7 +236,7 @@ export default async function EvenementielRdvPage() {
               duration="26 s"
             />
             <div className="grid grid-cols-3 gap-3">
-              <Stat accent="var(--accent-purple)" value="+200" label="entreprises accompagnées" sub="Strasbourg & Grand Est" />
+              <Stat accent="var(--accent-purple-lift)" value="+200" label="entreprises accompagnées" sub="Strasbourg & Grand Est" />
               <Stat accent="var(--accent)" value="J+1" label="des images prêtes à partager" sub="Dès le lendemain" />
               <Stat accent="var(--accent-cyan)" value="20 min" label="pour cadrer votre événement" sub="Appel gratuit" />
             </div>

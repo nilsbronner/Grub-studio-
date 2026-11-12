@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import type { Service } from "@/lib/content/services";
 
 const palette = [
-  "var(--accent-purple)",
+  "var(--accent-purple-lift)",
   "var(--accent-pink)",
   "var(--accent-yellow)",
   "var(--accent-cyan)",

@@ -11,7 +11,7 @@ const targets = [
 const ease = [0.16, 1, 0.3, 1] as const;
 
 const palette = [
-  "var(--accent-purple)",
+  "var(--accent-purple-lift)",
   "var(--accent-pink)",
   "var(--accent-yellow)",
   "var(--accent-cyan)",

@@ -6,7 +6,7 @@ import { cx } from "@/lib/cx";
 import type { Offer } from "@/lib/content/offers";
 
 const palette = [
-  "var(--accent-purple)",
+  "var(--accent-purple-lift)",
   "var(--accent-pink)",
   "var(--accent-yellow)",
   "var(--accent-cyan)",

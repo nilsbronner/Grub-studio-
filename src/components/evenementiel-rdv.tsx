@@ -488,7 +488,7 @@ function GradientBar() {
       className="absolute inset-x-0 top-0 h-1"
       style={{
         background:
-          "linear-gradient(90deg, var(--accent-purple) 0 25%, var(--accent) 25% 50%, var(--accent-yellow) 50% 75%, var(--accent-cyan) 75%)",
+          "linear-gradient(90deg, var(--accent-purple-lift) 0 25%, var(--accent) 25% 50%, var(--accent-yellow) 50% 75%, var(--accent-cyan) 75%)",
       }}
     />
   );
@@ -521,7 +521,7 @@ export function RdvHeader() {
           className="flex items-center gap-2 text-[15px] font-semibold"
         >
           <span className="flex flex-col gap-0.5" aria-hidden>
-            <i className="block h-[3px] w-3.5 rounded-full bg-accent-purple" />
+            <i className="block h-[3px] w-3.5 rounded-full bg-accent-purple-lift" />
             <i className="block h-[3px] w-5 rounded-full bg-accent" />
             <i className="block h-[3px] w-4 rounded-full bg-accent-yellow" />
             <i className="ml-1 block h-[3px] w-2.5 rounded-full bg-accent-cyan" />
