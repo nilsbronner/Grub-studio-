@@ -25,7 +25,7 @@ export function TournageDiagram() {
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5, ease }}
-        className="rounded-lg border border-border bg-foreground/[0.03] px-6 py-3 text-center"
+        className="rounded-lg border border-border bg-raise px-6 py-3 text-center"
       >
         <p className="text-sm font-medium">Spot principal</p>
         <p className="text-xs text-muted">1 tournage</p>
@@ -56,7 +56,7 @@ export function TournageDiagram() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, ease, delay: 0.7 + i * 0.12 }}
-            className="flex flex-col items-center rounded-lg border border-border p-5 text-center"
+            className="flex flex-col items-center rounded-lg border border-border bg-raise p-5 text-center"
           >
             <p className="text-sm font-medium">{t.label}</p>
             <div className="mt-3 flex items-center gap-1.5">

@@ -5,6 +5,9 @@
   --foreground: #f3f2ee;
   --muted: #8a8a84;
   --border: #232320;
+  /* Lifted card/panel surface from the validated kit (Refonte Grub Studio) —
+     distinct from the page background, used on every boxed element. */
+  --raise: #161614;
   /* Grub Motion palette (design system v1, oct. 2026) */
   --accent: #d73096;
   --accent-purple: #5035a9;
@@ -26,6 +29,7 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-raise: var(--raise);
   --color-accent: var(--accent);
   --color-accent-purple: var(--accent-purple);
   --color-accent-purple-lift: var(--accent-purple-lift);

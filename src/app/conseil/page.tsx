@@ -37,7 +37,7 @@ export default function ConseilPage() {
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
         <EyebrowPill>Gratuit</EyebrowPill>
-        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-4xl">
+        <h1 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl">
           Grub Conseil
         </h1>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">

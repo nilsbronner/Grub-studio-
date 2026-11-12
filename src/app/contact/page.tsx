@@ -20,7 +20,7 @@ export default function ContactPage() {
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
         <EyebrowPill>Contact</EyebrowPill>
-        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-4xl">
+        <h1 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl">
           Discutons de votre projet.
         </h1>
         <p className="mt-3 text-sm text-muted">
@@ -95,7 +95,7 @@ export default function ContactPage() {
           </Reveal>
 
           <Reveal delay={0.36} className="border-t border-border pt-6">
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted">
               {contact.coordinates.latitude} / {contact.coordinates.longitude}
             </p>
             <p className="mt-1 text-sm text-muted">

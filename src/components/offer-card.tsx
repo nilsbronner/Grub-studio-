@@ -51,7 +51,7 @@ export function OfferList({ offers }: { offers: Offer[] }) {
             whileHover={{ y: -3 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, ease, delay: (i % 6) * 0.06 }}
-            className="relative flex flex-col overflow-hidden rounded-xl border border-border p-6"
+            className="relative flex flex-col overflow-hidden rounded-xl border border-border bg-raise p-6"
           >
             <motion.div
               initial={{ scaleX: 0 }}

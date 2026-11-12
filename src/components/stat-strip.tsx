@@ -11,7 +11,7 @@ export function StatStrip({ stats }: { stats: ProjectStat[] }) {
   if (visibleStats.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap items-center gap-x-6 gap-y-5 rounded-xl border border-border px-6 py-6 sm:px-8">
+    <div className="flex flex-wrap items-center gap-x-6 gap-y-5 rounded-xl border border-border bg-raise px-6 py-6 sm:px-8">
       {visibleStats.map((stat, i) => (
         <div key={stat.label} className="flex items-center gap-6">
           {i > 0 && (

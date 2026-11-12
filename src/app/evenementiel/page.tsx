@@ -97,7 +97,7 @@ export default async function EventOfferPage() {
       <div className="grid gap-10 sm:grid-cols-[1fr_300px] sm:items-center">
         <Reveal>
           <EyebrowPill>Offre intégrale événementielle</EyebrowPill>
-          <h1 className="mt-4 max-w-2xl text-3xl font-medium tracking-tight sm:text-5xl">
+          <h1 className="mt-4 max-w-2xl text-3xl font-bold tracking-tight sm:text-5xl">
             Votre événement dure une journée. Son contenu peut durer des mois.
           </h1>
           <p className="mt-5 max-w-xl text-lg leading-relaxed">

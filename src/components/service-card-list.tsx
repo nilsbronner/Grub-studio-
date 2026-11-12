@@ -23,7 +23,7 @@ export function ServiceCardList({ services }: { services: Service[] }) {
           whileHover={{ y: -3 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, ease, delay: (i % 6) * 0.06 }}
-          className="relative overflow-hidden rounded-xl border border-border p-6"
+          className="relative overflow-hidden rounded-xl border border-border bg-raise p-6"
         >
           <motion.div
             initial={{ scaleX: 0 }}
@@ -47,7 +47,7 @@ export function ServiceCardList({ services }: { services: Service[] }) {
             {service.description}
           </p>
           {service.priceFrom && (
-            <p className="mt-3 text-xs font-mono uppercase tracking-[0.1em] text-muted">
+            <p className="mt-3 text-xs font-mono uppercase tracking-[0.15em] text-muted">
               À partir de {service.priceFrom}
             </p>
           )}

@@ -37,7 +37,7 @@ export default function StudioPage() {
     <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
       <Reveal>
         <EyebrowPill>L&rsquo;équipe</EyebrowPill>
-        <h1 className="mt-4 text-2xl font-medium tracking-tight sm:text-3xl">
+        <h1 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl">
           Notre savoir-faire
         </h1>
         <p className="mt-4 max-w-2xl text-lg font-medium sm:text-xl">
