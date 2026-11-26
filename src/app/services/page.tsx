@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: "Services vidéo & photo pour entreprises à Strasbourg",
     description:
       "Vidéo et photo pour les marques en Alsace et au-delà : spot pub, Ads, contenu réseaux, aftermovie, reportage, interview, podcast, motion design, portraits, packshots, événementiel.",
+    languages: { fr: "/services", en: "/en/services", de: "/de/services" },
   }),
   keywords: [
     "agence vidéo Strasbourg",

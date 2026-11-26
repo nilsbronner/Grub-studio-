@@ -4,18 +4,119 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { contact } from "@/lib/content/contact";
 import { trackPixel } from "@/lib/meta-pixel";
+import type { SiteLocale } from "@/lib/content/locale-nav";
 
-const projectTypes = [
-  "Spot publicitaire",
-  "Campagne digitale / Ads",
-  "Contenu réseaux (shorts)",
-  "Aftermovie / événementiel",
-  "Reportage vidéo",
-  "Interview / podcast",
-  "Motion design",
-  "Photo (portrait, produit, entreprise)",
-  "Autre",
-];
+const PROJECT_TYPES: Record<SiteLocale, string[]> = {
+  fr: [
+    "Spot publicitaire",
+    "Campagne digitale / Ads",
+    "Contenu réseaux (shorts)",
+    "Aftermovie / événementiel",
+    "Reportage vidéo",
+    "Interview / podcast",
+    "Motion design",
+    "Photo (portrait, produit, entreprise)",
+    "Autre",
+  ],
+  en: [
+    "TV/web commercial",
+    "Digital campaign / Ads",
+    "Social content (shorts)",
+    "Aftermovie / event",
+    "Video report",
+    "Interview / podcast",
+    "Motion design",
+    "Photo (portrait, product, corporate)",
+    "Other",
+  ],
+  de: [
+    "Werbespot",
+    "Digitale Kampagne / Ads",
+    "Social-Media-Content (Shorts)",
+    "Aftermovie / Event",
+    "Video-Reportage",
+    "Interview / Podcast",
+    "Motion Design",
+    "Foto (Porträt, Produkt, Unternehmen)",
+    "Sonstiges",
+  ],
+};
+
+const FORM_DICT: Record<
+  SiteLocale,
+  {
+    name: string;
+    email: string;
+    phone: string;
+    company: string;
+    projectType: string;
+    select: string;
+    message: string;
+    consentPrefix: string;
+    consentLink: string;
+    submit: string;
+    sending: string;
+    sentTitle: string;
+    sentBody: string;
+    unavailable: string;
+    sendByEmail: string;
+  }
+> = {
+  fr: {
+    name: "Nom",
+    email: "Email",
+    phone: "Téléphone (optionnel)",
+    company: "Société (optionnel)",
+    projectType: "Type de projet",
+    select: "Sélectionner —",
+    message: "Message",
+    consentPrefix:
+      "J’accepte que ces informations soient utilisées par Grub Studio pour traiter ma demande et me recontacter.",
+    consentLink: "En savoir plus",
+    submit: "Envoyer",
+    sending: "Envoi...",
+    sentTitle: "Message envoyé.",
+    sentBody: "Merci, on revient vers vous rapidement.",
+    unavailable: "Le formulaire est momentanément indisponible.",
+    sendByEmail: "Envoyer par email directement",
+  },
+  en: {
+    name: "Name",
+    email: "Email",
+    phone: "Phone (optional)",
+    company: "Company (optional)",
+    projectType: "Project type",
+    select: "Select —",
+    message: "Message",
+    consentPrefix:
+      "I agree that this information will be used by Grub Studio to process my request and get back to me.",
+    consentLink: "Learn more",
+    submit: "Send",
+    sending: "Sending...",
+    sentTitle: "Message sent.",
+    sentBody: "Thanks, we'll get back to you shortly.",
+    unavailable: "The form is temporarily unavailable.",
+    sendByEmail: "Send an email directly",
+  },
+  de: {
+    name: "Name",
+    email: "E-Mail",
+    phone: "Telefon (optional)",
+    company: "Unternehmen (optional)",
+    projectType: "Projektart",
+    select: "Auswählen —",
+    message: "Nachricht",
+    consentPrefix:
+      "Ich bin damit einverstanden, dass Grub Studio diese Angaben zur Bearbeitung meiner Anfrage und zur Kontaktaufnahme verwendet.",
+    consentLink: "Mehr erfahren",
+    submit: "Senden",
+    sending: "Wird gesendet...",
+    sentTitle: "Nachricht gesendet.",
+    sentBody: "Danke, wir melden uns in Kürze bei Ihnen.",
+    unavailable: "Das Formular ist vorübergehend nicht verfügbar.",
+    sendByEmail: "Direkt per E-Mail senden",
+  },
+};
 
 type Status = "idle" | "sending" | "sent" | "unavailable" | "error";
 
@@ -23,13 +124,17 @@ export function ContactForm({
   defaultProjectType = "",
   source,
   messagePlaceholder,
+  locale = "fr",
 }: {
   /** Pre-selects the project type (offer landing pages). */
   defaultProjectType?: string;
   /** Where the lead came from, e.g. "Page offre Ads" — added to the message and sent to the Meta pixel. */
   source?: string;
   messagePlaceholder?: string;
+  locale?: SiteLocale;
 } = {}) {
+  const dict = FORM_DICT[locale];
+  const projectTypes = PROJECT_TYPES[locale];
   const [status, setStatus] = useState<Status>("idle");
   const [values, setValues] = useState({
     name: "",
@@ -45,11 +150,11 @@ export function ContactForm({
     `Contact site — ${values.name || "nouveau projet"}`
   )}&body=${encodeURIComponent(
     [
-      `Nom : ${values.name}`,
-      `Email : ${values.email}`,
-      values.phone ? `Téléphone : ${values.phone}` : "",
-      values.company ? `Société : ${values.company}` : "",
-      values.projectType ? `Type de projet : ${values.projectType}` : "",
+      `${dict.name} : ${values.name}`,
+      `${dict.email} : ${values.email}`,
+      values.phone ? `${dict.phone} : ${values.phone}` : "",
+      values.company ? `${dict.company} : ${values.company}` : "",
+      values.projectType ? `${dict.projectType} : ${values.projectType}` : "",
       "",
       values.message,
     ]
@@ -91,10 +196,8 @@ export function ContactForm({
   if (status === "sent") {
     return (
       <div className="border border-border p-6">
-        <p className="text-sm font-medium">Message envoyé.</p>
-        <p className="mt-1 text-sm text-muted">
-          Merci, on revient vers vous rapidement.
-        </p>
+        <p className="text-sm font-medium">{dict.sentTitle}</p>
+        <p className="mt-1 text-sm text-muted">{dict.sentBody}</p>
       </div>
     );
   }
@@ -102,7 +205,7 @@ export function ContactForm({
   return (
     <form onSubmit={onSubmit} className="space-y-5">
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Nom">
+        <Field label={dict.name}>
           <input
             required
             type="text"
@@ -111,7 +214,7 @@ export function ContactForm({
             className="w-full border-b border-border bg-transparent py-2 text-sm outline-none transition-colors focus:border-accent"
           />
         </Field>
-        <Field label="Email">
+        <Field label={dict.email}>
           <input
             required
             type="email"
@@ -120,7 +223,7 @@ export function ContactForm({
             className="w-full border-b border-border bg-transparent py-2 text-sm outline-none transition-colors focus:border-accent"
           />
         </Field>
-        <Field label="Téléphone (optionnel)">
+        <Field label={dict.phone}>
           <input
             type="tel"
             value={values.phone}
@@ -128,7 +231,7 @@ export function ContactForm({
             className="w-full border-b border-border bg-transparent py-2 text-sm outline-none transition-colors focus:border-accent"
           />
         </Field>
-        <Field label="Société (optionnel)">
+        <Field label={dict.company}>
           <input
             type="text"
             value={values.company}
@@ -138,7 +241,7 @@ export function ContactForm({
         </Field>
       </div>
 
-      <Field label="Type de projet">
+      <Field label={dict.projectType}>
         <select
           value={values.projectType}
           onChange={(e) =>
@@ -147,17 +250,17 @@ export function ContactForm({
           className="w-full border-b border-border bg-transparent py-2 text-sm outline-none transition-colors focus:border-accent"
         >
           <option value="" className="bg-background">
-            Sélectionner —
+            {dict.select}
           </option>
-          {projectTypes.map((t) => (
-            <option key={t} value={t} className="bg-background">
-              {t}
+          {projectTypes.map((pt) => (
+            <option key={pt} value={pt} className="bg-background">
+              {pt}
             </option>
           ))}
         </select>
       </Field>
 
-      <Field label="Message">
+      <Field label={dict.message}>
         <textarea
           required
           rows={5}
@@ -179,10 +282,9 @@ export function ContactForm({
           className="mt-0.5 h-4 w-4 shrink-0 accent-[var(--accent)]"
         />
         <span>
-          J&rsquo;accepte que ces informations soient utilisées par Grub
-          Studio pour traiter ma demande et me recontacter.{" "}
+          {dict.consentPrefix}{" "}
           <Link href="/politique-de-confidentialite" className="text-accent underline">
-            En savoir plus
+            {dict.consentLink}
           </Link>
           .
         </span>
@@ -193,7 +295,7 @@ export function ContactForm({
         disabled={status === "sending"}
         className="group flex items-center gap-3 border border-border px-5 py-3 text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:border-accent hover:text-accent disabled:opacity-50"
       >
-        {status === "sending" ? "Envoi..." : "Envoyer"}
+        {status === "sending" ? dict.sending : dict.submit}
         <span className="transition-transform duration-300 group-hover:translate-x-1">
           →
         </span>
@@ -201,11 +303,11 @@ export function ContactForm({
 
       {(status === "unavailable" || status === "error") && (
         <p className="text-sm text-muted">
-          Le formulaire est momentanément indisponible.{" "}
+          {dict.unavailable}{" "}
           <a href={mailtoHref} className="text-accent underline">
-            Envoyer par email directement
-          </a>{" "}
-          à la place.
+            {dict.sendByEmail}
+          </a>
+          .
         </p>
       )}
     </form>

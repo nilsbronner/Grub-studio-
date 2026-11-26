@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     title: "Réalisations vidéo & photo à Strasbourg",
     description:
       "Spots pub, campagnes Ads, contenu réseaux, motion design et photo B2B à Strasbourg, en Alsace et au-delà — les productions Grub Studio.",
+    languages: { fr: "/travaux", en: "/en/travaux", de: "/de/travaux" },
   }),
   keywords: [
     "agence de production vidéo Strasbourg",
