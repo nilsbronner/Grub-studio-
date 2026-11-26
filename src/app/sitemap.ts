@@ -13,6 +13,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
     "/mentions-legales",
     "/politique-de-confidentialite",
+    // English and German translations so far cover these 4 main pages only.
+    "/en",
+    "/en/services",
+    "/en/travaux",
+    "/en/contact",
+    "/de",
+    "/de/services",
+    "/de/travaux",
+    "/de/contact",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),

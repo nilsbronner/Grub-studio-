@@ -6,17 +6,20 @@ import { useState } from "react";
 import { cx } from "@/lib/cx";
 import { LogoMark } from "@/components/logo-mark";
 import { AnimatedHighlight } from "@/components/animated-highlight";
+import {
+  LOCALES,
+  LOCALE_SWITCH_LABEL,
+  NAV_DICT,
+  TRANSLATED_SLUGS,
+  localeFromPathname,
+  localizeHref,
+  stripLocalePrefix,
+} from "@/lib/content/locale-nav";
 
 // Flip to false to pull /conseil from the nav without deleting the page —
 // its place on the site is still under discussion (brief Oct 9, "en suspens").
+// French-only: /conseil isn't translated yet, so it's never in the en/de nav.
 const CONSEIL_NAV_ENABLED = true;
-
-const links = [
-  { href: "/services", label: "Services" },
-  ...(CONSEIL_NAV_ENABLED ? [{ href: "/conseil", label: "Conseil" }] : []),
-  { href: "/rush", label: "Rush" },
-  { href: "/contact", label: "Contact" },
-];
 
 const cowork = { href: "https://www.le-grub.com/", label: "Grub Cowork" };
 
@@ -41,11 +44,20 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  const locale = localeFromPathname(pathname);
+  const frPath = stripLocalePrefix(pathname ?? "/");
+  const links = (
+    locale === "fr" && !CONSEIL_NAV_ENABLED
+      ? NAV_DICT.fr.links.filter((l) => l.href !== "/conseil")
+      : NAV_DICT[locale].links
+  ).map((l) => ({ ...l, href: localizeHref(l.href, locale) }));
+  const homeHref = localizeHref("/", locale);
+
   return (
     <header className="sticky top-0 z-50 bg-transparent [filter:drop-shadow(0_1px_6px_rgb(0_0_0_/_0.8))]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <Link
-          href="/"
+          href={homeHref}
           className="flex items-center gap-2"
           onClick={() => setOpen(false)}
         >
@@ -53,10 +65,10 @@ export function SiteHeader() {
           <span className="text-lg font-bold tracking-tight">Grub Studio</span>
         </Link>
 
-        <nav className="hidden gap-8 text-sm font-mono uppercase tracking-[0.15em] sm:flex">
+        <nav className="hidden items-center gap-8 text-sm font-mono uppercase tracking-[0.15em] sm:flex">
           {links.map((link) => {
             const active =
-              pathname === link.href || pathname.startsWith(`${link.href}/`);
+              pathname === link.href || pathname?.startsWith(`${link.href}/`);
             return (
               <Link
                 key={link.href}
@@ -66,7 +78,7 @@ export function SiteHeader() {
                   active ? "text-foreground" : "text-muted"
                 )}
               >
-                {link.href === "/rush" ? (
+                {link.href.endsWith("/rush") ? (
                   <AnimatedHighlight>{link.label}</AnimatedHighlight>
                 ) : (
                   <>
@@ -91,17 +103,21 @@ export function SiteHeader() {
             {cowork.label}
             <ExternalLinkIcon />
           </a>
+          <LanguageSwitch locale={locale} frPath={frPath} />
         </nav>
 
-        <button
-          type="button"
-          className="text-sm font-mono uppercase tracking-[0.15em] sm:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-label="Menu"
-        >
-          {open ? "Fermer" : "Menu"}
-        </button>
+        <div className="flex items-center gap-4 sm:hidden">
+          <LanguageSwitch locale={locale} frPath={frPath} compact />
+          <button
+            type="button"
+            className="text-sm font-mono uppercase tracking-[0.15em]"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-label="Menu"
+          >
+            {open ? NAV_DICT[locale].close : NAV_DICT[locale].menu}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -113,12 +129,12 @@ export function SiteHeader() {
               onClick={() => setOpen(false)}
               className={cx(
                 "py-2 transition-colors",
-                pathname === link.href || pathname.startsWith(`${link.href}/`)
+                pathname === link.href || pathname?.startsWith(`${link.href}/`)
                   ? "text-foreground"
                   : "text-muted"
               )}
             >
-              {link.href === "/rush" ? (
+              {link.href.endsWith("/rush") ? (
                 <AnimatedHighlight>{link.label}</AnimatedHighlight>
               ) : (
                 link.label
@@ -137,5 +153,42 @@ export function SiteHeader() {
         </nav>
       )}
     </header>
+  );
+}
+
+/** FR / EN / DE pills — only links to a locale a page is actually translated into, home otherwise. */
+function LanguageSwitch({
+  locale,
+  frPath,
+  compact = false,
+}: {
+  locale: ReturnType<typeof localeFromPathname>;
+  frPath: string;
+  compact?: boolean;
+}) {
+  const translated = (TRANSLATED_SLUGS as readonly string[]).includes(
+    frPath === "/" ? "" : frPath.replace(/^\//, "")
+  );
+
+  return (
+    <div
+      className={cx(
+        "flex items-center gap-1 text-xs",
+        compact ? "" : "border-l border-border pl-5"
+      )}
+    >
+      {LOCALES.map((l) => (
+        <Link
+          key={l}
+          href={translated ? localizeHref(frPath, l) : localizeHref("/", l)}
+          className={cx(
+            "px-1 py-0.5 transition-colors hover:text-foreground",
+            locale === l ? "text-foreground" : "text-muted"
+          )}
+        >
+          {LOCALE_SWITCH_LABEL[l]}
+        </Link>
+      ))}
+    </div>
   );
 }

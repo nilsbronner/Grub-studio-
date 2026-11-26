@@ -11,15 +11,29 @@ export function pageMetadata({
   path,
   title,
   description,
+  languages,
+  ogLocale,
 }: {
   path: string;
   title?: string;
   description: string;
+  /** hreflang alternates, e.g. { fr: "/services", en: "/en/services", de: "/de/services" }. */
+  languages?: Record<string, string>;
+  /** openGraph.locale for non-French pages (defaults to fr_FR at the root layout). */
+  ogLocale?: string;
 }): Metadata {
   return {
     title,
     description,
-    alternates: { canonical: path },
-    openGraph: { url: path, title, description },
+    alternates: {
+      canonical: path,
+      ...(languages ? { languages } : {}),
+    },
+    openGraph: {
+      url: path,
+      title,
+      description,
+      ...(ogLocale ? { locale: ogLocale } : {}),
+    },
   };
 }

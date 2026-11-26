@@ -19,6 +19,7 @@ export const metadata: Metadata = {
     path: "/",
     description:
       "Agence de production vidéo et photo à Strasbourg : spots pub, vidéos Ads et réseaux, reportages, interviews, films de marque. +200 marques accompagnées.",
+    languages: { fr: "/", en: "/en", de: "/de" },
   }),
   title: { absolute: "Agence de production vidéo & photo à Strasbourg | Grub Studio" },
 };
